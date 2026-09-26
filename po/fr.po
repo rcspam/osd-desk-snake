@@ -1,0 +1,458 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Timing"
+msgstr "Durées"
+
+msgid "Display time:"
+msgstr "Durée d'affichage :"
+
+msgid "How long the indicator stays fully visible."
+msgstr "Temps pendant lequel l'indicateur reste entièrement visible."
+
+msgid "Transition from the previous desktop to the new one."
+msgstr "Transition de l'ancien bureau vers le nouveau."
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Do not show with a single desktop"
+msgstr "Ne pas afficher s'il n'y a qu'un bureau"
+
+msgid "Desktop name:"
+msgstr "Nom du bureau :"
+
+msgid "Shows the name of the current desktop as a caption."
+msgstr "Affiche le nom du bureau courant en légende."
+
+msgid "Hidden"
+msgstr "Masqué"
+
+msgid "Above the indicator"
+msgstr "Au-dessus de l'indicateur"
+
+msgid "Below the indicator"
+msgstr "Sous l'indicateur"
+
+msgid "Layout:"
+msgstr "Disposition :"
+
+msgid "Arrangement of the desktops inside the indicator."
+msgstr "Disposition des bureaux dans l'indicateur."
+
+msgid "Follow the desktop grid"
+msgstr "Suivre la grille des bureaux"
+
+msgid "Single row"
+msgstr "Une seule ligne"
+
+msgid "Single column"
+msgstr "Une seule colonne"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Placement"
+msgstr "Placement"
+
+msgid "Mode:"
+msgstr "Mode :"
+
+msgid "Anchor: one of nine screen points. Free position: percentages of the screen."
+msgstr "Ancre : un des neuf points de l'écran. Position libre : pourcentages de l'écran."
+
+msgid "Anchor"
+msgstr "Ancre"
+
+msgid "Free position"
+msgstr "Position libre"
+
+msgid "Keep clear of panels"
+msgstr "Éviter les panneaux"
+
+msgid "Places the indicator in the screen area not covered by panels."
+msgstr "Place l'indicateur dans la zone de l'écran non couverte par les panneaux."
+
+msgid "Anchor mode"
+msgstr "Mode ancre"
+
+msgid "Anchor:"
+msgstr "Ancre :"
+
+msgid "Top left"
+msgstr "En haut à gauche"
+
+msgid "Top"
+msgstr "En haut"
+
+msgid "Top right"
+msgstr "En haut à droite"
+
+msgid "Left"
+msgstr "À gauche"
+
+msgid "Center"
+msgstr "Au centre"
+
+msgid "Right"
+msgstr "À droite"
+
+msgid "Bottom left"
+msgstr "En bas à gauche"
+
+msgid "Bottom"
+msgstr "En bas"
+
+msgid "Bottom right"
+msgstr "En bas à droite"
+
+msgid "Margin:"
+msgstr "Marge :"
+
+msgid "Distance from the anchored screen edges."
+msgstr "Distance aux bords de l'écran du côté de l'ancre."
+
+msgid "Horizontal offset:"
+msgstr "Décalage horizontal :"
+
+msgid "Positive values move right."
+msgstr "Une valeur positive décale vers la droite."
+
+msgid "Vertical offset:"
+msgstr "Décalage vertical :"
+
+msgid "Positive values move down."
+msgstr "Une valeur positive décale vers le bas."
+
+msgid "Free position mode"
+msgstr "Mode position libre"
+
+msgid "Horizontal position:"
+msgstr "Position horizontale :"
+
+msgid "Position of the indicator center, from the left edge."
+msgstr "Position du centre de l'indicateur, depuis le bord gauche."
+
+msgid "Vertical position:"
+msgstr "Position verticale :"
+
+msgid "Position of the indicator center, from the top edge."
+msgstr "Position du centre de l'indicateur, depuis le bord haut."
+
+msgid "Style"
+msgstr "Style"
+
+msgid "Style:"
+msgstr "Style :"
+
+msgid "Pills"
+msgstr "Pilules"
+
+msgid "Labels"
+msgstr "Libellés"
+
+msgid "Icons"
+msgstr "Icônes"
+
+msgid "Open windows"
+msgstr "Fenêtres ouvertes"
+
+msgid "Highlight:"
+msgstr "Surbrillance :"
+
+msgid "Highlight of the current desktop for the labels, icons and open windows styles."
+msgstr "Surbrillance du bureau courant pour les styles libellés, icônes et fenêtres ouvertes."
+
+msgid "Full"
+msgstr "Pleine"
+
+msgid "Square"
+msgstr "Carré"
+
+msgid "Line"
+msgstr "Ligne"
+
+msgid "Full with line"
+msgstr "Pleine avec ligne"
+
+msgid "Mark desktops that contain windows"
+msgstr "Marquer les bureaux qui contiennent des fenêtres"
+
+msgid "Inactive opacity:"
+msgstr "Opacité des autres bureaux :"
+
+msgid "Opacity of the other desktops."
+msgstr "Opacité des bureaux non courants."
+
+msgid "Spacing:"
+msgstr "Espacement :"
+
+msgid "Padding:"
+msgstr "Marge intérieure :"
+
+msgid "Space between the desktops and the background edge."
+msgstr "Espace entre les bureaux et le bord du fond."
+
+msgid "Width:"
+msgstr "Largeur :"
+
+msgid "Height:"
+msgstr "Hauteur :"
+
+msgid "Current desktop width:"
+msgstr "Largeur du bureau courant :"
+
+msgid "Current desktop height:"
+msgstr "Hauteur du bureau courant :"
+
+msgid "Corner radius:"
+msgstr "Arrondi des coins :"
+
+msgid "Cells (labels, icons, open windows)"
+msgstr "Cases (libellés, icônes, fenêtres ouvertes)"
+
+msgid "Minimum width:"
+msgstr "Largeur minimale :"
+
+msgid "Square highlight size:"
+msgstr "Taille du carré :"
+
+msgid "Line highlight width:"
+msgstr "Longueur de la ligne :"
+
+msgid "Line highlight thickness:"
+msgstr "Épaisseur de la ligne :"
+
+msgid "Labels and icons"
+msgstr "Libellés et icônes"
+
+msgid "Text:"
+msgstr "Texte :"
+
+msgid "Desktop number"
+msgstr "Numéro du bureau"
+
+msgid "Desktop name"
+msgstr "Nom du bureau"
+
+msgid "Template"
+msgstr "Modèle"
+
+msgid "Custom list"
+msgstr "Liste perso"
+
+msgid "Template:"
+msgstr "Modèle :"
+
+msgid "%d is replaced by the desktop number, %n by its name."
+msgstr "%d est remplacé par le numéro du bureau, %n par son nom."
+
+msgid "Custom list:"
+msgstr "Liste perso :"
+
+msgid "One label per desktop, separated by commas. Missing entries show the number."
+msgstr "Un libellé par bureau, séparés par des virgules. Sans libellé, le numéro s'affiche."
+
+msgid "Font size:"
+msgstr "Taille du texte :"
+
+msgid "0 uses the theme font size."
+msgstr "0 utilise la taille du thème."
+
+msgid "Bold text"
+msgstr "Texte en gras"
+
+msgid "Bold text for the current desktop"
+msgstr "Texte en gras pour le bureau courant"
+
+msgid "Icons:"
+msgstr "Icônes :"
+
+msgid "One icon name per desktop, separated by commas."
+msgstr "Un nom d'icône par bureau, séparés par des virgules."
+
+msgid "Fallback icon:"
+msgstr "Icône par défaut :"
+
+msgid "Used for desktops beyond the list."
+msgstr "Utilisée pour les bureaux au-delà de la liste."
+
+msgid "Icon size:"
+msgstr "Taille des icônes :"
+
+msgid "Window icon size:"
+msgstr "Taille des icônes de fenêtres :"
+
+msgid "Icons per desktop:"
+msgstr "Icônes par bureau :"
+
+msgid "Extra windows are shown as +n."
+msgstr "Les fenêtres en plus sont affichées en +n."
+
+msgid "Colors"
+msgstr "Couleurs"
+
+msgid "Use the Plasma theme colors"
+msgstr "Utiliser les couleurs du thème Plasma"
+
+msgid "Uncheck to use the colors below."
+msgstr "Décocher pour utiliser les couleurs ci-dessous."
+
+msgid "Current desktop:"
+msgstr "Bureau courant :"
+
+msgid "Other desktops (pills):"
+msgstr "Autres bureaux (pilules) :"
+
+msgid "Text on the highlight:"
+msgstr "Texte sur la surbrillance :"
+
+msgid "Desktop with windows mark:"
+msgstr "Marque des bureaux occupés :"
+
+msgid "Background"
+msgstr "Fond"
+
+msgid "Background:"
+msgstr "Fond :"
+
+msgid "Plasma theme"
+msgstr "Thème Plasma"
+
+msgid "Plasma theme, solid"
+msgstr "Thème Plasma, opaque"
+
+msgid "None"
+msgstr "Aucun"
+
+msgid "Custom color"
+msgstr "Couleur perso"
+
+msgid "Custom color:"
+msgstr "Couleur perso :"
+
+msgid "Custom corner radius:"
+msgstr "Arrondi perso :"
+
+msgid "Delay before showing:"
+msgstr "Délai avant affichage :"
+
+msgid "Wait before showing the indicator. Switches made during the delay only show the last one."
+msgstr "Attendre avant d'afficher l'indicateur. Si plusieurs changements ont lieu pendant ce délai, seul le dernier s'affiche."
+
+msgid "Fade in:"
+msgstr "Fondu d'entrée :"
+
+msgid "How long the indicator takes to appear."
+msgstr "Temps mis par l'indicateur pour apparaître."
+
+msgid "Fade out:"
+msgstr "Fondu de sortie :"
+
+msgid "How long the indicator takes to disappear."
+msgstr "Temps mis par l'indicateur pour disparaître."
+
+msgid "Appear effect:"
+msgstr "Effet d'apparition :"
+
+msgid "Fade"
+msgstr "Fondu"
+
+msgid "Fade and zoom"
+msgstr "Fondu et zoom"
+
+msgid "Highlight animation"
+msgstr "Animation de la surbrillance"
+
+msgid "Duration:"
+msgstr "Durée :"
+
+msgid "Curve:"
+msgstr "Courbe :"
+
+msgid "Linear"
+msgstr "Linéaire"
+
+msgid "Smooth"
+msgstr "Douce"
+
+msgid "Overshoot"
+msgstr "Rebond"
+
+msgid "Ease in and out"
+msgstr "Accélérée puis ralentie"
+
+msgid "Shape:"
+msgstr "Forme :"
+
+msgid "Circle and diamond use the heights as size."
+msgstr "Le cercle et le losange prennent les hauteurs comme taille."
+
+msgid "Pill"
+msgstr "Pilule"
+
+msgid "Circle"
+msgstr "Cercle"
+
+msgid "Diamond"
+msgstr "Losange"
+
+msgid "Bar"
+msgstr "Barre"
+
+msgid "Shape of the cells and of the full and square highlights."
+msgstr "Forme des cases et des surbrillances pleine et carrée."
+
+msgid "Rounded"
+msgstr "Arrondi"
+
+msgid "Opacity:"
+msgstr "Opacité :"
+
+msgid "Opacity of the background only, the desktops stay opaque."
+msgstr "Opacité du fond seul, les bureaux restent opaques."
+
+msgid "OSD Desk Snake settings"
+msgstr "Réglages OSD Desk Snake"
+
+msgid "Applied live."
+msgstr "Appliqué en direct."
+
+msgid "Revert"
+msgstr "Rétablir"
+
+msgid "Back to the settings you had when this window opened."
+msgstr "Revenir aux réglages présents à l'ouverture de cette fenêtre."
+
+msgid "Defaults"
+msgstr "Valeurs par défaut"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Snap to anchors when dragging"
+msgstr "Aimanter aux ancres pendant le déplacement"
+
+msgid "With the settings app open, the indicator can be dragged. When dropped near an anchor, it sticks to it."
+msgstr "Quand l'appli de réglages est ouverte, l'indicateur se déplace à la souris. Lâché près d'une ancre, il s'y colle."
+
+msgid "Snap distance:"
+msgstr "Distance d'aimantage :"
+
+msgid "Motion:"
+msgstr "Mouvement :"
+
+msgid "Follow: the highlight slides with the desktops and follows swipe gestures. Once done: the previous desktop fades out while the new one fades in."
+msgstr "Suit : la surbrillance glisse avec les bureaux et suit les gestes. Une fois atteint : l'ancien bureau s'efface pendant que le nouveau apparaît."
+
+msgid "Follow the desktop switch"
+msgstr "Suit le changement de bureau"
+
+msgid "Once the switch is done"
+msgstr "Une fois le bureau atteint"
