@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QFileSystemWatcher>
 #include <QList>
 #include <QObject>
 #include <QStringList>
@@ -11,6 +12,7 @@ class SettingsStore;
 // Named sets of settings, one KConfig file per preset (<name>.osdsnake) in a
 // folder: [Preset] holds the name, [Settings] the same keys as kwinrc, read and
 // written through the script schema so only non-default values are stored.
+// The folder is watched, so presets copied into it by hand show up at once.
 // Actions return an error message for the user, empty on success.
 class PresetLibrary : public QObject
 {
@@ -22,7 +24,7 @@ class PresetLibrary : public QObject
 public:
     PresetLibrary(SettingsStore *store, const QString &schemaPath, const QString &directory, QObject *parent = nullptr);
 
-    // ~/.local/share/osd-desk-snake/presets
+    // ~/.config/osdsnake/presets
     static QString defaultDirectory();
 
     QStringList names() const;
@@ -67,4 +69,5 @@ private:
     QString m_directory;
     QList<Preset> m_presets;
     QString m_current;
+    QFileSystemWatcher m_watcher;
 };

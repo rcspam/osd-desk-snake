@@ -23,7 +23,7 @@ un clic, et l'échanger avec d'autres sous forme de fichier.
 Un fichier par preset, au format INI de KConfig :
 
 ```
-~/.local/share/osd-desk-snake/presets/<nom>.osdsnake
+~/.config/osdsnake/presets/<nom>.osdsnake
 ```
 
 ```ini
@@ -50,8 +50,9 @@ Style=1
 - Le nom du fichier vient du nom du preset : `/` remplacé par `-`, espaces et
   points en tête retirés. Deux presets ne peuvent pas porter le même nom, sans
   tenir compte de la casse.
-- Le dossier est `QStandardPaths::GenericDataLocation` + `/osd-desk-snake/presets`,
-  créé au premier enregistrement.
+- Le dossier est `QStandardPaths::GenericConfigLocation` + `/osdsnake/presets`,
+  créé au lancement de l'app. Il est surveillé : un fichier `.osdsnake` copié
+  dedans à la main apparaît aussitôt dans la liste.
 
 ## Appliquer un preset
 

@@ -136,7 +136,7 @@ Two ways, same settings:
   mode it snaps to the nearest anchor (Snap to anchors), in free mode it keeps
   the exact spot. Its Presets tab saves every setting under a name, applies a
   preset with one click, and exports or imports presets as `.osdsnake` files
-  (kept in `~/.local/share/osd-desk-snake/presets`).
+  (kept in `~/.config/osdsnake/presets`, where you can also drop preset files).
 - System Settings > Window Management > KWin Scripts > OSD Desk Snake > Configure:
   changes show up on Apply. Links at the top of that page open the settings
   app, or its Presets tab, when it is installed.

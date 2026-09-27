@@ -206,6 +206,18 @@ private Q_SLOTS:
         QCOMPARE(QDir(presetDir()).entryList(QDir::Files).size(), 3);
     }
 
+    void folderIsCreatedAndWatched()
+    {
+        auto presets = library();
+        QVERIFY(QDir(presetDir()).exists());
+
+        // A file dropped into the folder by hand shows up in the list.
+        QSignalSpy changed(presets.get(), &PresetLibrary::namesChanged);
+        writeFile(presetDir() + QStringLiteral("/dropped.osdsnake"), "[Preset]\nName=Dropped\n");
+        QVERIFY(changed.wait(2000));
+        QCOMPARE(presets->names(), QStringList{QStringLiteral("Dropped")});
+    }
+
     void exportThenImport()
     {
         auto presets = library();

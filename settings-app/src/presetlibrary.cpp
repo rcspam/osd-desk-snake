@@ -38,6 +38,9 @@ PresetLibrary::PresetLibrary(SettingsStore *store, const QString &schemaPath, co
     , m_schemaPath(schemaPath)
     , m_directory(directory)
 {
+    QDir().mkpath(m_directory);
+    m_watcher.addPath(m_directory);
+    connect(&m_watcher, &QFileSystemWatcher::directoryChanged, this, &PresetLibrary::reload);
     reload();
     // Every change of a setting ends with a save: the time to check which preset still matches.
     connect(m_store, &SettingsStore::saved, this, &PresetLibrary::updateCurrent);
@@ -45,7 +48,7 @@ PresetLibrary::PresetLibrary(SettingsStore *store, const QString &schemaPath, co
 
 QString PresetLibrary::defaultDirectory()
 {
-    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/osd-desk-snake/presets");
+    return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QStringLiteral("/osdsnake/presets");
 }
 
 QStringList PresetLibrary::names() const
