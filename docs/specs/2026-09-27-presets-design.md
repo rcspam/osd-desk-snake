@@ -38,8 +38,10 @@ Style=1
 
 - `[Settings]` a les mêmes clés que le groupe `[Script-osd-desk-snake]` de
   kwinrc. Il est lu et écrit avec `KConfigLoader` et le schéma `main.xml` du
-  script, déjà embarqué dans l'app. Conversion des types, bornes min/max et clés
-  inconnues ignorées viennent de là.
+  script, déjà embarqué dans l'app. La conversion des types et l'oubli des clés
+  inconnues viennent de là : une valeur illisible prend son défaut. Le schéma n'a
+  pas de bornes min/max, donc une valeur hors plage passe telle quelle, comme
+  dans un kwinrc édité à la main.
 - Comme dans kwinrc, seules les valeurs différentes du défaut sont écrites. Une
   clé absente vaut donc son défaut. Un réglage ajouté par une version future
   prend ainsi son défaut quand on applique un ancien preset.
@@ -146,7 +148,7 @@ temporaire :
 - renommer, supprimer, et le refus d'un nom vide ;
 - exporter puis importer redonne le même preset ;
 - import d'un fichier sans `[Preset]` ou illisible : erreur, rien ajouté ;
-- valeur hors bornes dans un fichier importé : bornée par le schéma.
+- valeur illisible dans un fichier importé : remplacée par son défaut.
 
 À la main : l'onglet (création, application en direct, dialogues, liste vide,
 erreurs), et le lien depuis la Configuration du système, app fermée puis app
