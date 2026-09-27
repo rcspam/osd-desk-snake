@@ -1,0 +1,14 @@
+[Preset]
+Name=Vertical template
+Version=1
+
+[Settings]
+Caption=1
+CellRadius=12
+CellShape=0
+Highlight=3
+HighlightMotion=2
+LabelSource=2
+LabelTemplate=Desk %d
+Layout=2
+Style=1

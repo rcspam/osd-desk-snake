@@ -1,0 +1,13 @@
+[Preset]
+Name=Crossfade bars
+Version=1
+
+[Settings]
+AnimationEasing=2
+HighlightMotion=1
+PillActiveHeight=6
+PillActiveWidth=60
+PillHeight=6
+PillShape=4
+PillWidth=30
+Style=0

@@ -151,7 +151,8 @@ after a desktop switch otherwise (at most every 3 s).
 
 ```sh
 ./install.sh reload          # load the working copy into the running KWin
-tests/run-tests.sh           # unit tests + PNG previews in tests/preview-out (styles.png goes to docs/)
+tests/run-tests.sh           # unit tests + PNG previews in tests/preview-out (styles.png goes to docs/),
+                             # including every preset of tests/presets, checked for clipped parts
 python3 tools/gen_config_ui.py   # regenerate config.ui, the app form model and schema.js
 cmake -S settings-app -B settings-app/build && cmake --build settings-app/build
 settings-app/build/bin/settingsstoretest

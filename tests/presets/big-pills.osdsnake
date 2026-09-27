@@ -1,0 +1,10 @@
+[Preset]
+Name=Big pills
+Version=1
+
+[Settings]
+BackgroundMode=1
+PillActiveWidth=60
+PillShape=0
+Style=0
+Zoom=200

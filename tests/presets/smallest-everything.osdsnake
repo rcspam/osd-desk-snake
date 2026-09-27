@@ -1,0 +1,16 @@
+[Preset]
+Name=Smallest everything
+Version=1
+
+[Settings]
+BackgroundMode=3
+BackgroundRadius=250
+CellRadius=250
+Highlight=2
+IconSize=8
+LineOffset=-40
+MarkOffset=-20
+Padding=0
+Spacing=0
+Style=2
+Zoom=25

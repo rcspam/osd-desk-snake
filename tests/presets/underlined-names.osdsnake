@@ -1,0 +1,15 @@
+[Preset]
+Name=Underlined names
+Version=1
+
+[Settings]
+BackgroundMode=2
+FontSize=16
+Highlight=2
+InactiveOpacity=60
+LabelSource=1
+LineHeight=3
+LineOffset=6
+LineWidth=30
+MarkOffset=-2
+Style=1

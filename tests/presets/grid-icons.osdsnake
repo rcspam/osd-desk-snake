@@ -1,0 +1,12 @@
+[Preset]
+Name=Grid icons
+Version=1
+
+[Settings]
+CellShape=2
+Highlight=1
+IconList=internet-web-browser, utilities-terminal, internet-mail, applications-office, multimedia-player, applications-games
+IconSize=32
+Layout=0
+SquareSize=40
+Style=2

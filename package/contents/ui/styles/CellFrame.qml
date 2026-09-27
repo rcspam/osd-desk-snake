@@ -31,8 +31,20 @@ Item {
     readonly property var geo: Logic.cellGeometry(s.cellShape, s.cellShape === 1 ? indicator.widestContent : contentWidth,
                                                   s.cellWidth, s.cellHeight, s.cellRadius, s.sizeFactor)
 
+    // How far the content, the dot and the line reach above and below the shape.
+    // The cell grows by that much, the shape staying at its size in the middle:
+    // nothing leaves the indicator (the OSD window cuts it off in KWin) and the
+    // rows of a grid keep apart. Depends on the settings only, not on which
+    // desktops hold windows, so the indicator keeps its size.
+    readonly property var extents: Logic.cellExtents(geo.height, contentHeight, [
+        showOccupiedDot && s.markOccupied ? { offset: s.markOffset, height: s.markSize } : null,
+        s.highlight === 2 || s.highlight === 3 ? { offset: s.lineOffset, height: s.lineHeight } : null
+    ])
+    // Top of the shape in the cell.
+    readonly property real shapeY: extents.top
+
     implicitWidth: geo.width
-    implicitHeight: geo.height
+    implicitHeight: geo.height + extents.top + extents.bottom
 
     // The highlight shapes of this cell at full weight, in cell coordinates. With
     // "slide with the switch" the indicator draws one highlight going from one
@@ -45,11 +57,12 @@ Item {
         const sw = s.cellShape === 1 ? Math.min(wanted, w, h) : Math.min(wanted, w);
         const sh = s.cellShape === 1 ? sw : Math.min(s.squareSize, h);
         const lw = Math.min(s.lineWidth, w);
+        const top = shapeY;
         return {
-            full: { x: 0, y: 0, width: w, height: h, radius: geo.radius },
-            square: { x: (w - sw) / 2, y: (h - sh) / 2, width: sw, height: sh,
+            full: { x: 0, y: top, width: w, height: h, radius: geo.radius },
+            square: { x: (w - sw) / 2, y: top + (h - sh) / 2, width: sw, height: sh,
                       radius: Logic.shapeRadius(s.cellShape, sw, sh, s.cellRadius) },
-            line: { x: (w - lw) / 2, y: Logic.markY(h, contentHeight, s.lineOffset), width: lw, height: s.lineHeight,
+            line: { x: (w - lw) / 2, y: top + Logic.markY(h, contentHeight, s.lineOffset), width: lw, height: s.lineHeight,
                     radius: s.lineHeight / 2 }
         };
     }
@@ -57,9 +70,13 @@ Item {
 
     // Full (0), or dimmed full under a line (3).
     Rectangle {
-        anchors.fill: parent
+        readonly property var r: frame.highlightRects.full
+        x: r.x
+        y: r.y
+        width: r.width
+        height: r.height
         visible: frame.ownHighlight && (frame.s.highlight === 0 || frame.s.highlight === 3)
-        radius: frame.highlightRects.full.radius
+        radius: r.radius
         color: frame.indicator.activeColor
         opacity: frame.weight * (frame.s.highlight === 3 ? 0.35 : 1)
     }
@@ -93,7 +110,7 @@ Item {
     Rectangle {
         objectName: "occupiedDot"
         anchors.horizontalCenter: parent.horizontalCenter
-        y: Logic.markY(frame.height, frame.contentHeight, frame.s.markOffset)
+        y: frame.shapeY + Logic.markY(frame.geo.height, frame.contentHeight, frame.s.markOffset)
         visible: frame.showOccupiedDot && frame.s.markOccupied && frame.modelData.occupied
         width: frame.s.markSize
         height: frame.s.markSize
@@ -105,8 +122,11 @@ Item {
         opacity: Math.max(0, Math.min(100, frame.s.markOpacity)) / 100
     }
 
+    // Content (label, icon...) centered on the shape.
     Item {
         id: contentArea
-        anchors.fill: parent
+        y: frame.shapeY
+        width: frame.width
+        height: frame.geo.height
     }
 }

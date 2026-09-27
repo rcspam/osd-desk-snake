@@ -418,6 +418,18 @@ TestCase {
         compare(Logic.cellSizeFloors(2, 62.4, 12.5), { CellWidth: 29, CellHeight: 1 });
     }
 
+    // How far the content, the dot and the line reach beyond the cell shape.
+    function test_cellExtents() {
+        // Everything inside a 36 px cell: nothing to add.
+        compare(Logic.cellExtents(36, 17, [{ offset: 1, height: 4 }, { offset: 3, height: 4 }]), { top: 0, bottom: 0 });
+        // Text taller than the cell: half of the difference on each side.
+        compare(Logic.cellExtents(10, 30, []), { top: 10, bottom: 10 });
+        // A dot far below: (36 + 17) / 2 + 20 + 6 - 36 = 16.5 under the cell.
+        compare(Logic.cellExtents(36, 17, [{ offset: 20, height: 6 }]), { top: 0, bottom: 16.5 });
+        // A line pulled far up: (36 + 17) / 2 - 40 = -13.5, above the cell.
+        compare(Logic.cellExtents(36, 17, [null, { offset: -40, height: 2 }]), { top: 13.5, bottom: 0 });
+    }
+
     // The occupied dot sits `distance` px under the centered label or icon.
     function test_markY() {
         // 36 px cell, 20 px content: the content ends at y = 28.

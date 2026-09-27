@@ -1,0 +1,25 @@
+[Preset]
+Name=Night circles
+Version=1
+
+[Settings]
+ActiveColor=160,0,200
+ActiveTextColor=255,255,255
+BackgroundColor=20,20,30
+BackgroundMode=3
+BackgroundOpacity=85
+BackgroundRadius=40
+Bold=true
+CellShape=1
+FontSize=18
+Highlight=0
+LabelList=Web, Code, Mail, Office, Media, 6
+LabelSource=3
+MarkOffset=4
+MarkSize=5
+OccupiedColor=200,200,255
+Padding=12
+Spacing=10
+Style=1
+TextColor=240,240,240
+UseThemeColors=false

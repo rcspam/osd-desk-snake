@@ -215,6 +215,24 @@ function markerGeometry(shape, active, dims) {
     }
 }
 
+// How far the parts of a cell reach beyond its shape of height cellHeight:
+// the content (label or icon) centered on it, and the parts placed under the
+// content by markY, given as { offset, height } (null when not drawn).
+// Returns { top, bottom }, both >= 0: the cell grows by that much, so nothing
+// leaves the indicator (the OSD window cuts it off) and grid rows keep apart.
+function cellExtents(cellHeight, contentHeight, parts) {
+    let top = (cellHeight - contentHeight) / 2;
+    let bottom = (cellHeight + contentHeight) / 2;
+    parts.forEach(part => {
+        if (part) {
+            const y = markY(cellHeight, contentHeight, part.offset);
+            top = Math.min(top, y);
+            bottom = Math.max(bottom, y + part.height);
+        }
+    });
+    return { top: Math.max(0, -top), bottom: Math.max(0, bottom - cellHeight) };
+}
+
 // Top of what sits `distance` px under the content (label or icon) centered in a
 // cell of height cellHeight: the occupied dot, the line highlight. Negative
 // distances go up into the content.

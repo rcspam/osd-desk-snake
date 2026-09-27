@@ -1,0 +1,14 @@
+[Preset]
+Name=Extreme offsets
+Version=1
+
+[Settings]
+CellHeight=1
+CellWidth=1
+FontSize=40
+Highlight=3
+LineOffset=60
+MarkOffset=40
+MarkSize=30
+Style=1
+Zoom=150

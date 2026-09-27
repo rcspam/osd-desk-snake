@@ -1,0 +1,10 @@
+[Preset]
+Name=Tiny diamonds
+Version=1
+
+[Settings]
+BackgroundMode=2
+PillShape=3
+Spacing=4
+Style=0
+Zoom=50
