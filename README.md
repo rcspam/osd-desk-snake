@@ -63,9 +63,9 @@ To remove it: `kpackagetool6 --type KWin/Script --remove osd-desk-snake`.
 They hold the script and the app together, for all users:
 
 ```sh
-sudo apt install ./osd-desk-snake_0.2.0_amd64.deb              # Debian, Ubuntu, KDE neon, Tuxedo OS
-sudo dnf install ./osd-desk-snake-0.2.0-1.fc44.x86_64.rpm      # Fedora
-sudo pacman -U ./osd-desk-snake-0.2.0-1-x86_64.pkg.tar.zst     # Arch, or makepkg -si in packaging/arch
+sudo apt install ./osd-desk-snake_0.2.1_amd64.deb              # Debian, Ubuntu, KDE neon, Tuxedo OS
+sudo dnf install ./osd-desk-snake-0.2.1-1.fc44.x86_64.rpm      # Fedora
+sudo pacman -U ./osd-desk-snake-0.2.1-1-x86_64.pkg.tar.zst     # Arch, or makepkg -si in packaging/arch
 ```
 
 Then enable the script as above. The .deb is built with Qt 6.10 and KDE

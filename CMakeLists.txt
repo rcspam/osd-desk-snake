@@ -1,7 +1,7 @@
 # Whole project, installed system-wide: used by the .deb, .rpm and PKGBUILD.
 # (install.sh installs for the current user instead, without this file.)
 cmake_minimum_required(VERSION 3.22)
-project(osd-desk-snake VERSION 0.2.0 LANGUAGES CXX)
+project(osd-desk-snake VERSION 0.2.1 LANGUAGES CXX)
 
 find_package(ECM 6.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})

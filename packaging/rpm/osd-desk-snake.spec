@@ -1,5 +1,5 @@
 Name:           osd-desk-snake
-Version:        0.2.0
+Version:        0.2.1
 Release:        1%{?dist}
 Summary:        Kara-style on-screen indicator for KDE Plasma 6 virtual desktop switches
 License:        GPL-3.0-or-later
@@ -61,6 +61,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}-settings.desk
 %{_mandir}/man1/%{name}-settings.1*
 
 %changelog
+* Sun Sep 27 2026 rcspam <10021906+rcspam@users.noreply.github.com> - 0.2.1-1
+- Windows of other activities no longer mark a desktop as holding windows
+
 * Sun Sep 27 2026 rcspam <10021906+rcspam@users.noreply.github.com> - 0.2.0-1
 - Presets (a set comes with the app), sliding highlight, Size setting, dot and
   ring marks, transparent background by default, fixes

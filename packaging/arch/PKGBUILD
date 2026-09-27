@@ -1,6 +1,6 @@
 # Maintainer: rcspam <https://github.com/rcspam>
 pkgname=osd-desk-snake
-pkgver=0.2.0
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="Kara-style on-screen indicator for KDE Plasma 6 virtual desktop switches"
 arch=('x86_64')

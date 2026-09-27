@@ -1,3 +1,9 @@
+osd-desk-snake (0.2.1) unstable; urgency=medium
+
+  * Windows of other activities no longer mark a desktop as holding windows.
+
+ -- rcspam <10021906+rcspam@users.noreply.github.com>  Sun, 27 Sep 2026 22:35:00 +0200
+
 osd-desk-snake (0.2.0) unstable; urgency=medium
 
   * Presets in the settings app: save every setting under a name, apply it in
