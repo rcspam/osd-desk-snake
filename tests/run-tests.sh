@@ -17,7 +17,7 @@ mkdir -p "$out"
 cd "$(dirname "$out")"
 [ "$(basename "$out")" = preview-out ] || { echo "OUT must end with preview-out" >&2; exit 1; }
 "$runner" -input "$here/tst_preview.qml"
-"$runner" -input "$here/tst_showcase.qml"
+QML_XHR_ALLOW_FILE_READ=1 "$runner" -input "$here/tst_showcase.qml"
 # The presets test reads tests/presets/*.osdsnake through XMLHttpRequest.
 mkdir -p "$out/presets"
 QML_XHR_ALLOW_FILE_READ=1 "$runner" -input "$here/tst_presets.qml"

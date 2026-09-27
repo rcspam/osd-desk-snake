@@ -1,0 +1,27 @@
+[Preset]
+Name=Custom labels
+Version=1
+
+[Settings]
+ActiveColor=255,255,255
+AppearEffect=1
+BackgroundOpacity=0
+Bold=true
+CellHeight=25
+CellWidth=1
+FadeInDuration=50
+FontSize=20
+InactiveColor=236,236,236
+InactiveOpacity=88
+LabelList=Web , Code, Mail, Office, Divers , 6
+LabelSource=3
+LineHeight=1
+OccupiedColor=255,255,255
+PillActiveHeight=27
+PillActiveWidth=59
+PillHeight=27
+PillRadius=17
+PillWidth=27
+Spacing=27
+Style=1
+TextColor=255,255,255

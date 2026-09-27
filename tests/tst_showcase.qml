@@ -3,12 +3,33 @@ import QtTest
 import "../package/contents/ui"
 import "../package/contents/ui/logic.js" as Logic
 
-// Renders the style overview of the README, one row per style family, into
-// ./preview-out/styles.png (copy it to docs/styles.png). Run through tests/run-tests.sh.
+// Renders the style overview of the README from presets of tests/presets, two
+// per row with a caption, into ./preview-out/styles.png (copy it to
+// docs/styles.png). Each preset gets the Size (zoom) that brings it to about the
+// same height, so small ones stay readable and wide ones fit their cell.
+// Run through tests/run-tests.sh (needs QML_XHR_ALLOW_FILE_READ=1).
 Item {
     id: stage
-    width: rows.implicitWidth + 64
-    height: rows.implicitHeight + 56
+    width: margin * 2 + cellWidth * 2 + gap
+    height: 400
+
+    readonly property int margin: 40
+    readonly property int gap: 40
+    readonly property int cellWidth: 460
+    readonly property int targetHeight: 72
+
+    readonly property var entries: [
+        { file: "big-pills", caption: "Pills" },
+        { file: "custom-colors", caption: "Custom colors" },
+        { file: "tiny-diamonds", caption: "Diamonds" },
+        { file: "dotted-pills", caption: "A dot on desktops with windows" },
+        { file: "crossfade-bars", caption: "Bars" },
+        { file: "night-circles", caption: "Circles, custom labels" },
+        { file: "custom-labels", caption: "Labels" },
+        { file: "underlined-names", caption: "Desktop names, line highlight" },
+        { file: "grid-icons", caption: "Icons" },
+        { file: "window-strip", caption: "Open windows" }
+    ]
 
     readonly property var fakeDesktops: [{ id: "1", name: "Web" }, { id: "2", name: "Code" },
                                          { id: "3", name: "Mail" }, { id: "4", name: "Music" }]
@@ -17,37 +38,10 @@ Item {
         { desktops: [fakeDesktops[1]], normalWindow: true, icon: "utilities-terminal" },
         { desktops: [fakeDesktops[1]], normalWindow: true, icon: "accessories-text-editor" },
         { desktops: [fakeDesktops[1]], normalWindow: true, icon: "system-file-manager" },
-        { desktops: [fakeDesktops[1]], normalWindow: true, icon: "utilities-terminal" },
         { desktops: [fakeDesktops[2]], normalWindow: true, icon: "internet-mail" },
         { desktops: [fakeDesktops[3]], normalWindow: true, icon: "multimedia-player" }
     ]
     readonly property var info: Logic.desktopInfo(fakeDesktops, fakeWindows, 3)
-    readonly property string iconList: "internet-web-browser, utilities-terminal, internet-mail, multimedia-player"
-
-    // Settings overrides on top of the defaults; kwinColumns lays the desktops out as a grid.
-    readonly property var families: [
-        { name: "Pills", variants: [
-            { cfg: {} },
-            { cfg: { pillShape: 1, pillActiveHeight: 18 } },
-            { cfg: { pillShape: 2, backgroundMode: 3, backgroundOpacity: 50 } },
-            { cfg: { pillShape: 3, pillActiveHeight: 18, backgroundMode: 3 } },
-            { cfg: { pillShape: 4, pillHeight: 12, pillActiveHeight: 12 } },
-            { cfg: { backgroundMode: 3, layout: 0, useThemeColors: false, activeColor: "#ffe66d" }, kwinColumns: 2 }
-        ] },
-        { name: "Labels", variants: [
-            { cfg: { style: 1 } },
-            { cfg: { style: 1, highlight: 1, labelSource: 1, squareSize: 30 } },
-            { cfg: { style: 1, highlight: 2, labelSource: 2, labelTemplate: "D%d" } },
-            { cfg: { style: 1, cellShape: 1, highlight: 0 } }
-        ] },
-        { name: "Icons", variants: [
-            { cfg: { style: 2, highlight: 3, iconList: stage.iconList } },
-            { cfg: { style: 2, cellShape: 2, highlight: 1, iconList: stage.iconList } }
-        ] },
-        { name: "Open windows", variants: [
-            { cfg: { style: 3 } }
-        ] }
-    ]
 
     Rectangle {
         anchors.fill: parent
@@ -57,71 +51,61 @@ Item {
         }
     }
 
-    Column {
-        id: rows
-        x: 32
-        y: 28
-        spacing: 28
-
-        Repeater {
-            model: stage.families
-
-            Row {
-                id: familyRow
-                required property var modelData
-                spacing: 36
-
-                Text {
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: 130
-                    text: familyRow.modelData.name
-                    color: "white"
-                    opacity: 0.75
-                    font.pixelSize: 15
-                }
-
-                Repeater {
-                    model: familyRow.modelData.variants
-
-                    Item {
-                        id: box
-                        required property var modelData
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: indicator.width
-                        height: indicator.height
-
-                        Settings {
-                            id: settings
-                            Component.onCompleted: {
-                                load(null);
-                                const cfg = box.modelData.cfg;
-                                for (const k in cfg) {
-                                    settings[k] = cfg[k];
-                                }
-                            }
-                        }
-
-                        Indicator {
-                            id: indicator
-                            anchors.centerIn: parent
-                            width: implicitWidth
-                            height: implicitHeight
-                            settings: settings
-                            desktops: stage.info
-                            currentIndex: 1
-                            highlight: {
-                                const p = Logic.gridPoint(currentIndex, columns);
-                                return Qt.point(p.x, p.y);
-                            }
-                            fromIndex: 1
-                            crossProgress: 1
-                            columns: Logic.gridSize(stage.info.length, box.modelData.kwinColumns || stage.info.length,
-                                                    2, settings.layout).columns
-                        }
-                    }
-                }
-            }
+    Component {
+        id: indicatorComponent
+        Indicator {
+            settings: Settings {}
         }
+    }
+
+    Component {
+        id: captionComponent
+        Text {
+            color: "white"
+            opacity: 0.8
+            font.pixelSize: 15
+        }
+    }
+
+    function parseIni(text) {
+        const sections = {};
+        let current = null;
+        text.split("\n").forEach(line => {
+            const t = line.trim();
+            const header = t.match(/^\[(.+)\]$/);
+            if (header) {
+                current = sections[header[1]] = {};
+            } else if (current && t.indexOf("=") > 0) {
+                current[t.slice(0, t.indexOf("="))] = t.slice(t.indexOf("=") + 1);
+            }
+        });
+        return sections;
+    }
+
+    function readSettings(file) {
+        const request = new XMLHttpRequest();
+        request.open("GET", Qt.resolvedUrl("presets/" + file + ".osdsnake"), false);
+        request.send();
+        return parseIni(request.responseText).Settings || {};
+    }
+
+    // The preset at the Size that makes it about targetHeight tall and at most cellWidth wide.
+    function makeIndicator(file) {
+        const values = readSettings(file);
+        const indicator = indicatorComponent.createObject(stage);
+        const load = zoom => {
+            indicator.settings.load((key, fallback) => key === "Zoom" && zoom ? zoom : (key in values ? values[key] : fallback));
+            indicator.columns = Logic.gridSize(info.length, info.length, 1, indicator.settings.layout).columns;
+            indicator.desktops = info;
+            indicator.currentIndex = 1;
+            indicator.layoutNow();
+        };
+        load(0);
+        const k = Math.min(targetHeight / indicator.implicitHeight, cellWidth / indicator.implicitWidth);
+        load(Math.max(25, Math.min(400, Math.round(indicator.settings.zoom * k))));
+        indicator.width = indicator.implicitWidth;
+        indicator.height = indicator.implicitHeight;
+        return indicator;
     }
 
     TestCase {
@@ -129,8 +113,24 @@ Item {
         when: windowShown
 
         function test_render() {
-            wait(500);
-            verify(stage.width > 64 && stage.height > 56, "the showcase has content");
+            const items = stage.entries.map(entry => ({ indicator: stage.makeIndicator(entry.file), caption: entry.caption }));
+            let y = stage.margin;
+            for (let row = 0; row < items.length; row += 2) {
+                const pair = items.slice(row, row + 2);
+                const rowHeight = Math.max(...pair.map(item => item.indicator.height));
+                pair.forEach((item, column) => {
+                    const left = stage.margin + column * (stage.cellWidth + stage.gap);
+                    item.indicator.x = left + (stage.cellWidth - item.indicator.width) / 2;
+                    item.indicator.y = y + (rowHeight - item.indicator.height) / 2;
+                    const caption = captionComponent.createObject(stage, { text: item.caption });
+                    caption.x = left + (stage.cellWidth - caption.implicitWidth) / 2;
+                    caption.y = y + rowHeight + 10;
+                });
+                y += rowHeight + 10 + 20 + 30;
+            }
+            stage.height = y - 30 + stage.margin;
+            wait(300);
+            verify(stage.height > 200, "laid out");
             grabImage(stage).save("preview-out/styles.png");
         }
     }

@@ -1,0 +1,18 @@
+[Preset]
+Name=Custom colors
+Version=1
+
+[Settings]
+ActiveColor=136,0,178
+BackgroundOpacity=0
+CellHeight=13
+FadeInDuration=50
+InactiveColor=109,109,109
+LineHeight=1
+OccupiedColor=68,188,25
+Padding=9
+PillActiveHeight=11
+PillHeight=8
+PillRadius=17
+PillWidth=8
+UseThemeColors=false
