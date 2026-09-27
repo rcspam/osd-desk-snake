@@ -16,4 +16,5 @@ mkdir -p "$out"
 cd "$(dirname "$out")"
 [ "$(basename "$out")" = preview-out ] || { echo "OUT must end with preview-out" >&2; exit 1; }
 "$runner" -input "$here/tst_preview.qml"
+"$runner" -input "$here/tst_showcase.qml"
 echo "Previews written to $out"
