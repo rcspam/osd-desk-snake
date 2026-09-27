@@ -78,6 +78,13 @@ Loader {
             editable: true
             textFromValue: (value, locale) => value + root.field.suffix
             valueFromText: (text, locale) => parseInt(text) || 0
+            // Reached with Tab or Shift+Tab: the value is selected, ready to be typed over.
+            // The key release lands on the newly focused field, never after a click.
+            Keys.onReleased: event => {
+                if (event.key === Qt.Key_Tab || event.key === Qt.Key_Backtab) {
+                    contentItem.selectAll();
+                }
+            }
             onValueModified: root.set(value)
             // A stored value under the floor shows as the floor, without being saved.
             onFromChanged: sync()
@@ -122,6 +129,14 @@ Loader {
                 regularExpression: /[0-9]+([.,][0-9])?\s*%?/
             }
             onValueModified: root.set(value / 10)
+
+            // Reached with Tab or Shift+Tab: the value is selected, ready to be typed over.
+            // The key release lands on the newly focused field, never after a click.
+            Keys.onReleased: event => {
+                if (event.key === Qt.Key_Tab || event.key === Qt.Key_Backtab) {
+                    contentItem.selectAll();
+                }
+            }
 
             // Up raises the value, also with natural scrolling; touchpad deltas add up (see wheel.js).
             wheelEnabled: false
@@ -180,6 +195,12 @@ Loader {
         QQC2.TextField {
             placeholderText: root.field.placeholder
             onTextEdited: root.set(text)
+            // Reached with Tab or Shift+Tab: the text is selected, as in the spin boxes.
+            Keys.onReleased: event => {
+                if (event.key === Qt.Key_Tab || event.key === Qt.Key_Backtab) {
+                    selectAll();
+                }
+            }
 
             function sync() {
                 if (text !== root.value) {
