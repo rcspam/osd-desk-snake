@@ -1,6 +1,6 @@
 pkgbase = osd-desk-snake
 	pkgdesc = Kara-style on-screen indicator for KDE Plasma 6 virtual desktop switches
-	pkgver = 0.1.0
+	pkgver = 0.2.0
 	pkgrel = 1
 	url = https://github.com/rcspam/osd-desk-snake
 	arch = x86_64
@@ -10,7 +10,6 @@ pkgbase = osd-desk-snake
 	makedepends = gettext
 	depends = kwin
 	depends = kirigami
-	depends = kdeclarative
 	depends = ksvg
 	depends = qqc2-desktop-style
 	depends = kconfig
@@ -20,7 +19,7 @@ pkgbase = osd-desk-snake
 	depends = qt6-declarative
 	depends = glibc
 	depends = gcc-libs
-	source = osd-desk-snake-0.1.0.tar.gz::https://github.com/rcspam/osd-desk-snake/archive/refs/tags/v0.1.0.tar.gz
-	sha256sums = 6a5518ce9b932d9da0de4cea51bb1d355cc8ea73d854fd30257ca793ffb5c7cf
+	source = osd-desk-snake-0.2.0.tar.gz::https://github.com/rcspam/osd-desk-snake/archive/refs/tags/v0.2.0.tar.gz
+	sha256sums = b43cc9953c78ef7758ea01e57e9c23b300ce7177e2800d617ac5861d9f83b329
 
 pkgname = osd-desk-snake
