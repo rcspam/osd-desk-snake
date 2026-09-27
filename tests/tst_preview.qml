@@ -126,6 +126,26 @@ Item {
             return cells;
         }
 
+        function variant(name) {
+            for (let i = 0; i < repeater.count; i++) {
+                if (repeater.itemAt(i).variantName === name) {
+                    return repeater.itemAt(i);
+                }
+            }
+            return null;
+        }
+
+        // The occupied dot follows the windows on every desktop, the current one included.
+        function test_currentDesktopShowsItsDot() {
+            wait(100);
+            const cells = cellsOf(variant("02-labels-full"));
+            const current = cells.find(cell => cell.index === 1);
+            const empty = cells.find(cell => cell.index === 3);
+            const dot = cell => cell.children.find(child => child.objectName === "occupiedDot");
+            verify(dot(current).visible && dot(current).opacity > 0.5, "current desktop, with windows: dot shown");
+            verify(!dot(empty).visible, "desktop without windows: no dot");
+        }
+
         // Circle cells share one diameter, whatever the length of each label.
         function test_circleCellsShareOneDiameter() {
             wait(100);

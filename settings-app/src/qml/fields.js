@@ -298,7 +298,7 @@ var tabs = [
                         "kind": "spin",
                         "key": "MarkOpacity",
                         "label": "Dot opacity:",
-                        "tooltip": "Opacity of the dot. It still fades out under the highlight.",
+                        "tooltip": "Opacity of the dot.",
                         "min": 0,
                         "max": 100,
                         "suffix": " %"

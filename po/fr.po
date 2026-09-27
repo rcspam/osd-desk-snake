@@ -565,5 +565,5 @@ msgstr "Écart entre l'étiquette ou l'icône et le point en dessous. Une valeur
 msgid "Dot opacity:"
 msgstr "Opacité du point :"
 
-msgid "Opacity of the dot. It still fades out under the highlight."
-msgstr "Opacité du point. Il s'efface toujours sous la surbrillance."
+msgid "Opacity of the dot."
+msgstr "Opacité du point."

@@ -506,7 +506,7 @@
                 <property name="minimum"><number>0</number></property>
                 <property name="maximum"><number>100</number></property>
                 <property name="suffix"><string> %</string></property>
-                <property name="toolTip"><string>Opacity of the dot. It still fades out under the highlight.</string></property>
+                <property name="toolTip"><string>Opacity of the dot.</string></property>
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>

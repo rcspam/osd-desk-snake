@@ -70,14 +70,18 @@ Item {
     }
 
     Rectangle {
+        objectName: "occupiedDot"
         anchors.horizontalCenter: parent.horizontalCenter
         y: Logic.markY(frame.height, frame.contentHeight, frame.s.markOffset)
         visible: frame.showOccupiedDot && frame.s.markOccupied && frame.modelData.occupied
         width: frame.s.markSize
         height: frame.s.markSize
         radius: frame.s.markSize / 2
-        color: frame.indicator.occupiedColor
-        opacity: Math.max(0, Math.min(100, frame.s.markOpacity)) / 100 * (1 - frame.weight)
+        // Also on the current desktop; on a filled highlight it takes the text color to stay visible.
+        color: frame.indicator.highlightFills
+            ? frame.indicator.mix(frame.indicator.occupiedColor, frame.indicator.activeTextColor, frame.weight)
+            : frame.indicator.occupiedColor
+        opacity: Math.max(0, Math.min(100, frame.s.markOpacity)) / 100
     }
 
     Item {
