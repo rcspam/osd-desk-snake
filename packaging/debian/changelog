@@ -1,3 +1,18 @@
+osd-desk-snake (0.2.0) unstable; urgency=medium
+
+  * Presets in the settings app: save every setting under a name, apply it in one click,
+    import and export .osdsnake files, kept in ~/.config/osdsnake/presets.
+  * The highlight of the label, icon and window styles slides from desktop to desktop;
+    fading along with the switch is still available.
+  * Size setting that scales the whole indicator.
+  * Dot on desktops with windows: size, distance and opacity; pills get a ring
+    (thickness, gap) or a dot. Line highlight distance.
+  * Fixes: clipped labels, dots and lines; circle cells of different sizes; the
+    indicator rising into place when it opens; blank color picker with Qt 6.10.2;
+    touchpad scrolling direction in the settings app.
+
+ -- rcspam <10021906+rcspam@users.noreply.github.com>  Sun, 27 Sep 2026 22:00:00 +0200
+
 osd-desk-snake (0.1.0) unstable; urgency=medium
 
   * First release: KWin script and live settings app.

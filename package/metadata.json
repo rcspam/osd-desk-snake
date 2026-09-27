@@ -12,7 +12,7 @@
         "Id": "osd-desk-snake",
         "License": "GPL-3.0-or-later",
         "Name": "OSD Desk Snake",
-        "Version": "0.1.0",
+        "Version": "0.2.0",
         "Website": "https://github.com/rcspam/osd-desk-snake"
     },
     "X-Plasma-API": "declarativescript",

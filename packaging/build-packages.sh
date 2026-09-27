@@ -43,6 +43,9 @@ build_kwinscript() {
     done
     rm -f "$dist/$name-$version.kwinscript"
     (cd "$stage" && zip -qrX "$dist/$name-$version.kwinscript" .)
+    # Same file under a stable name, so releases/latest/download/osd-desk-snake.kwinscript
+    # always gives the newest script.
+    cp "$dist/$name-$version.kwinscript" "$dist/$name.kwinscript"
     # Install test into a scratch package root, as Install from File would.
     rm -rf "$stage" && mkdir "$stage"
     kpackagetool6 --type KWin/Script --packageroot "$stage" --install "$dist/$name-$version.kwinscript"

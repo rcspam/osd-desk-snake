@@ -1,17 +1,17 @@
 # Maintainer: rcspam <https://github.com/rcspam>
 pkgname=osd-desk-snake
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
 pkgdesc="Kara-style on-screen indicator for KDE Plasma 6 virtual desktop switches"
 arch=('x86_64')
 url="https://github.com/rcspam/osd-desk-snake"
 license=('GPL-3.0-or-later')
-depends=('kwin' 'kirigami' 'kdeclarative' 'ksvg' 'qqc2-desktop-style'
+depends=('kwin' 'kirigami' 'ksvg' 'qqc2-desktop-style'
          'kconfig' 'ki18n' 'kwindowsystem' 'qt6-base' 'qt6-declarative'
          'glibc' 'gcc-libs')
 makedepends=('cmake' 'extra-cmake-modules' 'gettext')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('6a5518ce9b932d9da0de4cea51bb1d355cc8ea73d854fd30257ca793ffb5c7cf')
+sha256sums=('SKIP')
 
 build() {
   cmake -B build -S "$pkgname-$pkgver" \

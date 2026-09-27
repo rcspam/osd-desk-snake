@@ -1,7 +1,7 @@
 # Whole project, installed system-wide: used by the .deb, .rpm and PKGBUILD.
 # (install.sh installs for the current user instead, without this file.)
 cmake_minimum_required(VERSION 3.22)
-project(osd-desk-snake VERSION 0.1.0 LANGUAGES CXX)
+project(osd-desk-snake VERSION 0.2.0 LANGUAGES CXX)
 
 find_package(ECM 6.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -79,5 +79,5 @@ set(CPACK_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS ${CMAKE_INSTALL_DEFAULT_DIRECTOR
 set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
 set(CPACK_DEBIAN_PACKAGE_SECTION kde)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "kwin-wayland | kwin-x11, qml6-module-org-kde-kirigami, qml6-module-org-kde-kquickcontrols, qml6-module-org-kde-ksvg, qml6-module-org-kde-desktop, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtqml-models")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "kwin-wayland | kwin-x11, qml6-module-org-kde-kirigami, qml6-module-org-kde-ksvg, qml6-module-org-kde-desktop, qml6-module-qtquick-controls, qml6-module-qtquick-dialogs, qml6-module-qtquick-layouts, qml6-module-qtqml-models, qml6-module-qtcore")
 include(CPack)

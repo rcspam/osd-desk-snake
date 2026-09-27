@@ -1,5 +1,5 @@
 Name:           osd-desk-snake
-Version:        0.1.0
+Version:        0.2.0
 Release:        1%{?dist}
 Summary:        Kara-style on-screen indicator for KDE Plasma 6 virtual desktop switches
 License:        GPL-3.0-or-later
@@ -27,7 +27,7 @@ BuildRequires:  cmake(KF6WindowSystem)
 # The KWin script and the QML modules used at run time.
 Requires:       kwin
 Requires:       kf6-kirigami
-Requires:       kf6-kdeclarative
+Requires:       qt6-qtdeclarative
 Requires:       kf6-ksvg
 Requires:       kf6-qqc2-desktop-style
 
@@ -60,5 +60,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}-settings.desk
 %{_mandir}/man1/%{name}-settings.1*
 
 %changelog
+* Sun Sep 27 2026 rcspam <10021906+rcspam@users.noreply.github.com> - 0.2.0-1
+- Presets, sliding highlight, Size setting, dot and ring marks, fixes
+
 * Sun Sep 27 2026 rcspam <10021906+rcspam@users.noreply.github.com> - 0.1.0-1
 - First release

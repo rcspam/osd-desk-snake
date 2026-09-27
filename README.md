@@ -37,13 +37,14 @@ OSD Desk Snake comes in two parts:
 
 ### The indicator (KWin script)
 
-Nothing to build. Download `osd-desk-snake-0.1.0.kwinscript` from the
-[Releases](https://github.com/rcspam/osd-desk-snake/releases) page, then in
+Nothing to build. Download
+[osd-desk-snake.kwinscript](https://github.com/rcspam/osd-desk-snake/releases/latest/download/osd-desk-snake.kwinscript)
+(the latest version, also on the [Releases](https://github.com/rcspam/osd-desk-snake/releases) page), then in
 System Settings > Window Management > KWin Scripts, click Install from File…
 and pick it. Or in a terminal:
 
 ```sh
-kpackagetool6 --type KWin/Script --install osd-desk-snake-0.1.0.kwinscript   # --upgrade for a newer one
+kpackagetool6 --type KWin/Script --install osd-desk-snake.kwinscript   # --upgrade for a newer one
 ```
 
 Tick OSD Desk Snake in the KWin Scripts list and click Apply. Turn off the
@@ -62,9 +63,9 @@ To remove it: `kpackagetool6 --type KWin/Script --remove osd-desk-snake`.
 They hold the script and the app together, for all users:
 
 ```sh
-sudo apt install ./osd-desk-snake_0.1.0_amd64.deb              # Debian, Ubuntu, KDE neon, Tuxedo OS
-sudo dnf install ./osd-desk-snake-0.1.0-1.fc44.x86_64.rpm      # Fedora
-sudo pacman -U ./osd-desk-snake-0.1.0-1-x86_64.pkg.tar.zst     # Arch, or makepkg -si in packaging/arch
+sudo apt install ./osd-desk-snake_0.2.0_amd64.deb              # Debian, Ubuntu, KDE neon, Tuxedo OS
+sudo dnf install ./osd-desk-snake-0.2.0-1.fc44.x86_64.rpm      # Fedora
+sudo pacman -U ./osd-desk-snake-0.2.0-1-x86_64.pkg.tar.zst     # Arch, or makepkg -si in packaging/arch
 ```
 
 Then enable the script as above. The .deb is built with Qt 6.10 and KDE
@@ -85,7 +86,7 @@ Needs Qt 6.6 and KDE Frameworks 6 or newer (Debian 13 is fine).
    sudo apt install git cmake g++ extra-cmake-modules gettext qt6-base-dev qt6-declarative-dev \
        libkf6config-dev libkf6i18n-dev libkf6windowsystem-dev \
        qml6-module-org-kde-kirigami qml6-module-org-kde-desktop \
-       qml6-module-qtquick-controls qml6-module-qtquick-dialogs qml6-module-qtquick-layouts
+       qml6-module-qtquick-controls qml6-module-qtquick-dialogs qml6-module-qtquick-layouts qml6-module-qtcore
    # Fedora
    sudo dnf install git cmake gcc-c++ extra-cmake-modules gettext qt6-qtbase-devel qt6-qtdeclarative-devel \
        kf6-kconfig-devel kf6-ki18n-devel kf6-kwindowsystem-devel \
