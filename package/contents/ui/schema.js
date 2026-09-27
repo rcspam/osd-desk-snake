@@ -26,6 +26,7 @@ var entries = {
     "Layout": ["int", 0],
     "Spacing": ["int", 8],
     "Padding": ["int", 10],
+    "Zoom": ["int", 100],
     "Style": ["int", 0],
     "Highlight": ["int", 0],
     "MarkOccupied": ["bool", true],
@@ -69,3 +70,6 @@ var entries = {
     "BackgroundRadius": ["int", 12],
     "BackgroundOpacity": ["int", 100]
 };
+
+// Sizes multiplied by Zoom when loading (see Settings.qml).
+var zoomed = ["MarkSize", "MarkOffset", "Spacing", "Padding", "PillWidth", "PillHeight", "PillActiveWidth", "PillActiveHeight", "PillRadius", "CellWidth", "CellHeight", "CellRadius", "SquareSize", "LineWidth", "LineHeight", "LineOffset", "FontSize", "IconSize", "TaskIconSize", "BackgroundRadius"];

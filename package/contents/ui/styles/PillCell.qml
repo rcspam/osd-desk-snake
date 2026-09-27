@@ -46,7 +46,7 @@ Item {
         rotation: pill.rotation
         visible: cell.s.markOccupied && cell.modelData.occupied
         color: "transparent"
-        border.width: Math.max(1, Math.min(2, Math.min(width, height) / 6))
+        border.width: Math.max(1, Math.min(2 * cell.s.sizeFactor, Math.min(width, height) / 6))
         border.color: cell.indicator.occupiedColor
         opacity: 0.9 * (1 - cell.weight)
     }

@@ -17,7 +17,7 @@ CellFrame {
     Row {
         id: row
         anchors.centerIn: parent
-        spacing: 3
+        spacing: Math.round(3 * cell.s.sizeFactor)
         visible: cell.icons.length > 0
         opacity: cell.foregroundOpacity
 

@@ -222,7 +222,7 @@ function markY(cellHeight, contentHeight, distance) {
     return (cellHeight + contentHeight) / 2 + distance;
 }
 
-// Horizontal room around the content of a cell (both sides).
+// Horizontal room around the content of a cell (both sides), at 100 % zoom.
 const cellPadding = 16;
 
 // Lowest CellWidth and CellHeight that still change something (see cellGeometry):
@@ -237,8 +237,9 @@ function cellSizeFloors(shape, widestContent, narrowestContent) {
 }
 
 // Cell of the label, icon and task styles. Shapes: 0 rounded, 1 circle, 2 square.
-function cellGeometry(shape, contentWidth, cellWidth, cellHeight, radius) {
-    const w = Math.max(cellWidth, contentWidth + cellPadding);
+// factor: the zoom (Settings.sizeFactor), for the padding; sizes come zoomed already.
+function cellGeometry(shape, contentWidth, cellWidth, cellHeight, radius, factor = 1) {
+    const w = Math.max(cellWidth, contentWidth + cellPadding * factor);
     if (shape === 1) {
         const d = Math.max(w, cellHeight);
         return { width: d, height: d, radius: d / 2 };

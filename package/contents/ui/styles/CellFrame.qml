@@ -29,7 +29,7 @@ Item {
     readonly property real foregroundOpacity: Logic.lerp(indicator.inactiveOpacity, 1, weight)
 
     readonly property var geo: Logic.cellGeometry(s.cellShape, s.cellShape === 1 ? indicator.widestContent : contentWidth,
-                                                  s.cellWidth, s.cellHeight, s.cellRadius)
+                                                  s.cellWidth, s.cellHeight, s.cellRadius, s.sizeFactor)
 
     implicitWidth: geo.width
     implicitHeight: geo.height
@@ -41,7 +41,7 @@ Item {
         const w = geo.width;
         const h = geo.height;
         // The square grows with wide content (names) so the text stays inside; stays square for circles.
-        const wanted = Math.max(s.squareSize, contentWidth + 10);
+        const wanted = Math.max(s.squareSize, contentWidth + 10 * s.sizeFactor);
         const sw = s.cellShape === 1 ? Math.min(wanted, w, h) : Math.min(wanted, w);
         const sh = s.cellShape === 1 ? sw : Math.min(s.squareSize, h);
         const lw = Math.min(s.lineWidth, w);

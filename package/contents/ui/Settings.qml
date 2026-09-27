@@ -10,6 +10,9 @@ QtObject {
 
     // { Key: [type, default] }, generated from main.xml by tools/gen_config_ui.py.
     readonly property var schema: Schema.entries
+    // Zoom as a factor. The sizes in Schema.zoomed are loaded already multiplied by
+    // it, so the drawing code only scales its own fixed margins.
+    readonly property real sizeFactor: Math.max(10, zoom) / 100
 
     property int showDelay
     property int fadeInDuration
@@ -37,6 +40,7 @@ QtObject {
     property int spacing
     property int padding
 
+    property int zoom
     property int style
     property int highlight
     property bool markOccupied
@@ -92,6 +96,8 @@ QtObject {
     readonly property var icons: Logic.splitList(iconList)
 
     function load(read) {
+        const zoomDefault = schema.Zoom[1];
+        const factor = Math.max(10, Logic.toInt(read ? read("Zoom", zoomDefault) : zoomDefault, zoomDefault)) / 100;
         for (const key in schema) {
             const type = schema[key][0];
             const fallback = schema[key][1];
@@ -113,6 +119,9 @@ QtObject {
                 break;
             default:
                 value = (raw === undefined || raw === null) ? fallback : String(raw);
+            }
+            if (Schema.zoomed.indexOf(key) >= 0) {
+                value = Math.round(value * factor);
             }
             if (root[name] !== value) {
                 root[name] = value;

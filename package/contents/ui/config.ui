@@ -431,10 +431,24 @@
              <layout class="QFormLayout" name="form_49">
               <item row="0" column="0">
                <widget class="QLabel" name="label_50">
-                <property name="text"><string>Style:</string></property>
+                <property name="text"><string>Size:</string></property>
                </widget>
               </item>
               <item row="0" column="1">
+               <widget class="QSpinBox" name="kcfg_Zoom">
+                <property name="singleStep"><number>5</number></property>
+                <property name="minimum"><number>25</number></property>
+                <property name="maximum"><number>400</number></property>
+                <property name="suffix"><string> %</string></property>
+                <property name="toolTip"><string>Makes the whole indicator larger or smaller: cells, pills, text, icons and spacing. Its place on the screen does not change.</string></property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_51">
+                <property name="text"><string>Style:</string></property>
+               </widget>
+              </item>
+              <item row="1" column="1">
                <widget class="QComboBox" name="kcfg_Style">
                 <item>
                  <property name="text"><string>Pills</string></property>
@@ -450,12 +464,12 @@
                 </item>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_51">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_52">
                 <property name="text"><string>Highlight:</string></property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="2" column="1">
                <widget class="QComboBox" name="kcfg_Highlight">
                 <item>
                  <property name="text"><string>Full</string></property>
@@ -472,18 +486,18 @@
                 <property name="toolTip"><string>Highlight of the current desktop for the labels, icons and open windows styles.</string></property>
                </widget>
               </item>
-              <item row="2" column="0" colspan="2">
+              <item row="3" column="0" colspan="2">
                <widget class="QCheckBox" name="kcfg_MarkOccupied">
                 <property name="text"><string>Mark desktops that contain windows</string></property>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_52">
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_53">
                 <property name="text"><string>Dot size:</string></property>
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="QSpinBox" name="kcfg_MarkSize">
                 <property name="singleStep"><number>1</number></property>
                 <property name="minimum"><number>1</number></property>
@@ -493,13 +507,13 @@
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_53">
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_54">
                 <property name="text"><string>Dot distance:</string></property>
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="5" column="1">
                <widget class="QSpinBox" name="kcfg_MarkOffset">
                 <property name="singleStep"><number>1</number></property>
                 <property name="minimum"><number>-20</number></property>
@@ -509,13 +523,13 @@
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_54">
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_55">
                 <property name="text"><string>Dot opacity:</string></property>
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="6" column="1">
                <widget class="QSpinBox" name="kcfg_MarkOpacity">
                 <property name="singleStep"><number>1</number></property>
                 <property name="minimum"><number>0</number></property>
@@ -525,12 +539,12 @@
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_55">
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_56">
                 <property name="text"><string>Inactive opacity:</string></property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="7" column="1">
                <widget class="QSpinBox" name="kcfg_InactiveOpacity">
                 <property name="singleStep"><number>1</number></property>
                 <property name="minimum"><number>0</number></property>
@@ -539,12 +553,12 @@
                 <property name="toolTip"><string>Opacity of the other desktops.</string></property>
                </widget>
               </item>
-              <item row="7" column="0">
-               <widget class="QLabel" name="label_56">
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_57">
                 <property name="text"><string>Spacing:</string></property>
                </widget>
               </item>
-              <item row="7" column="1">
+              <item row="8" column="1">
                <widget class="QSpinBox" name="kcfg_Spacing">
                 <property name="singleStep"><number>1</number></property>
                 <property name="minimum"><number>0</number></property>
@@ -552,12 +566,12 @@
                 <property name="suffix"><string> px</string></property>
                </widget>
               </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_57">
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_58">
                 <property name="text"><string>Padding:</string></property>
                </widget>
               </item>
-              <item row="8" column="1">
+              <item row="9" column="1">
                <widget class="QSpinBox" name="kcfg_Padding">
                 <property name="singleStep"><number>1</number></property>
                 <property name="minimum"><number>0</number></property>
@@ -570,11 +584,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="group_58">
+            <widget class="QGroupBox" name="group_59">
              <property name="title"><string>Pills</string></property>
-             <layout class="QFormLayout" name="form_59">
+             <layout class="QFormLayout" name="form_60">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_60">
+               <widget class="QLabel" name="label_61">
                 <property name="text"><string>Shape:</string></property>
                </widget>
               </item>
@@ -599,7 +613,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_61">
+               <widget class="QLabel" name="label_62">
                 <property name="text"><string>Width:</string></property>
                </widget>
               </item>
@@ -612,7 +626,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_62">
+               <widget class="QLabel" name="label_63">
                 <property name="text"><string>Height:</string></property>
                </widget>
               </item>
@@ -625,7 +639,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_63">
+               <widget class="QLabel" name="label_64">
                 <property name="text"><string>Current desktop width:</string></property>
                </widget>
               </item>
@@ -638,7 +652,7 @@
                </widget>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="label_64">
+               <widget class="QLabel" name="label_65">
                 <property name="text"><string>Current desktop height:</string></property>
                </widget>
               </item>
@@ -651,7 +665,7 @@
                </widget>
               </item>
               <item row="5" column="0">
-               <widget class="QLabel" name="label_65">
+               <widget class="QLabel" name="label_66">
                 <property name="text"><string>Corner radius:</string></property>
                </widget>
               </item>
@@ -667,11 +681,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="group_66">
+            <widget class="QGroupBox" name="group_67">
              <property name="title"><string>Cells (labels, icons, open windows)</string></property>
-             <layout class="QFormLayout" name="form_67">
+             <layout class="QFormLayout" name="form_68">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_68">
+               <widget class="QLabel" name="label_69">
                 <property name="text"><string>Shape:</string></property>
                </widget>
               </item>
@@ -690,7 +704,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_69">
+               <widget class="QLabel" name="label_70">
                 <property name="text"><string>Minimum width:</string></property>
                </widget>
               </item>
@@ -703,7 +717,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_70">
+               <widget class="QLabel" name="label_71">
                 <property name="text"><string>Height:</string></property>
                </widget>
               </item>
@@ -716,7 +730,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_71">
+               <widget class="QLabel" name="label_72">
                 <property name="text"><string>Corner radius:</string></property>
                </widget>
               </item>
@@ -729,7 +743,7 @@
                </widget>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="label_72">
+               <widget class="QLabel" name="label_73">
                 <property name="text"><string>Square highlight size:</string></property>
                </widget>
               </item>
@@ -742,7 +756,7 @@
                </widget>
               </item>
               <item row="5" column="0">
-               <widget class="QLabel" name="label_73">
+               <widget class="QLabel" name="label_74">
                 <property name="text"><string>Line highlight width:</string></property>
                </widget>
               </item>
@@ -755,7 +769,7 @@
                </widget>
               </item>
               <item row="6" column="0">
-               <widget class="QLabel" name="label_74">
+               <widget class="QLabel" name="label_75">
                 <property name="text"><string>Line highlight thickness:</string></property>
                </widget>
               </item>
@@ -768,7 +782,7 @@
                </widget>
               </item>
               <item row="7" column="0">
-               <widget class="QLabel" name="label_75">
+               <widget class="QLabel" name="label_76">
                 <property name="text"><string>Line highlight distance:</string></property>
                </widget>
               </item>
@@ -785,7 +799,7 @@
             </widget>
            </item>
            <item>
-            <spacer name="spacer_76">
+            <spacer name="spacer_77">
              <property name="orientation"><enum>Qt::Vertical</enum></property>
             </spacer>
            </item>
@@ -795,21 +809,21 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_77">
+     <widget class="QWidget" name="tab_78">
       <attribute name="title"><string>Labels and icons</string></attribute>
-      <layout class="QVBoxLayout" name="tabLayout_78">
+      <layout class="QVBoxLayout" name="tabLayout_79">
        <item>
-        <widget class="QScrollArea" name="scroll_79">
+        <widget class="QScrollArea" name="scroll_80">
          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
          <property name="widgetResizable"><bool>true</bool></property>
-         <widget class="QWidget" name="scrollContents_80">
-          <layout class="QVBoxLayout" name="contentLayout_81">
+         <widget class="QWidget" name="scrollContents_81">
+          <layout class="QVBoxLayout" name="contentLayout_82">
            <item>
-            <widget class="QGroupBox" name="group_82">
+            <widget class="QGroupBox" name="group_83">
              <property name="title"><string>Labels</string></property>
-             <layout class="QFormLayout" name="form_83">
+             <layout class="QFormLayout" name="form_84">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_84">
+               <widget class="QLabel" name="label_85">
                 <property name="text"><string>Text:</string></property>
                </widget>
               </item>
@@ -830,7 +844,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_85">
+               <widget class="QLabel" name="label_86">
                 <property name="text"><string>Template:</string></property>
                </widget>
               </item>
@@ -841,7 +855,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_86">
+               <widget class="QLabel" name="label_87">
                 <property name="text"><string>Custom list:</string></property>
                </widget>
               </item>
@@ -852,7 +866,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_87">
+               <widget class="QLabel" name="label_88">
                 <property name="text"><string>Font size:</string></property>
                </widget>
               </item>
@@ -879,11 +893,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="group_88">
+            <widget class="QGroupBox" name="group_89">
              <property name="title"><string>Icons</string></property>
-             <layout class="QFormLayout" name="form_89">
+             <layout class="QFormLayout" name="form_90">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_90">
+               <widget class="QLabel" name="label_91">
                 <property name="text"><string>Icons:</string></property>
                </widget>
               </item>
@@ -894,7 +908,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_91">
+               <widget class="QLabel" name="label_92">
                 <property name="text"><string>Fallback icon:</string></property>
                </widget>
               </item>
@@ -905,7 +919,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_92">
+               <widget class="QLabel" name="label_93">
                 <property name="text"><string>Icon size:</string></property>
                </widget>
               </item>
@@ -921,11 +935,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="group_93">
+            <widget class="QGroupBox" name="group_94">
              <property name="title"><string>Open windows</string></property>
-             <layout class="QFormLayout" name="form_94">
+             <layout class="QFormLayout" name="form_95">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_95">
+               <widget class="QLabel" name="label_96">
                 <property name="text"><string>Window icon size:</string></property>
                </widget>
               </item>
@@ -938,7 +952,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_96">
+               <widget class="QLabel" name="label_97">
                 <property name="text"><string>Icons per desktop:</string></property>
                </widget>
               </item>
@@ -954,7 +968,7 @@
             </widget>
            </item>
            <item>
-            <spacer name="spacer_97">
+            <spacer name="spacer_98">
              <property name="orientation"><enum>Qt::Vertical</enum></property>
             </spacer>
            </item>
@@ -964,19 +978,19 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_98">
+     <widget class="QWidget" name="tab_99">
       <attribute name="title"><string>Colors</string></attribute>
-      <layout class="QVBoxLayout" name="tabLayout_99">
+      <layout class="QVBoxLayout" name="tabLayout_100">
        <item>
-        <widget class="QScrollArea" name="scroll_100">
+        <widget class="QScrollArea" name="scroll_101">
          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
          <property name="widgetResizable"><bool>true</bool></property>
-         <widget class="QWidget" name="scrollContents_101">
-          <layout class="QVBoxLayout" name="contentLayout_102">
+         <widget class="QWidget" name="scrollContents_102">
+          <layout class="QVBoxLayout" name="contentLayout_103">
            <item>
-            <widget class="QGroupBox" name="group_103">
+            <widget class="QGroupBox" name="group_104">
              <property name="title"><string>Colors</string></property>
-             <layout class="QFormLayout" name="form_104">
+             <layout class="QFormLayout" name="form_105">
               <item row="0" column="0" colspan="2">
                <widget class="QCheckBox" name="kcfg_UseThemeColors">
                 <property name="text"><string>Use the Plasma theme colors</string></property>
@@ -984,7 +998,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_105">
+               <widget class="QLabel" name="label_106">
                 <property name="text"><string>Current desktop:</string></property>
                </widget>
               </item>
@@ -994,7 +1008,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_106">
+               <widget class="QLabel" name="label_107">
                 <property name="text"><string>Other desktops (pills):</string></property>
                </widget>
               </item>
@@ -1004,7 +1018,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_107">
+               <widget class="QLabel" name="label_108">
                 <property name="text"><string>Text:</string></property>
                </widget>
               </item>
@@ -1014,7 +1028,7 @@
                </widget>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="label_108">
+               <widget class="QLabel" name="label_109">
                 <property name="text"><string>Text on the highlight:</string></property>
                </widget>
               </item>
@@ -1024,7 +1038,7 @@
                </widget>
               </item>
               <item row="5" column="0">
-               <widget class="QLabel" name="label_109">
+               <widget class="QLabel" name="label_110">
                 <property name="text"><string>Desktop with windows mark:</string></property>
                </widget>
               </item>
@@ -1037,11 +1051,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="group_110">
+            <widget class="QGroupBox" name="group_111">
              <property name="title"><string>Background</string></property>
-             <layout class="QFormLayout" name="form_111">
+             <layout class="QFormLayout" name="form_112">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_112">
+               <widget class="QLabel" name="label_113">
                 <property name="text"><string>Background:</string></property>
                </widget>
               </item>
@@ -1062,7 +1076,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_113">
+               <widget class="QLabel" name="label_114">
                 <property name="text"><string>Custom color:</string></property>
                </widget>
               </item>
@@ -1072,7 +1086,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_114">
+               <widget class="QLabel" name="label_115">
                 <property name="text"><string>Opacity:</string></property>
                </widget>
               </item>
@@ -1086,7 +1100,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_115">
+               <widget class="QLabel" name="label_116">
                 <property name="text"><string>Custom corner radius:</string></property>
                </widget>
               </item>
@@ -1102,7 +1116,7 @@
             </widget>
            </item>
            <item>
-            <spacer name="spacer_116">
+            <spacer name="spacer_117">
              <property name="orientation"><enum>Qt::Vertical</enum></property>
             </spacer>
            </item>
@@ -1164,7 +1178,7 @@
   <connection>
    <sender>kcfg_MarkOccupied</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_52</receiver>
+   <receiver>label_53</receiver>
    <slot>setEnabled(bool)</slot>
   </connection>
   <connection>
@@ -1176,7 +1190,7 @@
   <connection>
    <sender>kcfg_MarkOccupied</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_53</receiver>
+   <receiver>label_54</receiver>
    <slot>setEnabled(bool)</slot>
   </connection>
   <connection>
@@ -1188,7 +1202,7 @@
   <connection>
    <sender>kcfg_MarkOccupied</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_54</receiver>
+   <receiver>label_55</receiver>
    <slot>setEnabled(bool)</slot>
   </connection>
   <connection>
@@ -1200,7 +1214,7 @@
   <connection>
    <sender>kcfg_UseThemeColors</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_105</receiver>
+   <receiver>label_106</receiver>
    <slot>setDisabled(bool)</slot>
   </connection>
   <connection>
@@ -1212,7 +1226,7 @@
   <connection>
    <sender>kcfg_UseThemeColors</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_106</receiver>
+   <receiver>label_107</receiver>
    <slot>setDisabled(bool)</slot>
   </connection>
   <connection>
@@ -1224,7 +1238,7 @@
   <connection>
    <sender>kcfg_UseThemeColors</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_107</receiver>
+   <receiver>label_108</receiver>
    <slot>setDisabled(bool)</slot>
   </connection>
   <connection>
@@ -1236,7 +1250,7 @@
   <connection>
    <sender>kcfg_UseThemeColors</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_108</receiver>
+   <receiver>label_109</receiver>
    <slot>setDisabled(bool)</slot>
   </connection>
   <connection>
@@ -1248,7 +1262,7 @@
   <connection>
    <sender>kcfg_UseThemeColors</sender>
    <signal>toggled(bool)</signal>
-   <receiver>label_109</receiver>
+   <receiver>label_110</receiver>
    <slot>setDisabled(bool)</slot>
   </connection>
  </connections>

@@ -579,3 +579,9 @@ msgstr "Distance de la ligne :"
 
 msgid "Gap between the label or icon and the line under it. Negative values move the line up."
 msgstr "Écart entre l'étiquette ou l'icône et la ligne en dessous. Une valeur négative fait remonter la ligne."
+
+msgid "Size:"
+msgstr "Taille :"
+
+msgid "Makes the whole indicator larger or smaller: cells, pills, text, icons and spacing. Its place on the screen does not change."
+msgstr "Agrandit ou réduit tout l'indicateur : cases, pastilles, texte, icônes et espacements. Sa place à l'écran ne change pas."

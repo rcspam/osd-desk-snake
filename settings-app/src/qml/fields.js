@@ -257,6 +257,16 @@ var tabs = [
                 "title": "Style",
                 "fields": [
                     {
+                        "kind": "spin",
+                        "key": "Zoom",
+                        "label": "Size:",
+                        "tooltip": "Makes the whole indicator larger or smaller: cells, pills, text, icons and spacing. Its place on the screen does not change.",
+                        "min": 25,
+                        "max": 400,
+                        "suffix": " %",
+                        "step": 5
+                    },
+                    {
                         "kind": "combo",
                         "key": "Style",
                         "label": "Style:",

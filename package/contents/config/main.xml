@@ -41,6 +41,8 @@
         <entry name="Spacing" type="Int"><default>8</default></entry>
         <entry name="Padding" type="Int"><default>10</default></entry>
 
+        <!-- Size of the whole indicator, %: multiplies every size in px except the position ones -->
+        <entry name="Zoom" type="Int"><default>100</default></entry>
         <!-- Style: 0 pills, 1 labels, 2 icons, 3 tasks -->
         <entry name="Style" type="Int"><default>0</default></entry>
         <!-- Highlight: 0 full, 1 square, 2 line, 3 full + line -->

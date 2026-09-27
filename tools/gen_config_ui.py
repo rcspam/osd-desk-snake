@@ -79,6 +79,9 @@ TABS = [
     ]),
     ("Style", [
         ("Style", [
+            ("spin", "Zoom", "Size:", 25, 400, " %",
+             "Makes the whole indicator larger or smaller: cells, pills, text, icons and spacing. "
+             "Its place on the screen does not change."),
             ("combo", "Style", "Style:", ["Pills", "Labels", "Icons", "Open windows"], ""),
             ("combo", "Highlight", "Highlight:", ["Full", "Square", "Line", "Full with line"],
              "Highlight of the current desktop for the labels, icons and open windows styles."),
@@ -508,6 +511,16 @@ def js_model():
             "var enabledWhen = {\n" + rules + "\n};\n")
 
 
+# Sizes in px that place the indicator on the screen: Zoom leaves them alone.
+POSITION_KEYS = {"Margin", "OffsetX", "OffsetY", "SnapDistance"}
+
+
+def zoomed_keys():
+    """Settings in px that Zoom multiplies: every size of the indicator itself."""
+    return [spec[1] for spec in iter_fields()
+            if spec[0] == "spin" and spec[5] == " px" and spec[1] not in POSITION_KEYS]
+
+
 def schema_js():
     """main.xml entries as { Key: [type, default] } for Settings.qml."""
     ns = "{http://www.kde.org/standards/kcfg/1.0}"
@@ -528,7 +541,9 @@ def schema_js():
             "// Key: [type, default]\n"
             "var entries = {\n"
             + ",\n".join(f"    {json.dumps(k)}: {json.dumps(v, ensure_ascii=False)}" for k, v in entries.items())
-            + "\n};\n")
+            + "\n};\n\n"
+            "// Sizes multiplied by Zoom when loading (see Settings.qml).\n"
+            "var zoomed = " + json.dumps(zoomed_keys()) + ";\n")
 
 
 if __name__ == "__main__":

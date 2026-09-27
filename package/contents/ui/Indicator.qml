@@ -58,7 +58,7 @@ Item {
     readonly property bool highlightFills: s.highlight === 0 || s.highlight === 1
     readonly property font labelFont: Qt.font({
         family: Kirigami.Theme.defaultFont.family,
-        pixelSize: s.fontSize > 0 ? s.fontSize : Math.round(Kirigami.Theme.defaultFont.pixelSize * 1.1)
+        pixelSize: s.fontSize > 0 ? s.fontSize : Math.round(Kirigami.Theme.defaultFont.pixelSize * 1.1 * s.sizeFactor)
     })
     readonly property font captionFont: Qt.font({
         family: labelFont.family,
@@ -112,10 +112,10 @@ Item {
     readonly property real widestContent: contentWidths.length ? Math.max(...contentWidths) : 0
     readonly property real narrowestContent: contentWidths.length ? Math.min(...contentWidths) : 0
     // Lowest CellWidth and CellHeight that still change something, for the settings
-    // app to stop its fields there. Pills do not use them.
+    // app to stop its fields there, in its units (100 % zoom). Pills do not use them.
     readonly property var sizeFloors: s.style === 0 || !contentWidths.length
         ? ({})
-        : Logic.cellSizeFloors(s.cellShape, widestContent, narrowestContent)
+        : Logic.cellSizeFloors(s.cellShape, widestContent / s.sizeFactor, narrowestContent / s.sizeFactor)
 
     readonly property string captionText: {
         const entry = desktops[currentIndex];

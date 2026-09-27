@@ -215,6 +215,22 @@ Item {
             indicator.destroy();
         }
 
+        // At 200 % the indicator is twice as large (no Plasma frame, whose borders stay).
+        function test_zoomScalesTheWholeIndicator() {
+            const sizes = [100, 200].map(zoom => {
+                const values = { Zoom: zoom, Style: 1, BackgroundMode: 2 };
+                const indicator = freshIndicator.createObject(stage);
+                indicator.settings.load((key, fallback) => key in values ? values[key] : fallback);
+                indicator.desktops = stage.info;
+                indicator.layoutNow();
+                const size = Qt.size(indicator.implicitWidth, indicator.implicitHeight);
+                indicator.destroy();
+                return size;
+            });
+            verify(Math.abs(sizes[1].width / sizes[0].width - 2) < 0.05, "width x" + sizes[1].width / sizes[0].width);
+            verify(Math.abs(sizes[1].height / sizes[0].height - 2) < 0.05, "height x" + sizes[1].height / sizes[0].height);
+        }
+
         // The size floors sent to the settings app match what is drawn.
         function test_sizeFloorsMatchTheCells() {
             wait(100);

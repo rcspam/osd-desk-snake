@@ -98,4 +98,22 @@ TestCase {
             }
         })));
     }
+
+    Settings {
+        id: zoomed
+    }
+
+    // Zoom multiplies the indicator sizes when loading, never its position.
+    function test_zoomScalesSizesNotPositions() {
+        const values = { Zoom: 200, CellHeight: 30, MarkOffset: -3, FontSize: 0, Margin: 50, OffsetX: -20, SnapDistance: 12, PercentX: 40 };
+        zoomed.load((key, fallback) => key in values ? values[key] : fallback);
+        compare(zoomed.sizeFactor, 2);
+        compare(zoomed.cellHeight, 60);
+        compare(zoomed.markOffset, -6);
+        compare(zoomed.fontSize, 0, "0 stays automatic");
+        compare(zoomed.margin, 50);
+        compare(zoomed.offsetX, -20);
+        compare(zoomed.snapDistance, 12);
+        compare(zoomed.percentX, 40);
+    }
 }
