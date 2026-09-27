@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.22)
 project(osd-desk-snake-settings LANGUAGES CXX)
 
-find_package(ECM 6.0 REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-
-include(KDEInstallDirs)
-include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
+# Built on its own by install.sh, or as part of the whole project (../CMakeLists.txt).
+if(PROJECT_IS_TOP_LEVEL)
+    find_package(ECM 6.0 REQUIRED NO_MODULE)
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+    include(KDEInstallDirs)
+    include(KDECMakeSettings)
+    include(KDECompilerSettings NO_POLICY_SCOPE)
+endif()
 include(ECMAddTests)
 
 find_package(Qt6 6.6 REQUIRED COMPONENTS Core Gui Widgets Qml Quick QuickControls2 DBus Test)

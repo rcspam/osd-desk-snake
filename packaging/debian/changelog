@@ -1,0 +1,5 @@
+osd-desk-snake (0.1.0) unstable; urgency=medium
+
+  * First release: KWin script and live settings app.
+
+ -- rcspam <10021906+rcspam@users.noreply.github.com>  Sun, 27 Sep 2026 12:00:00 +0200

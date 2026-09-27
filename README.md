@@ -28,6 +28,23 @@ Tested on Plasma 6.6 (Wayland).
 
 ## Install
 
+### Packages (amd64)
+
+Download the package for your distribution from the
+[Releases](https://github.com/rcspam/osd-desk-snake/releases) page:
+
+```sh
+sudo apt install ./osd-desk-snake_0.1.0_amd64.deb              # Debian, Ubuntu, KDE neon, Tuxedo OS
+sudo dnf install ./osd-desk-snake-0.1.0-1.fc44.x86_64.rpm      # Fedora
+sudo pacman -U ./osd-desk-snake-0.1.0-1-x86_64.pkg.tar.zst     # Arch, or makepkg -si in packaging/arch
+```
+
+Then enable it in System Settings > Window Management > KWin Scripts. The .deb
+is built on Ubuntu 24.04 with Qt 6.10 and KDE Frameworks 6.24: it needs those
+versions or newer. The packages are made with `packaging/build-packages.sh`.
+
+### From source
+
 Build dependencies (Debian, Ubuntu, KDE neon names):
 
 ```sh
@@ -63,7 +80,8 @@ Two ways, same settings:
   mode it snaps to the nearest anchor (Snap to anchors), in free mode it keeps
   the exact spot.
 - System Settings > Window Management > KWin Scripts > OSD Desk Snake > Configure:
-  changes show up on Apply.
+  changes show up on Apply. A link at the top of that page opens the settings
+  app when it is installed.
 
 While the settings dialog is open, the indicator stays on screen and picks up
 every Apply within a second. KWin does not reload script settings by itself, so

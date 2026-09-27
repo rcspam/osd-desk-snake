@@ -2,3 +2,5 @@ package/contents/locale/
 tests/preview-out/
 __pycache__/
 settings-app/build/
+build-*/
+dist/
