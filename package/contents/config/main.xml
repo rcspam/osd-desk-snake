@@ -56,6 +56,11 @@
 
         <!-- 0 pill, 1 circle, 2 square, 3 diamond, 4 bar -->
         <entry name="PillShape" type="Int"><default>0</default></entry>
+        <!-- Pills with windows: 0 ring around the pill, 1 dot in the middle (MarkSize, MarkOpacity) -->
+        <entry name="PillMark" type="Int"><default>0</default></entry>
+        <!-- Ring thickness and gap to the pill inside it, px -->
+        <entry name="RingWidth" type="Int"><default>2</default></entry>
+        <entry name="RingGap" type="Int"><default>0</default></entry>
         <entry name="PillWidth" type="Int"><default>14</default></entry>
         <entry name="PillHeight" type="Int"><default>14</default></entry>
         <entry name="PillActiveWidth" type="Int"><default>44</default></entry>

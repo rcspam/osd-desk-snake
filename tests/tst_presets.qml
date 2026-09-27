@@ -15,7 +15,8 @@ Item {
 
     readonly property var presetFiles: [
         "night-circles", "big-pills", "tiny-diamonds", "underlined-names", "grid-icons",
-        "vertical-template", "window-strip", "crossfade-bars", "extreme-offsets", "smallest-everything"
+        "vertical-template", "window-strip", "crossfade-bars", "extreme-offsets", "smallest-everything",
+        "dotted-pills", "ringed-dots"
     ]
 
     readonly property var fakeDesktops: [{ id: "1", name: "Web" }, { id: "2", name: "Code" }, { id: "3", name: "Mail" },

@@ -35,6 +35,9 @@ var entries = {
     "MarkOpacity": ["int", 80],
     "InactiveOpacity": ["int", 45],
     "PillShape": ["int", 0],
+    "PillMark": ["int", 0],
+    "RingWidth": ["int", 2],
+    "RingGap": ["int", 0],
     "PillWidth": ["int", 14],
     "PillHeight": ["int", 14],
     "PillActiveWidth": ["int", 44],
@@ -72,4 +75,4 @@ var entries = {
 };
 
 // Sizes multiplied by Zoom when loading (see Settings.qml).
-var zoomed = ["MarkSize", "MarkOffset", "Spacing", "Padding", "PillWidth", "PillHeight", "PillActiveWidth", "PillActiveHeight", "PillRadius", "CellWidth", "CellHeight", "CellRadius", "SquareSize", "LineWidth", "LineHeight", "LineOffset", "FontSize", "IconSize", "TaskIconSize", "BackgroundRadius"];
+var zoomed = ["MarkSize", "MarkOffset", "Spacing", "Padding", "PillWidth", "PillHeight", "PillActiveWidth", "PillActiveHeight", "PillRadius", "RingWidth", "RingGap", "CellWidth", "CellHeight", "CellRadius", "SquareSize", "LineWidth", "LineHeight", "LineOffset", "FontSize", "IconSize", "TaskIconSize", "BackgroundRadius"];

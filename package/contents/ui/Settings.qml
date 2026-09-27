@@ -50,6 +50,9 @@ QtObject {
     property int inactiveOpacity
 
     property int pillShape
+    property int pillMark
+    property int ringWidth
+    property int ringGap
     property int pillWidth
     property int pillHeight
     property int pillActiveWidth

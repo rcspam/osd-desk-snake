@@ -1,0 +1,9 @@
+[Preset]
+Name=Ringed dots
+Version=1
+
+[Settings]
+OccupiedColor=255,200,0
+RingGap=3
+RingWidth=2
+UseThemeColors=true

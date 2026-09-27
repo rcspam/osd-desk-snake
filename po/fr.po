@@ -556,8 +556,8 @@ msgstr "Les préréglages gardent tous les réglages sous un nom : changez d'app
 msgid "Dot size:"
 msgstr "Taille du point :"
 
-msgid "Diameter of the dot under desktops that contain windows."
-msgstr "Diamètre du point sous les bureaux qui contiennent des fenêtres."
+msgid "Diameter of the dot on desktops that contain windows (under labels and icons, in the middle of pills)."
+msgstr "Diamètre du point des bureaux qui contiennent des fenêtres (sous les étiquettes et les icônes, au centre des pastilles)."
 
 msgid "Dot distance:"
 msgstr "Distance du point :"
@@ -585,3 +585,24 @@ msgstr "Taille :"
 
 msgid "Makes the whole indicator larger or smaller: cells, pills, text, icons and spacing. Its place on the screen does not change."
 msgstr "Agrandit ou réduit tout l'indicateur : cases, pastilles, texte, icônes et espacements. Sa place à l'écran ne change pas."
+
+msgid "Desktops with windows:"
+msgstr "Bureaux avec fenêtres :"
+
+msgid "Ring"
+msgstr "Anneau"
+
+msgid "Dot in the middle"
+msgstr "Point au centre"
+
+msgid "Ring: a ring around the pill. Dot: the pill looks like an empty one, with a dot in its middle (dot size and opacity above)."
+msgstr "Anneau : un anneau autour de la pastille. Point : la pastille garde l'aspect d'un bureau vide, avec un point au centre (taille et opacité du point plus haut)."
+
+msgid "Ring thickness:"
+msgstr "Épaisseur de l'anneau :"
+
+msgid "Ring gap:"
+msgstr "Écart de l'anneau :"
+
+msgid "Room between the ring and the pill, which gets smaller inside the ring."
+msgstr "Espace entre l'anneau et la pastille, qui rétrécit à l'intérieur de l'anneau."

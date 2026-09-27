@@ -1,0 +1,9 @@
+[Preset]
+Name=Dotted pills
+Version=1
+
+[Settings]
+MarkOpacity=100
+MarkSize=6
+PillMark=1
+Zoom=150

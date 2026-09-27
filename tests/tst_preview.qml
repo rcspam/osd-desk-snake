@@ -53,7 +53,9 @@ Item {
         { name: "18-labels-midway", hx: 1.5, cfg: { style: 1, highlight: 0 } },
         { name: "19-icons-line-quarter", hx: 1.25, cfg: { style: 2, highlight: 2 } },
         { name: "20-pills-crossfade-1-to-5", from: 0, progress: 0.5, cfg: { highlightMotion: 1 } },
-        { name: "21-labels-fade-midway", hx: 1.5, cfg: { style: 1, highlight: 0, highlightMotion: 2 } }
+        { name: "21-labels-fade-midway", hx: 1.5, cfg: { style: 1, highlight: 0, highlightMotion: 2 } },
+        { name: "22-pills-dot", cfg: { pillMark: 1, markSize: 6 } },
+        { name: "23-pills-ring-gap", cfg: { ringGap: 3 } }
     ]
 
     Flow {
@@ -229,6 +231,27 @@ Item {
             });
             verify(Math.abs(sizes[1].width / sizes[0].width - 2) < 0.05, "width x" + sizes[1].width / sizes[0].width);
             verify(Math.abs(sizes[1].height / sizes[0].height - 2) < 0.05, "height x" + sizes[1].height / sizes[0].height);
+        }
+
+        // Pills with windows: a dot in the middle of an unchanged pill, or a ring
+        // whose gap shrinks the pill inside it. Desktop 1 holds windows, 4 does not.
+        function test_pillMarks() {
+            wait(100);
+            const part = (box, index, name) => cellsOf(box).find(c => c.index === index).children.find(c => c.objectName === name);
+
+            const dotted = variant("22-pills-dot");
+            verify(part(dotted, 0, "pillDot").visible, "dot on a desktop with windows");
+            compare(part(dotted, 0, "pillDot").width, 6);
+            verify(!part(dotted, 3, "pillDot").visible, "no dot on an empty desktop");
+            verify(!part(dotted, 0, "pillRing").visible, "no ring with the dot");
+            compare(part(dotted, 0, "pillFill").width, part(dotted, 3, "pillFill").width);
+
+            const ringed = variant("23-pills-ring-gap");
+            const full = part(ringed, 3, "pillFill").width;
+            verify(part(ringed, 0, "pillRing").visible, "ring on a desktop with windows");
+            compare(part(ringed, 0, "pillRing").width, full);
+            // Ring 2 px + gap 3 px on each side.
+            compare(part(ringed, 0, "pillFill").width, full - 10);
         }
 
         // The size floors sent to the settings app match what is drawn.

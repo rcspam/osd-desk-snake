@@ -300,7 +300,7 @@ var tabs = [
                         "kind": "spin",
                         "key": "MarkSize",
                         "label": "Dot size:",
-                        "tooltip": "Diameter of the dot under desktops that contain windows.",
+                        "tooltip": "Diameter of the dot on desktops that contain windows (under labels and icons, in the middle of pills).",
                         "min": 1,
                         "max": 30,
                         "suffix": " px",
@@ -423,6 +423,36 @@ var tabs = [
                         "max": 250,
                         "suffix": " px",
                         "step": 5
+                    },
+                    {
+                        "kind": "combo",
+                        "key": "PillMark",
+                        "label": "Desktops with windows:",
+                        "tooltip": "Ring: a ring around the pill. Dot: the pill looks like an empty one, with a dot in its middle (dot size and opacity above).",
+                        "items": [
+                            "Ring",
+                            "Dot in the middle"
+                        ]
+                    },
+                    {
+                        "kind": "spin",
+                        "key": "RingWidth",
+                        "label": "Ring thickness:",
+                        "tooltip": "",
+                        "min": 1,
+                        "max": 20,
+                        "suffix": " px",
+                        "step": 1
+                    },
+                    {
+                        "kind": "spin",
+                        "key": "RingGap",
+                        "label": "Ring gap:",
+                        "tooltip": "Room between the ring and the pill, which gets smaller inside the ring.",
+                        "min": 0,
+                        "max": 20,
+                        "suffix": " px",
+                        "step": 1
                     }
                 ]
             },
@@ -729,10 +759,13 @@ var enabledWhen = {
     PercentY: v => v.PositionMode === 1,
     Highlight: v => v.Style !== 0,
     MarkOccupied: v => v.Style !== 3,
-    MarkSize: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
+    MarkSize: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2 || (v.Style === 0 && v.PillMark === 1)),
     MarkOffset: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
-    MarkOpacity: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
+    MarkOpacity: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2 || (v.Style === 0 && v.PillMark === 1)),
     PillShape: v => v.Style === 0,
+    PillMark: v => v.MarkOccupied && v.Style === 0,
+    RingWidth: v => v.MarkOccupied && v.Style === 0 && v.PillMark === 0,
+    RingGap: v => v.MarkOccupied && v.Style === 0 && v.PillMark === 0,
     PillWidth: v => v.Style === 0 && v.PillShape !== 1 && v.PillShape !== 3,
     PillHeight: v => v.Style === 0,
     PillActiveWidth: v => v.Style === 0 && v.PillShape !== 1 && v.PillShape !== 3,
