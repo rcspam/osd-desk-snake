@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
-import org.kde.kquickcontrols as KQuickControls
 import "fields.js" as Fields
 
 // One settings field (see fields.js), bound to the SettingsStore. Controls are
@@ -145,7 +144,7 @@ Loader {
     Component {
         id: colorComponent
 
-        KQuickControls.ColorButton {
+        ColorButton {
             showAlphaChannel: true
             dialogTitle: i18n(root.field.label).replace(/\s*:\s*$/, "")
             onAccepted: color => root.set(color)

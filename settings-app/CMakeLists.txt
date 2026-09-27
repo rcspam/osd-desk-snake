@@ -29,6 +29,7 @@ qt_add_resources(osd-desk-snake-settings schema PREFIX / FILES ${DSK_SCHEMA})
 qt_add_resources(osd-desk-snake-settings qml PREFIX / BASE src/qml FILES
     src/qml/Main.qml
     src/qml/FieldEditor.qml
+    src/qml/ColorButton.qml
     src/qml/fields.js
 )
 
