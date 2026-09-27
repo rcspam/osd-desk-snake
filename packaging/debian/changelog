@@ -6,6 +6,7 @@ osd-desk-snake (0.2.0) unstable; urgency=medium
   * The highlight of the label, icon and window styles slides from desktop to
     desktop; fading along with the switch is still available.
   * Size setting that scales the whole indicator.
+  * The background is transparent by default.
   * Dot on desktops with windows: size, distance and opacity; pills get a ring
     (thickness, gap) or a dot. Line highlight distance.
   * Fixes: clipped labels, dots and lines; circle cells of different sizes;
