@@ -11,6 +11,14 @@ ColumnLayout {
     id: page
 
     required property var presets
+    // Where import and export dialogs open: home at first, then the folder of the
+    // last import or export, so a file just exported is found right away.
+    property url lastFolder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+
+    function folderOf(file) {
+        const path = file.toString();
+        return path.substring(0, path.lastIndexOf("/"));
+    }
 
     function report(error) {
         message.text = error;
@@ -193,9 +201,11 @@ ColumnLayout {
         id: importDialog
 
         title: i18n("Import preset")
+        currentFolder: page.lastFolder
         nameFilters: [i18n("OSD Desk Snake presets (*.osdsnake)"), i18n("All files (*)")]
         onAccepted: {
             const file = selectedFile;
+            page.lastFolder = page.folderOf(file);
             const found = page.presets.inspect(file);
             if (found.error !== "") {
                 page.report(found.error);
@@ -217,8 +227,8 @@ ColumnLayout {
 
         function exportPreset(name) {
             presetName = name;
-            const home = StandardPaths.writableLocation(StandardPaths.HomeLocation);
-            selectedFile = home + "/" + name.replace(/\//g, "-") + ".osdsnake";
+            currentFolder = page.lastFolder;
+            selectedFile = page.lastFolder + "/" + name.replace(/\//g, "-") + ".osdsnake";
             open();
         }
 
@@ -226,6 +236,9 @@ ColumnLayout {
         fileMode: QtDialogs.FileDialog.SaveFile
         defaultSuffix: "osdsnake"
         nameFilters: [i18n("OSD Desk Snake presets (*.osdsnake)")]
-        onAccepted: page.report(page.presets.exportTo(presetName, selectedFile))
+        onAccepted: {
+            page.lastFolder = page.folderOf(selectedFile);
+            page.report(page.presets.exportTo(presetName, selectedFile));
+        }
     }
 }
