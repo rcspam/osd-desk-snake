@@ -2,7 +2,7 @@ osd-desk-snake (0.2.0) unstable; urgency=medium
 
   * Presets in the settings app: save every setting under a name, apply it in
     one click, import and export .osdsnake files, kept in
-    ~/.config/osdsnake/presets.
+    ~/.config/osdsnake/presets. A set of presets comes with the app.
   * The highlight of the label, icon and window styles slides from desktop to
     desktop; fading along with the switch is still available.
   * Size setting that scales the whole indicator.

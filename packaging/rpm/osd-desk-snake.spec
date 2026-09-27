@@ -62,8 +62,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}-settings.desk
 
 %changelog
 * Sun Sep 27 2026 rcspam <10021906+rcspam@users.noreply.github.com> - 0.2.0-1
-- Presets, sliding highlight, Size setting, dot and ring marks, transparent
-  background by default, fixes
+- Presets (a set comes with the app), sliding highlight, Size setting, dot and
+  ring marks, transparent background by default, fixes
 
 * Sun Sep 27 2026 rcspam <10021906+rcspam@users.noreply.github.com> - 0.1.0-1
 - First release
