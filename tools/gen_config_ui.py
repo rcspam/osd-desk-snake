@@ -170,6 +170,11 @@ PRESETS_TEXT = ('Presets keep every setting under a name: switch looks in one cl
                 '<br/><br/>Not installed? '
                 '<a href="https://github.com/rcspam/osd-desk-snake#install">Get it</a>.')
 
+def spin_step(hi):
+    """Step of the arrows and mouse wheel, the same in the app and config.ui."""
+    return 50 if hi > 1000 else 5 if hi > 200 else 1
+
+
 # When a setting has an effect, as a JS expression over the current values `v`
 # (keys as in main.xml). Settings not listed always apply. The settings app greys
 # out the others live; config.ui can only follow a leading checkbox term.
@@ -290,6 +295,7 @@ class Ui:
         if kind == "spin":
             _, _, _, lo, hi, suffix, _ = spec
             self.add(f'<widget class="QSpinBox" name="{name}">', depth + 1)
+            self.add(f'<property name="singleStep"><number>{spin_step(hi)}</number></property>', depth + 2)
             self.add(f'<property name="minimum"><number>{lo}</number></property>', depth + 2)
             self.add(f'<property name="maximum"><number>{hi}</number></property>', depth + 2)
             if suffix:
@@ -481,6 +487,8 @@ def js_model():
                     field.update(label=spec[2], tooltip=spec[-1])
                 if kind in ("spin", "dspin"):
                     field.update(min=spec[3], max=spec[4], suffix=spec[5])
+                if kind == "spin":
+                    field.update(step=spin_step(spec[4]))
                 elif kind == "combo":
                     field.update(items=list(spec[3]))
                 elif kind == "line":

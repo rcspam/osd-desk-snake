@@ -15,7 +15,8 @@ var tabs = [
                         "tooltip": "Wait before showing the indicator. Switches made during the delay only show the last one.",
                         "min": 0,
                         "max": 2000,
-                        "suffix": " ms"
+                        "suffix": " ms",
+                        "step": 50
                     },
                     {
                         "kind": "spin",
@@ -24,7 +25,8 @@ var tabs = [
                         "tooltip": "How long the indicator takes to appear.",
                         "min": 0,
                         "max": 2000,
-                        "suffix": " ms"
+                        "suffix": " ms",
+                        "step": 50
                     },
                     {
                         "kind": "spin",
@@ -33,7 +35,8 @@ var tabs = [
                         "tooltip": "How long the indicator stays fully visible.",
                         "min": 100,
                         "max": 10000,
-                        "suffix": " ms"
+                        "suffix": " ms",
+                        "step": 50
                     },
                     {
                         "kind": "spin",
@@ -42,7 +45,8 @@ var tabs = [
                         "tooltip": "How long the indicator takes to disappear.",
                         "min": 0,
                         "max": 2000,
-                        "suffix": " ms"
+                        "suffix": " ms",
+                        "step": 50
                     },
                     {
                         "kind": "combo",
@@ -76,7 +80,8 @@ var tabs = [
                         "tooltip": "Transition from the previous desktop to the new one.",
                         "min": 0,
                         "max": 2000,
-                        "suffix": " ms"
+                        "suffix": " ms",
+                        "step": 50
                     },
                     {
                         "kind": "combo",
@@ -184,7 +189,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 0,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -193,7 +199,8 @@ var tabs = [
                         "tooltip": "Distance from the anchored screen edges.",
                         "min": 0,
                         "max": 2000,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 50
                     },
                     {
                         "kind": "spin",
@@ -202,7 +209,8 @@ var tabs = [
                         "tooltip": "Positive values move right.",
                         "min": -5000,
                         "max": 5000,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 50
                     },
                     {
                         "kind": "spin",
@@ -211,7 +219,8 @@ var tabs = [
                         "tooltip": "Positive values move down.",
                         "min": -5000,
                         "max": 5000,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 50
                     }
                 ]
             },
@@ -283,7 +292,8 @@ var tabs = [
                         "tooltip": "Diameter of the dot under desktops that contain windows.",
                         "min": 1,
                         "max": 30,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 1
                     },
                     {
                         "kind": "spin",
@@ -292,7 +302,8 @@ var tabs = [
                         "tooltip": "Gap between the label or icon and the dot under it. Negative values move the dot up.",
                         "min": -20,
                         "max": 40,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 1
                     },
                     {
                         "kind": "spin",
@@ -301,7 +312,8 @@ var tabs = [
                         "tooltip": "Opacity of the dot.",
                         "min": 0,
                         "max": 100,
-                        "suffix": " %"
+                        "suffix": " %",
+                        "step": 1
                     },
                     {
                         "kind": "spin",
@@ -310,7 +322,8 @@ var tabs = [
                         "tooltip": "Opacity of the other desktops.",
                         "min": 0,
                         "max": 100,
-                        "suffix": " %"
+                        "suffix": " %",
+                        "step": 1
                     },
                     {
                         "kind": "spin",
@@ -319,7 +332,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 0,
                         "max": 200,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 1
                     },
                     {
                         "kind": "spin",
@@ -328,7 +342,8 @@ var tabs = [
                         "tooltip": "Space between the desktops and the background edge.",
                         "min": 0,
                         "max": 200,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 1
                     }
                 ]
             },
@@ -355,7 +370,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -364,7 +380,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -373,7 +390,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -382,7 +400,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -391,7 +410,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 0,
                         "max": 250,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     }
                 ]
             },
@@ -416,7 +436,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -425,7 +446,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -434,7 +456,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 0,
                         "max": 250,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -443,7 +466,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -452,7 +476,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 500,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -461,7 +486,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 1,
                         "max": 100,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 1
                     }
                 ]
             }
@@ -506,7 +532,8 @@ var tabs = [
                         "tooltip": "0 uses the theme font size.",
                         "min": 0,
                         "max": 200,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 1
                     },
                     {
                         "kind": "check",
@@ -546,7 +573,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 8,
                         "max": 256,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     }
                 ]
             },
@@ -560,7 +588,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 8,
                         "max": 256,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     },
                     {
                         "kind": "spin",
@@ -569,7 +598,8 @@ var tabs = [
                         "tooltip": "Extra windows are shown as +n.",
                         "min": 1,
                         "max": 20,
-                        "suffix": ""
+                        "suffix": "",
+                        "step": 1
                     }
                 ]
             }
@@ -647,7 +677,8 @@ var tabs = [
                         "tooltip": "Opacity of the background only, the desktops stay opaque.",
                         "min": 0,
                         "max": 100,
-                        "suffix": " %"
+                        "suffix": " %",
+                        "step": 1
                     },
                     {
                         "kind": "spin",
@@ -656,7 +687,8 @@ var tabs = [
                         "tooltip": "",
                         "min": 0,
                         "max": 250,
-                        "suffix": " px"
+                        "suffix": " px",
+                        "step": 5
                     }
                 ]
             }

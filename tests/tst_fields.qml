@@ -88,4 +88,14 @@ TestCase {
             }
         })));
     }
+
+    // One step for the app and config.ui, bigger on long ranges (mouse wheel, arrows).
+    function test_spinsHaveAStep() {
+        Fields.tabs.forEach(tab => tab.groups.forEach(group => group.fields.forEach(f => {
+            if (f.kind === "spin") {
+                verify(Number.isInteger(f.step) && f.step >= 1, f.key + " has a step");
+                verify(f.max - f.min <= 200 || f.step > 1, f.key + " moves faster than 1 on a long range");
+            }
+        })));
+    }
 }

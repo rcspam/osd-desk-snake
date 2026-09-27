@@ -66,7 +66,7 @@ Loader {
         QQC2.SpinBox {
             from: root.field.min
             to: root.field.max
-            stepSize: root.field.max > 1000 ? 50 : (root.field.max > 200 ? 5 : 1)
+            stepSize: root.field.step
             editable: true
             textFromValue: (value, locale) => value + root.field.suffix
             valueFromText: (text, locale) => parseInt(text) || 0
