@@ -16,7 +16,7 @@ ID=osd-desk-snake
 here="$(cd "$(dirname "$0")" && pwd)"
 pkg="$here/package"
 runtime="${XDG_RUNTIME_DIR:-/tmp}"
-qdbus=$(command -v qdbus6 || echo /usr/lib/qt6/bin/qdbus)
+qdbus=$(command -v qdbus6 || command -v qdbus-qt6 || echo /usr/lib/qt6/bin/qdbus)
 
 scripting() { "$qdbus" org.kde.KWin /Scripting "org.kde.kwin.Scripting.$1" "${@:2}"; }
 
