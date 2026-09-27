@@ -163,25 +163,22 @@ TABS = [
 ]
 
 
-# Link at the top of config.ui: .ui files cannot run code, but a label link is
-# opened through the desktop, which starts the settings app registered for this
-# URL scheme (x-scheme-handler/osd-desk-snake, see its .desktop file).
-# The script alone (KDE Store) comes without the app: the second link, always
-# valid, points to its install instructions.
-APP_LINK = ('<a href="osd-desk-snake://settings">Open OSD Desk Snake Settings</a> '
-            'for live preview and mouse positioning, or '
-            '<a href="osd-desk-snake://presets">manage presets</a>. Not installed? '
-            '<a href="https://github.com/rcspam/osd-desk-snake#install">Get it</a>.')
-APP_LINK_TIP = "That app saves every change right away; this window closes when it opens."
+# Top of config.ui: one plain link to the settings app. .ui files cannot run
+# code, but a label link is opened through the desktop, which starts the app
+# registered for this URL scheme (x-scheme-handler/osd-desk-snake, see its
+# .desktop file). The script alone (KDE Store) comes without the app, hence the
+# small install link next to it.
+APP_LINK = ('<a href="osd-desk-snake://settings">Open the settings window</a>'
+            '&nbsp;&nbsp;&nbsp;<small>Not installed? '
+            '<a href="https://github.com/rcspam/osd-desk-snake#install">Get it</a></small>')
+APP_LINK_TIP = ("Changes show on the indicator right away, and it can be dragged with the mouse. "
+                "This page closes when the window opens.")
 
 # Last tab of config.ui. Presets need code (list, save, apply), which this page
 # cannot run, so the tab only leads to the Presets tab of the settings app.
 PRESETS_TAB = "Presets"
-PRESETS_TEXT = ('Presets keep every setting under a name: switch looks in one click, '
-                'and share them as .osdsnake files. They are managed in OSD Desk Snake Settings.'
-                '<br/><br/><a href="osd-desk-snake://presets">Open the presets</a>'
-                '<br/><br/>Not installed? '
-                '<a href="https://github.com/rcspam/osd-desk-snake#install">Get it</a>.')
+PRESETS_TEXT = ('Presets are saved and applied in the settings window.'
+                '<br/><br/><a href="osd-desk-snake://presets">Open the presets</a>')
 
 def spin_step(hi):
     """Step of the arrows and mouse wheel, the same in the app and config.ui."""

@@ -6,8 +6,8 @@
   <layout class="QVBoxLayout" name="mainLayout">
    <item>
     <widget class="QLabel" name="appLink">
-     <property name="text"><string>&lt;a href="osd-desk-snake://settings"&gt;Open OSD Desk Snake Settings&lt;/a&gt; for live preview and mouse positioning, or &lt;a href="osd-desk-snake://presets"&gt;manage presets&lt;/a&gt;. Not installed? &lt;a href="https://github.com/rcspam/osd-desk-snake#install"&gt;Get it&lt;/a&gt;.</string></property>
-     <property name="toolTip"><string>That app saves every change right away; this window closes when it opens.</string></property>
+     <property name="text"><string>&lt;a href="osd-desk-snake://settings"&gt;Open the settings window&lt;/a&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;small&gt;Not installed? &lt;a href="https://github.com/rcspam/osd-desk-snake#install"&gt;Get it&lt;/a&gt;&lt;/small&gt;</string></property>
+     <property name="toolTip"><string>Changes show on the indicator right away, and it can be dragged with the mouse. This page closes when the window opens.</string></property>
      <property name="textFormat"><enum>Qt::RichText</enum></property>
      <property name="openExternalLinks"><bool>true</bool></property>
      <property name="wordWrap"><bool>true</bool></property>
@@ -1180,7 +1180,7 @@
       <layout class="QVBoxLayout" name="presetsLayout">
        <item>
         <widget class="QLabel" name="presetsText">
-         <property name="text"><string>Presets keep every setting under a name: switch looks in one click, and share them as .osdsnake files. They are managed in OSD Desk Snake Settings.&lt;br/&gt;&lt;br/&gt;&lt;a href="osd-desk-snake://presets"&gt;Open the presets&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;Not installed? &lt;a href="https://github.com/rcspam/osd-desk-snake#install"&gt;Get it&lt;/a&gt;.</string></property>
+         <property name="text"><string>Presets are saved and applied in the settings window.&lt;br/&gt;&lt;br/&gt;&lt;a href="osd-desk-snake://presets"&gt;Open the presets&lt;/a&gt;</string></property>
          <property name="textFormat"><enum>Qt::RichText</enum></property>
          <property name="openExternalLinks"><bool>true</bool></property>
          <property name="wordWrap"><bool>true</bool></property>

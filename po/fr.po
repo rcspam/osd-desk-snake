@@ -460,12 +460,6 @@ msgstr "Fondu avec le changement"
 msgid "Once the switch is done"
 msgstr "Une fois le bureau atteint"
 
-msgid "<a href=\"osd-desk-snake://settings\">Open OSD Desk Snake Settings</a> for live preview and mouse positioning, or <a href=\"osd-desk-snake://presets\">manage presets</a>. Not installed? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">Get it</a>."
-msgstr "<a href=\"osd-desk-snake://settings\">Ouvrir Réglages OSD Desk Snake</a> pour l'aperçu en direct et le placement à la souris, ou <a href=\"osd-desk-snake://presets\">gérer les préréglages</a>. Pas installé ? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">L'installer</a>."
-
-msgid "That app saves every change right away; this window closes when it opens."
-msgstr "Cette appli enregistre chaque changement immédiatement ; cette fenêtre se ferme à son ouverture."
-
 msgid "Presets"
 msgstr "Préréglages"
 
@@ -550,9 +544,6 @@ msgstr "%1 n'est pas un préréglage OSD Desk Snake."
 msgid "Cannot create the folder %1."
 msgstr "Impossible de créer le dossier %1."
 
-msgid "Presets keep every setting under a name: switch looks in one click, and share them as .osdsnake files. They are managed in OSD Desk Snake Settings.<br/><br/><a href=\"osd-desk-snake://presets\">Open the presets</a><br/><br/>Not installed? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">Get it</a>."
-msgstr "Les préréglages gardent tous les réglages sous un nom : changez d'apparence en un clic, et partagez-les en fichiers .osdsnake. Ils se gèrent dans Réglages OSD Desk Snake.<br/><br/><a href=\"osd-desk-snake://presets\">Ouvrir les préréglages</a><br/><br/>Pas installé ? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">L'installer</a>."
-
 msgid "Dot size:"
 msgstr "Taille du point :"
 
@@ -606,3 +597,12 @@ msgstr "Écart de l'anneau :"
 
 msgid "Room between the ring and the pill, which gets smaller inside the ring."
 msgstr "Espace entre l'anneau et la pastille, qui rétrécit à l'intérieur de l'anneau."
+
+msgid "<a href=\"osd-desk-snake://settings\">Open the settings window</a>&nbsp;&nbsp;&nbsp;<small>Not installed? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">Get it</a></small>"
+msgstr "<a href=\"osd-desk-snake://settings\">Ouvrir la fenêtre de réglages</a>&nbsp;&nbsp;&nbsp;<small>Pas installée ? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">L'installer</a></small>"
+
+msgid "Changes show on the indicator right away, and it can be dragged with the mouse. This page closes when the window opens."
+msgstr "Les changements s'affichent tout de suite sur l'indicateur, que l'on peut déplacer à la souris. Cette page se ferme quand la fenêtre s'ouvre."
+
+msgid "Presets are saved and applied in the settings window.<br/><br/><a href=\"osd-desk-snake://presets\">Open the presets</a>"
+msgstr "Les préréglages s'enregistrent et s'appliquent dans la fenêtre de réglages.<br/><br/><a href=\"osd-desk-snake://presets\">Ouvrir les préréglages</a>"
