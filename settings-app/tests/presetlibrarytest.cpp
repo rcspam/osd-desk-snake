@@ -82,17 +82,22 @@ private Q_SLOTS:
         QCOMPARE(m_store->value(QStringLiteral("ActiveColor")).value<QColor>(), QColor(160, 0, 200));
     }
 
-    void savedFileHoldsOnlyChangedValues()
+    // Every setting is written, defaults included, so a preset keeps its look when
+    // a later version changes a default.
+    void savedFileHoldsEverySetting()
     {
         auto presets = library();
-        m_store->setValues({{QStringLiteral("Style"), 2}});
+        m_store->setValues({{QStringLiteral("Style"), 2}, {QStringLiteral("ActiveColor"), QColor(160, 0, 200, 128)}});
         QCOMPARE(presets->save(QStringLiteral("Night")), QString());
 
         KSharedConfig::Ptr file = KSharedConfig::openConfig(presetDir() + QStringLiteral("/Night.osdsnake"), KConfig::SimpleConfig);
+        const KConfigGroup settings = file->group(QStringLiteral("Settings"));
         QCOMPARE(file->group(QStringLiteral("Preset")).readEntry("Name"), QStringLiteral("Night"));
         QCOMPARE(file->group(QStringLiteral("Preset")).readEntry("Version", 0), 1);
-        QCOMPARE(file->group(QStringLiteral("Settings")).readEntry("Style", 0), 2);
-        QVERIFY(!file->group(QStringLiteral("Settings")).hasKey("Anchor"));
+        QCOMPARE(settings.readEntry("Style", 0), 2);
+        QCOMPARE(settings.readEntry("ActiveColor", QColor()), QColor(160, 0, 200, 128));
+        QCOMPARE(settings.readEntry("Anchor", -1), 7);
+        QCOMPARE(settings.keyList().size(), m_store->values().size());
     }
 
     void partialPresetResetsTheOtherKeys()

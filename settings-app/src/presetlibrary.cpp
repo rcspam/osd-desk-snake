@@ -239,17 +239,21 @@ QString PresetLibrary::write(const QString &path, const QString &name, const QVa
     header.writeEntry("Name", name);
     header.writeEntry("Version", formatVersion);
 
-    // The loader starts from the defaults (group just deleted) and, like for
-    // kwinrc, only writes the values that differ from them.
+    // Every setting is written, defaults included (unlike kwinrc), so a preset keeps
+    // its look when a later version changes a default. The loader gives each value
+    // its schema type; missing values are the defaults.
     QFile schema(m_schemaPath);
     KConfigLoader loader(config->group(settingsGroup), &schema);
-    for (auto it = values.cbegin(); it != values.cend(); ++it) {
-        if (KConfigSkeletonItem *item = loader.findItemByName(it.key())) {
-            item->setProperty(it.value());
+    KConfigGroup settings = config->group(settingsGroup);
+    const auto items = loader.items();
+    for (KConfigSkeletonItem *item : items) {
+        const auto given = values.constFind(item->key());
+        if (given != values.cend()) {
+            item->setProperty(*given);
         }
+        settings.writeEntry(item->key(), item->property());
     }
-    const bool saved = loader.save() && config->sync();
-    return saved ? QString() : i18n("Cannot write %1.", path);
+    return config->sync() ? QString() : i18n("Cannot write %1.", path);
 }
 
 QString PresetLibrary::pathFor(const QString &name) const

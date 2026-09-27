@@ -42,9 +42,10 @@ Style=1
   inconnues viennent de là : une valeur illisible prend son défaut. Le schéma n'a
   pas de bornes min/max, donc une valeur hors plage passe telle quelle, comme
   dans un kwinrc édité à la main.
-- Comme dans kwinrc, seules les valeurs différentes du défaut sont écrites. Une
-  clé absente vaut donc son défaut. Un réglage ajouté par une version future
-  prend ainsi son défaut quand on applique un ancien preset.
+- Tous les réglages sont écrits, valeurs par défaut comprises (au contraire de
+  kwinrc) : un preset garde son aspect quand une version future change un
+  défaut. Une clé absente (fichier écrit à la main, ou réglage ajouté depuis)
+  prend le défaut en vigueur.
 - `Name` est le nom affiché. `Version` est la version du format (1), pour
   pouvoir le faire évoluer.
 - Le nom du fichier vient du nom du preset : `/` remplacé par `-`, espaces et
