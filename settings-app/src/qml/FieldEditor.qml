@@ -82,16 +82,21 @@ Loader {
             // A stored value under the floor shows as the floor, without being saved.
             onFromChanged: sync()
 
-            // Up raises the value, also with natural scrolling (see wheel.js).
+            // Up raises the value, also with natural scrolling; touchpad deltas add up (see wheel.js).
             wheelEnabled: false
+            property real wheelRest: 0
             WheelHandler {
                 target: null
+                // Mouse only by default: touchpad scrolling would scroll the page instead.
+                acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
                 onWheel: event => {
-                    const next = Wheel.wheelValue(parent.value, parent.from, parent.to, parent.stepSize,
-                                                  event.angleDelta.x, event.angleDelta.y, event.inverted);
-                    if (next !== parent.value) {
-                        parent.value = next;
-                        root.set(next);
+                    const spin = parent;
+                    const step = Wheel.wheelStep(spin.value, spin.from, spin.to, spin.stepSize,
+                                                 event.angleDelta.x, event.angleDelta.y, event.inverted, spin.wheelRest);
+                    spin.wheelRest = step.rest;
+                    if (step.value !== spin.value) {
+                        spin.value = step.value;
+                        root.set(step.value);
                     }
                 }
             }
@@ -118,16 +123,21 @@ Loader {
             }
             onValueModified: root.set(value / 10)
 
-            // Up raises the value, also with natural scrolling (see wheel.js).
+            // Up raises the value, also with natural scrolling; touchpad deltas add up (see wheel.js).
             wheelEnabled: false
+            property real wheelRest: 0
             WheelHandler {
                 target: null
+                // Mouse only by default: touchpad scrolling would scroll the page instead.
+                acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
                 onWheel: event => {
-                    const next = Wheel.wheelValue(parent.value, parent.from, parent.to, parent.stepSize,
-                                                  event.angleDelta.x, event.angleDelta.y, event.inverted);
-                    if (next !== parent.value) {
-                        parent.value = next;
-                        root.set(next / 10);
+                    const spin = parent;
+                    const step = Wheel.wheelStep(spin.value, spin.from, spin.to, spin.stepSize,
+                                                 event.angleDelta.x, event.angleDelta.y, event.inverted, spin.wheelRest);
+                    spin.wheelRest = step.rest;
+                    if (step.value !== spin.value) {
+                        spin.value = step.value;
+                        root.set(step.value / 10);
                     }
                 }
             }
