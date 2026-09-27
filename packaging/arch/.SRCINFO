@@ -20,6 +20,6 @@ pkgbase = osd-desk-snake
 	depends = glibc
 	depends = gcc-libs
 	source = osd-desk-snake-0.2.0.tar.gz::https://github.com/rcspam/osd-desk-snake/archive/refs/tags/v0.2.0.tar.gz
-	sha256sums = b43cc9953c78ef7758ea01e57e9c23b300ce7177e2800d617ac5861d9f83b329
+	sha256sums = 1918fdcc3ad3a3f879b0f669e254a33110e6fbf9a5f5cddd3a220606b90f836b
 
 pkgname = osd-desk-snake
