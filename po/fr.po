@@ -456,3 +456,9 @@ msgstr "Suit le changement de bureau"
 
 msgid "Once the switch is done"
 msgstr "Une fois le bureau atteint"
+
+msgid "<a href=\"osd-desk-snake://settings\">Open OSD Desk Snake Settings</a> for live preview and mouse positioning. Not installed? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">Get it</a>."
+msgstr "<a href=\"osd-desk-snake://settings\">Ouvrir Réglages OSD Desk Snake</a> pour l'aperçu en direct et le placement à la souris. Pas installé ? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">L'installer</a>."
+
+msgid "That app saves every change right away; this window closes when it opens."
+msgstr "Cette appli enregistre chaque changement immédiatement ; cette fenêtre se ferme à son ouverture."

@@ -146,6 +146,16 @@ TABS = [
 ]
 
 
+# Link at the top of config.ui: .ui files cannot run code, but a label link is
+# opened through the desktop, which starts the settings app registered for this
+# URL scheme (x-scheme-handler/osd-desk-snake, see its .desktop file).
+# The script alone (KDE Store) comes without the app: the second link, always
+# valid, points to its install instructions.
+APP_LINK = ('<a href="osd-desk-snake://settings">Open OSD Desk Snake Settings</a> '
+            'for live preview and mouse positioning. Not installed? '
+            '<a href="https://github.com/rcspam/osd-desk-snake#install">Get it</a>.')
+APP_LINK_TIP = "That app saves every change right away; this window closes when it opens."
+
 # When a setting has an effect, as a JS expression over the current values `v`
 # (keys as in main.xml). Settings not listed always apply. The settings app greys
 # out the others live; config.ui can only follow a leading checkbox term.
@@ -328,6 +338,15 @@ class Ui:
         self.add('<widget class="QWidget" name="OsdDeskSnakeConfig">', 1)
         self.add('<layout class="QVBoxLayout" name="mainLayout">', 2)
         self.add("<item>", 3)
+        self.add('<widget class="QLabel" name="appLink">', 4)
+        self.string_prop("text", APP_LINK, 5)
+        self.string_prop("toolTip", APP_LINK_TIP, 5)
+        self.add('<property name="textFormat"><enum>Qt::RichText</enum></property>', 5)
+        self.add('<property name="openExternalLinks"><bool>true</bool></property>', 5)
+        self.add('<property name="wordWrap"><bool>true</bool></property>', 5)
+        self.add("</widget>", 4)
+        self.add("</item>", 3)
+        self.add("<item>", 3)
         self.add('<widget class="QTabWidget" name="tabs">', 4)
         for title, groups in TABS:
             self.add(f'<widget class="QWidget" name="{self.uid("tab")}">', 5)
@@ -373,6 +392,8 @@ def keys():
 
 def strings():
     """All user-visible strings, for the translation template."""
+    yield APP_LINK
+    yield APP_LINK_TIP
     for title, groups in TABS:
         yield title
         for group_title, fields in groups:

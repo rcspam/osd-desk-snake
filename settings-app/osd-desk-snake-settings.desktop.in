@@ -4,7 +4,9 @@ Name=OSD Desk Snake Settings
 Name[fr]=Réglages OSD Desk Snake
 Comment=Live settings for the desktop switch indicator
 Comment[fr]=Réglages en direct de l'indicateur de changement de bureau
-Exec=@BINARY@
+Exec=@BINARY@ %u
 Icon=virtual-desktops
 Categories=Qt;KDE;Settings;DesktopSettings;
+# Opened by the link at the top of the System Settings page (osd-desk-snake://settings).
+MimeType=x-scheme-handler/osd-desk-snake;
 Keywords=virtual desktop;osd;indicator;bureau virtuel;

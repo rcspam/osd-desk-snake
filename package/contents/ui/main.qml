@@ -120,11 +120,25 @@ Item {
         return cls === "systemsettings" && settingsTitles.indexOf(String(w.caption)) >= 0;
     }
 
+    function isLiveApp(w) {
+        return !!w && String(w.resourceClass) === liveAppClass;
+    }
+
     function trackWindow(w) {
         if (isSettingsWindow(w) && settingsWindows.indexOf(w) < 0) {
             settingsWindows = settingsWindows.concat([w]);
+            if (isLiveApp(w)) {
+                closeSettingsDialogs();
+            }
             updateSettingsMode();
         }
+    }
+
+    // The settings app replaces the System Settings page (usually opened from the
+    // link at its top): close that page, which would otherwise write back the
+    // values it was opened with on Apply.
+    function closeSettingsDialogs() {
+        settingsWindows.filter(w => !isLiveApp(w)).forEach(w => w.closeWindow());
     }
 
     function untrackWindow(w) {
@@ -160,6 +174,10 @@ Item {
         }
         function onWindowActivated(window) {
             root.trackWindow(window);
+            // Already open and brought back, e.g. by the link of the settings page.
+            if (root.isLiveApp(window)) {
+                root.closeSettingsDialogs();
+            }
         }
         function onWindowRemoved(window) {
             root.untrackWindow(window);

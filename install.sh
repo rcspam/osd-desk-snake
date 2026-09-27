@@ -47,12 +47,19 @@ install_app() {
     install -Dm755 "$here/settings-app/build/bin/$ID-settings" "$app"
     mkdir -p "$(dirname "$desktop")"
     sed "s|@BINARY@|$app|" "$here/settings-app/$ID-settings.desktop.in" > "$desktop"
+    refresh_app_caches
     echo "Settings app installed: $app"
 }
 
 unload() {
     scripting unloadScript "$ID" >/dev/null || true
     rm -rf "$runtime"/$ID-live-*
+}
+
+# Makes the osd-desk-snake:// link of the System Settings page find the app.
+refresh_app_caches() {
+    command -v update-desktop-database >/dev/null && update-desktop-database -q "$(dirname "$desktop")" || true
+    command -v kbuildsycoca6 >/dev/null && kbuildsycoca6 >/dev/null 2>&1 || true
 }
 
 load_copy() {
@@ -99,6 +106,7 @@ uninstall)
     kwriteconfig6 --file kwinrc --group Plugins --key "${ID}Enabled" --delete
     kpackagetool6 --type KWin/Script --remove "$ID" || true
     rm -f "$app" "$desktop" "$datadir"/locale/*/LC_MESSAGES/$ID.mo
+    refresh_app_caches
     echo "Removed. Settings are kept in kwinrc, group [Script-$ID]."
     ;;
 *)

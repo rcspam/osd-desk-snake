@@ -5,6 +5,15 @@
  <widget class="QWidget" name="OsdDeskSnakeConfig">
   <layout class="QVBoxLayout" name="mainLayout">
    <item>
+    <widget class="QLabel" name="appLink">
+     <property name="text"><string>&lt;a href="osd-desk-snake://settings"&gt;Open OSD Desk Snake Settings&lt;/a&gt; for live preview and mouse positioning. Not installed? &lt;a href="https://github.com/rcspam/osd-desk-snake#install"&gt;Get it&lt;/a&gt;.</string></property>
+     <property name="toolTip"><string>That app saves every change right away; this window closes when it opens.</string></property>
+     <property name="textFormat"><enum>Qt::RichText</enum></property>
+     <property name="openExternalLinks"><bool>true</bool></property>
+     <property name="wordWrap"><bool>true</bool></property>
+    </widget>
+   </item>
+   <item>
     <widget class="QTabWidget" name="tabs">
      <widget class="QWidget" name="tab_1">
       <attribute name="title"><string>General</string></attribute>
