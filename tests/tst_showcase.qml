@@ -62,8 +62,8 @@ Item {
         id: captionComponent
         Text {
             color: "white"
-            opacity: 0.8
-            font.pixelSize: 15
+            opacity: 0.85
+            font.pixelSize: 22
         }
     }
 
@@ -126,7 +126,7 @@ Item {
                     caption.x = left + (stage.cellWidth - caption.implicitWidth) / 2;
                     caption.y = y + rowHeight + 10;
                 });
-                y += rowHeight + 10 + 20 + 30;
+                y += rowHeight + 10 + 30 + 30;
             }
             stage.height = y - 30 + stage.margin;
             wait(300);
