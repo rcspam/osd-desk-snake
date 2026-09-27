@@ -40,6 +40,12 @@ QQC2.ApplicationWindow {
     minimumHeight: Kirigami.Units.gridUnit * 20
     visible: true
 
+    // Esc, Ctrl+W and Ctrl+Q close the window. An open dialog or list takes Esc first.
+    Shortcut {
+        sequences: ["Esc", StandardKey.Close, StandardKey.Quit]
+        onActivated: root.close()
+    }
+
     header: QQC2.TabBar {
         id: tabs
 
