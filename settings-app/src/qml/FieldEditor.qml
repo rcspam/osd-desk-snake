@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
 import "fields.js" as Fields
+import "wheel.js" as Wheel
 
 // One settings field (see fields.js), bound to the SettingsStore. Controls are
 // refreshed through sync() whenever the stored value changes, so Revert and
@@ -81,6 +82,20 @@ Loader {
             // A stored value under the floor shows as the floor, without being saved.
             onFromChanged: sync()
 
+            // Up raises the value, also with natural scrolling (see wheel.js).
+            wheelEnabled: false
+            WheelHandler {
+                target: null
+                onWheel: event => {
+                    const next = Wheel.wheelValue(parent.value, parent.from, parent.to, parent.stepSize,
+                                                  event.angleDelta.x, event.angleDelta.y, event.inverted);
+                    if (next !== parent.value) {
+                        parent.value = next;
+                        root.set(next);
+                    }
+                }
+            }
+
             function sync() {
                 value = root.value;
             }
@@ -102,6 +117,20 @@ Loader {
                 regularExpression: /[0-9]+([.,][0-9])?\s*%?/
             }
             onValueModified: root.set(value / 10)
+
+            // Up raises the value, also with natural scrolling (see wheel.js).
+            wheelEnabled: false
+            WheelHandler {
+                target: null
+                onWheel: event => {
+                    const next = Wheel.wheelValue(parent.value, parent.from, parent.to, parent.stepSize,
+                                                  event.angleDelta.x, event.angleDelta.y, event.inverted);
+                    if (next !== parent.value) {
+                        parent.value = next;
+                        root.set(next / 10);
+                    }
+                }
+            }
 
             function sync() {
                 value = Math.round(Number(root.value) * 10);

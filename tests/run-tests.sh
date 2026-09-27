@@ -11,6 +11,7 @@ export QT_QPA_PLATFORMTHEME="${QT_QPA_PLATFORMTHEME:-kde}"
 
 "$runner" -input "$here/tst_logic.qml"
 "$runner" -input "$here/tst_fields.qml"
+"$runner" -input "$here/tst_wheel.qml"
 
 mkdir -p "$out"
 cd "$(dirname "$out")"

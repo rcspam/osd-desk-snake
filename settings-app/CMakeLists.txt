@@ -33,6 +33,7 @@ qt_add_resources(osd-desk-snake-settings qml PREFIX / BASE src/qml FILES
     src/qml/ColorButton.qml
     src/qml/PresetsPage.qml
     src/qml/fields.js
+    src/qml/wheel.js
 )
 
 install(TARGETS osd-desk-snake-settings ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
