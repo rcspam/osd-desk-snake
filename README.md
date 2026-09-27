@@ -28,10 +28,38 @@ Tested on Plasma 6.6 (Wayland).
 
 ## Install
 
-### Packages (amd64)
+OSD Desk Snake comes in two parts:
 
-Download the package for your distribution from the
-[Releases](https://github.com/rcspam/osd-desk-snake/releases) page:
+- the indicator, a KWin script. It is all you need, and it has its settings
+  page in System Settings.
+- OSD Desk Snake Settings, an optional app: every change shows on the real
+  indicator right away, and the indicator can be dragged with the mouse.
+
+### The indicator (KWin script)
+
+Nothing to build. Download `osd-desk-snake-0.1.0.kwinscript` from the
+[Releases](https://github.com/rcspam/osd-desk-snake/releases) page, then in
+System Settings > Window Management > KWin Scripts, click Install from File…
+and pick it. Or in a terminal:
+
+```sh
+kpackagetool6 --type KWin/Script --install osd-desk-snake-0.1.0.kwinscript   # --upgrade for a newer one
+```
+
+Tick OSD Desk Snake in the KWin Scripts list and click Apply. Turn off the
+built-in OSD in System Settings > Virtual Desktops if it is on. The settings
+button next to the script opens its settings page. The color fields of that
+page need the KWidgetsAddons Designer plugin, missing on some systems
+(`libkf6widgetsaddons-dev` on Debian and Ubuntu, `kf6-kwidgetsaddons-devel` on
+Fedora).
+
+To remove it: `kpackagetool6 --type KWin/Script --remove osd-desk-snake`.
+
+### The settings app (optional)
+
+#### Packages (amd64)
+
+They hold the script and the app together, for all users:
 
 ```sh
 sudo apt install ./osd-desk-snake_0.1.0_amd64.deb              # Debian, Ubuntu, KDE neon, Tuxedo OS
@@ -39,35 +67,63 @@ sudo dnf install ./osd-desk-snake-0.1.0-1.fc44.x86_64.rpm      # Fedora
 sudo pacman -U ./osd-desk-snake-0.1.0-1-x86_64.pkg.tar.zst     # Arch, or makepkg -si in packaging/arch
 ```
 
-Then enable it in System Settings > Window Management > KWin Scripts. The .deb
-is built on Ubuntu 24.04 with Qt 6.10 and KDE Frameworks 6.24: it needs those
-versions or newer. The packages are made with `packaging/build-packages.sh`.
+Then enable the script as above. The .deb is built with Qt 6.10 and KDE
+Frameworks 6.24 and needs those versions or newer (KDE neon, Tuxedo OS, recent
+Kubuntu). On older systems, build from source. If you installed the
+.kwinscript before, remove it first: the copy in your home folder would hide
+the packaged one. The packages are made with `packaging/build-packages.sh`.
 
-### From source
+#### From source
 
-Build dependencies (Debian, Ubuntu, KDE neon names):
+Needs Qt 6.6 and KDE Frameworks 6 or newer (Debian 13 is fine).
 
-```sh
-sudo apt install cmake g++ extra-cmake-modules qt6-base-dev qt6-declarative-dev \
-    libkf6config-dev libkf6i18n-dev libkf6windowsystem-dev gettext kpackagetool6 qdbus-qt6
-```
+1. Build tools and libraries, plus the QML modules the app uses at run time (a
+   Plasma desktop usually has those already):
 
-Then, from a clone of this repository:
+   ```sh
+   # Debian, Ubuntu, KDE neon
+   sudo apt install git cmake g++ extra-cmake-modules gettext qt6-base-dev qt6-declarative-dev \
+       libkf6config-dev libkf6i18n-dev libkf6windowsystem-dev \
+       qml6-module-org-kde-kirigami qml6-module-org-kde-desktop \
+       qml6-module-qtquick-controls qml6-module-qtquick-dialogs qml6-module-qtquick-layouts
+   # Fedora
+   sudo dnf install git cmake gcc-c++ extra-cmake-modules gettext qt6-qtbase-devel qt6-qtdeclarative-devel \
+       kf6-kconfig-devel kf6-ki18n-devel kf6-kwindowsystem-devel \
+       kf6-kirigami kf6-qqc2-desktop-style
+   # Arch
+   sudo pacman -S --needed git base-devel cmake extra-cmake-modules gettext qt6-base qt6-declarative \
+       kconfig ki18n kwindowsystem kirigami qqc2-desktop-style
+   ```
 
-```sh
-./install.sh             # install or upgrade the script and the settings app, load now
-./install.sh reload      # load the working copy into the running KWin
-./install.sh app         # rebuild and reinstall only the settings app
-./install.sh uninstall
-```
+2. Get the code:
 
-Everything goes to your home directory, no root needed. Turn off the built-in
-OSD in System Settings > Virtual Desktops if it is on.
+   ```sh
+   git clone https://github.com/rcspam/osd-desk-snake.git
+   cd osd-desk-snake
+   ```
 
-Only want the script, without compiling? `kpackagetool6 --type KWin/Script
---install package`, then enable it in System Settings > KWin Scripts. You get
-the System Settings page, without the live settings app and mouse dragging.
-For color pickers on that page: `sudo apt install libkf6widgetsaddons-dev`.
+3. Build and install, either for your user only (into `~/.local`, no root):
+
+   ```sh
+   ./install.sh app         # the settings app alone, next to the .kwinscript
+   ./install.sh             # or the script and the app together, script loaded at once
+   ./install.sh uninstall   # removes both
+   ```
+
+   `./install.sh` without `app` also uses kpackagetool6 and qdbus (packages
+   `kpackagetool6 qdbus-qt6` on Debian and Ubuntu, `kf6-kpackage qt6-qttools`
+   on Fedora, `kpackage qt6-tools` on Arch).
+
+   Or for all users, like the packages:
+
+   ```sh
+   cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF
+   cmake --build build
+   sudo cmake --install build
+   ```
+
+The settings app is in the application menu, and a link at the top of the
+script settings page opens it.
 
 ## Configure
 
@@ -91,6 +147,7 @@ after a desktop switch otherwise (at most every 3 s).
 ## Develop
 
 ```sh
+./install.sh reload          # load the working copy into the running KWin
 tests/run-tests.sh           # unit tests + PNG previews of every style in tests/preview-out
 python3 tools/gen_config_ui.py   # regenerate config.ui, the app form model and schema.js
 cmake -S settings-app -B settings-app/build && cmake --build settings-app/build

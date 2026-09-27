@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Builds the release packages into dist/:
-#   ./packaging/build-packages.sh [deb] [rpm] [arch]   (all three by default)
+#   ./packaging/build-packages.sh [kwinscript] [deb] [rpm] [arch]   (all by default)
 #
+# kwinscript: the KWin script alone, for System Settings > KWin Scripts.
 # deb:  built on this machine with CPack (Debian, Ubuntu, KDE neon, Tuxedo OS).
 # rpm:  built and install-tested in a Fedora container, from the .spec file.
 # arch: the PKGBUILD is built with makepkg in an Arch Linux container.
@@ -14,7 +15,7 @@ dist="$here/dist"
 name=osd-desk-snake
 version=$(sed -n 's/^project(osd-desk-snake VERSION \([0-9.]*\).*/\1/p' "$here/CMakeLists.txt")
 fedora=fedora:44
-targets=("${@:-deb rpm arch}")
+targets=("${@:-kwinscript deb rpm arch}")
 targets=(${targets[*]})
 
 mkdir -p "$dist"
@@ -27,6 +28,26 @@ source_tarball() {
         --exclude=./package/contents/locale --exclude='__pycache__' \
         -czf "$tarball" .
     echo "$tarball"
+}
+
+build_kwinscript() {
+    local stage po lang
+    stage=$(mktemp -d)
+    cp -r "$here/package/." "$stage/"
+    # KWin loads the translations of the script settings page from contents/locale.
+    rm -rf "$stage/contents/locale"
+    for po in "$here"/po/*.po; do
+        lang=$(basename "$po" .po)
+        mkdir -p "$stage/contents/locale/$lang/LC_MESSAGES"
+        msgfmt -o "$stage/contents/locale/$lang/LC_MESSAGES/$name.mo" "$po"
+    done
+    rm -f "$dist/$name-$version.kwinscript"
+    (cd "$stage" && zip -qrX "$dist/$name-$version.kwinscript" .)
+    # Install test into a scratch package root, as Install from File would.
+    rm -rf "$stage" && mkdir "$stage"
+    kpackagetool6 --type KWin/Script --packageroot "$stage" --install "$dist/$name-$version.kwinscript"
+    find "$stage" -name metadata.json -o -name '*.mo' | sed "s,^$stage/,,"
+    rm -rf "$stage"
 }
 
 build_deb() {
