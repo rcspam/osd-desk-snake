@@ -5,7 +5,7 @@ desktops, in the style of the [Kara](https://github.com/dhruv8sh/kara) pager.
 The highlight slides from one desktop to the next with KWin's animation, and
 follows your fingers during touchpad swipes.
 
-![OSD Desk Snake switching desktops](docs/demo.gif)
+<p align="center"><img src="docs/demo.gif" alt="OSD Desk Snake switching desktops" width="50%"></p>
 
 The highlight slides as desktops change. Some of the styles:
 
