@@ -12,6 +12,8 @@ Item {
 
     property bool showOccupiedDot: true
     property real contentWidth: 0
+    // contentWidth in its widest state (a label may be bold only when active).
+    property real stableWidth: contentWidth
     // Height of the centered label or icon, the dot sits under it.
     property real contentHeight: 0
     default property alias content: contentArea.data
@@ -26,7 +28,8 @@ Item {
         : indicator.textColor
     readonly property real foregroundOpacity: Logic.lerp(indicator.inactiveOpacity, 1, weight)
 
-    readonly property var geo: Logic.cellGeometry(s.cellShape, contentWidth, s.cellWidth, s.cellHeight, s.cellRadius)
+    readonly property var geo: Logic.cellGeometry(s.cellShape, s.cellShape === 1 ? indicator.widestContent : contentWidth,
+                                                  s.cellWidth, s.cellHeight, s.cellRadius)
 
     implicitWidth: geo.width
     implicitHeight: geo.height

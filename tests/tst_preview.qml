@@ -116,5 +116,31 @@ Item {
             }
             grabImage(stage).save("preview-out/00-all.png");
         }
+
+        // Cells of a rendered variant: the items carrying a cell geometry.
+        function cellsOf(item) {
+            let cells = item.geo !== undefined ? [item] : [];
+            for (let i = 0; i < item.children.length; i++) {
+                cells = cells.concat(cellsOf(item.children[i]));
+            }
+            return cells;
+        }
+
+        // Circle cells share one diameter, whatever the length of each label.
+        function test_circleCellsShareOneDiameter() {
+            wait(100);
+            let box = null;
+            for (let i = 0; i < repeater.count; i++) {
+                if (repeater.itemAt(i).variantName === "16-labels-circle-square-hl") {
+                    box = repeater.itemAt(i);
+                }
+            }
+            const cells = cellsOf(box);
+            verify(cells.length === stage.info.length, "one cell per desktop");
+            for (const cell of cells) {
+                compare(cell.width, cells[0].width, "same diameter for label " + cell.index);
+                compare(cell.height, cell.width, "round");
+            }
+        }
     }
 }

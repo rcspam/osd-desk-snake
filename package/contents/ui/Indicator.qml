@@ -67,6 +67,19 @@ Item {
         return Logic.labelFor(index, entry ? entry.name : "", s.labelSource, s.labelTemplate, s.labels);
     }
 
+    // Widest content of all cells, whatever their state: circle cells all take
+    // the diameter of the widest one instead of growing with their own label.
+    readonly property real widestContent: {
+        let widest = 0;
+        for (let i = 0; i < grid.children.length; i++) {
+            const cell = grid.children[i];
+            if (cell.stableWidth !== undefined) {
+                widest = Math.max(widest, cell.stableWidth);
+            }
+        }
+        return widest;
+    }
+
     readonly property string captionText: {
         const entry = desktops[currentIndex];
         return Logic.labelFor(currentIndex, entry ? entry.name : "", 1, "", []);
@@ -113,6 +126,7 @@ Item {
         }
 
         Grid {
+            id: grid
             anchors.horizontalCenter: parent.horizontalCenter
             columns: Math.max(1, root.columns)
             spacing: root.s.spacing

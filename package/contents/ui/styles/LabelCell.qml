@@ -6,6 +6,16 @@ CellFrame {
 
     contentWidth: label.implicitWidth
     contentHeight: label.implicitHeight
+    stableWidth: Math.max(label.implicitWidth, boldest.advanceWidth)
+
+    // The label as wide as it gets, bold if either state is.
+    TextMetrics {
+        id: boldest
+        text: label.text
+        font.family: label.font.family
+        font.pixelSize: label.font.pixelSize
+        font.bold: cell.s.bold || cell.s.activeBold
+    }
 
     Text {
         id: label
