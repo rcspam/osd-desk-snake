@@ -215,6 +215,12 @@ function markerGeometry(shape, active, dims) {
     }
 }
 
+// Top of the occupied dot: `distance` px under the content (label or icon)
+// centered in a cell of height cellHeight. Negative distances go up into it.
+function markY(cellHeight, contentHeight, distance) {
+    return (cellHeight + contentHeight) / 2 + distance;
+}
+
 // Cell of the label, icon and task styles. Shapes: 0 rounded, 1 circle, 2 square.
 function cellGeometry(shape, contentWidth, cellWidth, cellHeight, radius) {
     const w = Math.max(cellWidth, contentWidth + 16);

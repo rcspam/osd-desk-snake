@@ -5,6 +5,7 @@ CellFrame {
     id: cell
 
     contentWidth: label.implicitWidth
+    contentHeight: label.implicitHeight
 
     Text {
         id: label

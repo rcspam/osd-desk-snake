@@ -289,9 +289,9 @@ var tabs = [
                         "kind": "spin",
                         "key": "MarkOffset",
                         "label": "Dot distance:",
-                        "tooltip": "Gap between the dot and the bottom of the cell. Taller cells also move the text away from it.",
-                        "min": 0,
-                        "max": 60,
+                        "tooltip": "Gap between the label or icon and the dot under it. Negative values move the dot up.",
+                        "min": -20,
+                        "max": 40,
                         "suffix": " px"
                     },
                     {

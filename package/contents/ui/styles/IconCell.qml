@@ -7,6 +7,7 @@ CellFrame {
     id: cell
 
     contentWidth: icon.width
+    contentHeight: icon.height
 
     Kirigami.Icon {
         id: icon

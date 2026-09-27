@@ -488,10 +488,10 @@
               </item>
               <item row="4" column="1">
                <widget class="QSpinBox" name="kcfg_MarkOffset">
-                <property name="minimum"><number>0</number></property>
-                <property name="maximum"><number>60</number></property>
+                <property name="minimum"><number>-20</number></property>
+                <property name="maximum"><number>40</number></property>
                 <property name="suffix"><string> px</string></property>
-                <property name="toolTip"><string>Gap between the dot and the bottom of the cell. Taller cells also move the text away from it.</string></property>
+                <property name="toolTip"><string>Gap between the label or icon and the dot under it. Negative values move the dot up.</string></property>
                 <property name="enabled"><bool>false</bool></property>
                </widget>
               </item>

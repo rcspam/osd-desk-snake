@@ -12,6 +12,8 @@ Item {
 
     property bool showOccupiedDot: true
     property real contentWidth: 0
+    // Height of the centered label or icon, the dot sits under it.
+    property real contentHeight: 0
     default property alias content: contentArea.data
 
     readonly property var s: indicator.settings
@@ -66,8 +68,7 @@ Item {
 
     Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: frame.s.markOffset
+        y: Logic.markY(frame.height, frame.contentHeight, frame.s.markOffset)
         visible: frame.showOccupiedDot && frame.s.markOccupied && frame.modelData.occupied
         width: frame.s.markSize
         height: frame.s.markSize

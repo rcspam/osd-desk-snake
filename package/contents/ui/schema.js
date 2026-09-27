@@ -30,7 +30,7 @@ var entries = {
     "Highlight": ["int", 0],
     "MarkOccupied": ["bool", true],
     "MarkSize": ["int", 4],
-    "MarkOffset": ["int", 3],
+    "MarkOffset": ["int", 1],
     "InactiveOpacity": ["int", 45],
     "PillShape": ["int", 0],
     "PillWidth": ["int", 14],

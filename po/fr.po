@@ -559,5 +559,5 @@ msgstr "Diamètre du point sous les bureaux qui contiennent des fenêtres."
 msgid "Dot distance:"
 msgstr "Distance du point :"
 
-msgid "Gap between the dot and the bottom of the cell. Taller cells also move the text away from it."
-msgstr "Écart entre le point et le bas de la case. Des cases plus hautes éloignent aussi le texte du point."
+msgid "Gap between the label or icon and the dot under it. Negative values move the dot up."
+msgstr "Écart entre l'étiquette ou l'icône et le point en dessous. Une valeur négative fait remonter le point."

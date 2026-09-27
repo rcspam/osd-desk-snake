@@ -388,4 +388,12 @@ TestCase {
         compare(info[1].occupied, false);
         compare(info[2].occupied, true);
     }
+
+    // The occupied dot sits `distance` px under the centered label or icon.
+    function test_markY() {
+        // 36 px cell, 20 px content: the content ends at y = 28.
+        compare(Logic.markY(36, 20, 2), 30);
+        compare(Logic.markY(36, 20, -4), 24);
+        verify(Logic.markY(36, 20, 6) > Logic.markY(36, 20, 2), "a larger distance moves the dot away from the text");
+    }
 }
