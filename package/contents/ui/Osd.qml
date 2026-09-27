@@ -218,6 +218,8 @@ Window {
             indicator.desktops = data.desktops;
         }
         indicator.columns = data.columns;
+        // Final size before place(), which the callers run next.
+        indicator.layoutNow();
     }
 
     // Data waiting for the "delay before showing" to elapse.

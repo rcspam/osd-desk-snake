@@ -66,6 +66,14 @@ Item {
         bold: true
     })
 
+    // Lays the grid out now rather than before the next frame, so implicitWidth and
+    // implicitHeight are final right after the desktops or settings change: the OSD
+    // places its window with them, and would otherwise jump into place.
+    function layoutNow() {
+        grid.forceLayout();
+        column.forceLayout();
+    }
+
     function labelFor(index) {
         const entry = desktops[index];
         return Logic.labelFor(index, entry ? entry.name : "", s.labelSource, s.labelTemplate, s.labels);

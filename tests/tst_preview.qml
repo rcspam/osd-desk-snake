@@ -104,6 +104,20 @@ Item {
         }
     }
 
+    Component {
+        id: freshIndicator
+        Indicator {
+            settings: Settings {
+                Component.onCompleted: {
+                    load(null);
+                    style = 1;
+                    cellShape = 1;
+                }
+            }
+            columns: 6
+        }
+    }
+
     TestCase {
         name: "Preview"
         when: windowShown
@@ -185,6 +199,20 @@ Item {
             const cell = cellsOf(box).find(c => c.index === 1);
             const line = slidingHighlightOf(box).lineRect;
             compare(line.y, cell.y + (cell.height + cell.contentHeight) / 2 + 3);
+        }
+
+        // The OSD places its window right after setting the desktops: the size must
+        // be final then, not after the next frame (the window would jump into place).
+        function test_sizeIsKnownBeforeTheFirstFrame() {
+            const indicator = freshIndicator.createObject(stage);
+            indicator.desktops = stage.info;
+            indicator.layoutNow();
+            const early = Qt.size(indicator.implicitWidth, indicator.implicitHeight);
+            waitForRendering(indicator);
+            verify(indicator.implicitHeight > 40, "laid out");
+            compare(early.width, indicator.implicitWidth);
+            compare(early.height, indicator.implicitHeight);
+            indicator.destroy();
         }
 
         // The size floors sent to the settings app match what is drawn.
