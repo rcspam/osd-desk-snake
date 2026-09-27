@@ -232,6 +232,22 @@ TestCase {
         compare(info[2].occupied, false);
     }
 
+    function test_desktopInfo_onlyCurrentActivity() {
+        const info = Logic.desktopInfo(desktops, [
+            win(["a"], { activities: ["other"] }),
+            win(["b"], { activities: ["mine"] }),
+            win(["c"], { activities: [] })
+        ], 5, "mine");
+        compare(info[0].occupied, false);
+        compare(info[1].occupied, true);
+        compare(info[2].occupied, true);
+    }
+
+    function test_desktopInfo_anyActivityWhenUnknown() {
+        const info = Logic.desktopInfo(desktops, [win(["a"], { activities: ["other"] })], 5);
+        compare(info[0].occupied, true);
+    }
+
     function test_desktopInfo_iconLimit() {
         const info = Logic.desktopInfo(desktops, [win(["b"]), win(["b"]), win(["b"]), win(["b"])], 2);
         compare(info[1].icons.length, 2);

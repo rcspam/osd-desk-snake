@@ -28,7 +28,7 @@ Item {
         const areaOption = config.avoidPanels ? KWin.MaximizeArea : KWin.FullScreenArea;
         const area = Workspace.clientArea(areaOption, Workspace.activeScreen, current);
         return {
-            desktops: Logic.desktopInfo(desktops, needWindows ? windows() : [], config.maxTaskIcons),
+            desktops: Logic.desktopInfo(desktops, needWindows ? windows() : [], config.maxTaskIcons, Workspace.currentActivity),
             previousIndex: previous ? desktops.indexOf(previous) : -1,
             currentIndex: desktops.indexOf(current),
             columns: grid.columns,

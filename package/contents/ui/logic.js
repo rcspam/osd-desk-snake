@@ -134,19 +134,24 @@ function parseColor(value, fallback) {
 }
 
 // Windows that make a desktop "occupied": regular taskbar windows bound to specific desktops.
-function countsAsTask(w) {
-    return w && w.normalWindow && !w.skipTaskbar && !w.onAllDesktops;
+// A window of another activity is not on screen; no activity listed means all of them.
+// Without a current activity (previews, tests), every activity counts.
+function countsAsTask(w, activity) {
+    const activities = (w && w.activities) || [];
+    const onActivity = !activity || activities.length === 0 || activities.indexOf(activity) >= 0;
+    return w && w.normalWindow && !w.skipTaskbar && !w.onAllDesktops && onActivity;
 }
 
 // Builds the per-desktop data used by the indicator from KWin objects (or look-alikes):
-// desktops need id and name, windows need desktops, onAllDesktops, normalWindow, skipTaskbar, icon.
-function desktopInfo(desktops, windows, maxIcons) {
+// desktops need id and name, windows need desktops, activities, onAllDesktops, normalWindow,
+// skipTaskbar, icon. activity is the current activity id.
+function desktopInfo(desktops, windows, maxIcons, activity) {
     const info = desktops.map(d => ({ id: d.id, name: d.name || "", occupied: false, icons: [], extra: 0, windowIds: [] }));
     const byId = {};
     info.forEach(entry => { byId[entry.id] = entry; });
 
     (windows || []).forEach(w => {
-        if (!countsAsTask(w)) {
+        if (!countsAsTask(w, activity)) {
             return;
         }
         (w.desktops || []).forEach(d => {
