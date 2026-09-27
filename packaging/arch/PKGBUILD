@@ -11,7 +11,7 @@ depends=('kwin' 'kirigami' 'kdeclarative' 'ksvg' 'qqc2-desktop-style'
          'glibc' 'gcc-libs')
 makedepends=('cmake' 'extra-cmake-modules' 'gettext')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('6a5518ce9b932d9da0de4cea51bb1d355cc8ea73d854fd30257ca793ffb5c7cf')
 
 build() {
   cmake -B build -S "$pkgname-$pkgver" \
