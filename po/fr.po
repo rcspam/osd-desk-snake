@@ -606,3 +606,6 @@ msgstr "Les changements s'affichent tout de suite sur l'indicateur, que l'on peu
 
 msgid "Presets are saved and applied in the settings window.<br/><br/><a href=\"osd-desk-snake://presets\">Open the presets</a>"
 msgstr "Les préréglages s'enregistrent et s'appliquent dans la fenêtre de réglages.<br/><br/><a href=\"osd-desk-snake://presets\">Ouvrir les préréglages</a>"
+
+msgid "%1 (modified)"
+msgstr "%1 (modifié)"

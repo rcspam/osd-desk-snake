@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KSharedConfig>
+
 #include <QFileSystemWatcher>
 #include <QList>
 #include <QObject>
@@ -22,9 +24,14 @@ class PresetLibrary : public QObject
     Q_PROPERTY(QString currentName READ currentName NOTIFY currentNameChanged)
     // The preset folder, where the import dialog opens.
     Q_PROPERTY(QUrl folder READ folder CONSTANT)
+    // The preset last applied or saved, kept once the settings change and across
+    // restarts (in `state`), so the list can show where the settings came from.
+    Q_PROPERTY(QString loadedName READ loadedName NOTIFY loadedNameChanged)
 
 public:
-    PresetLibrary(SettingsStore *store, const QString &schemaPath, const QString &directory, QObject *parent = nullptr);
+    // state: where to remember the loaded preset, the app's own config by default.
+    PresetLibrary(SettingsStore *store, const QString &schemaPath, const QString &directory,
+                  KSharedConfig::Ptr state = {}, QObject *parent = nullptr);
 
     // ~/.config/osdsnake/presets
     static QString defaultDirectory();
@@ -32,6 +39,7 @@ public:
     QStringList names() const;
     QString currentName() const;
     QUrl folder() const;
+    QString loadedName() const;
 
     Q_INVOKABLE bool contains(const QString &name) const;
     // Saves the current settings, replacing a preset of the same name.
@@ -50,6 +58,7 @@ public:
 Q_SIGNALS:
     void namesChanged();
     void currentNameChanged();
+    void loadedNameChanged();
 
 private:
     struct Preset {
@@ -65,6 +74,7 @@ private:
     QString pathFor(const QString &name) const;
     int indexOf(const QString &name) const;
     void reload();
+    void setLoaded(const QString &name);
     void updateCurrent();
 
     SettingsStore *m_store;
@@ -72,5 +82,7 @@ private:
     QString m_directory;
     QList<Preset> m_presets;
     QString m_current;
+    KSharedConfig::Ptr m_state;
+    QString m_loaded;
     QFileSystemWatcher m_watcher;
 };

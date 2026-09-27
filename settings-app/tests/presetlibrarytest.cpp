@@ -28,7 +28,9 @@ private:
 
     std::unique_ptr<PresetLibrary> library()
     {
-        return std::make_unique<PresetLibrary>(m_store.get(), QStringLiteral(DSK_MAIN_XML), presetDir());
+        // The app's own config, where the library remembers the last loaded preset.
+        auto state = KSharedConfig::openConfig(m_dir->filePath(QStringLiteral("apprc")), KConfig::SimpleConfig);
+        return std::make_unique<PresetLibrary>(m_store.get(), QStringLiteral(DSK_MAIN_XML), presetDir(), state);
     }
 
     void writeFile(const QString &path, const QByteArray &content)
@@ -138,6 +140,41 @@ private Q_SLOTS:
 
         presets->apply(QStringLiteral("Night"));
         QCOMPARE(presets->currentName(), QStringLiteral("Night"));
+    }
+
+    // The last preset applied or saved stays known, also once the settings changed
+    // and after a restart, so the list can show it as loaded (and modified).
+    void loadedPresetIsRemembered()
+    {
+        auto presets = library();
+        QSignalSpy loaded(presets.get(), &PresetLibrary::loadedNameChanged);
+        m_store->setValues({{QStringLiteral("Style"), 1}});
+        presets->save(QStringLiteral("One"));
+        QCOMPARE(presets->loadedName(), QStringLiteral("One"));
+        m_store->setValues({{QStringLiteral("Style"), 2}});
+        presets->save(QStringLiteral("Two"));
+        presets->apply(QStringLiteral("One"));
+        QCOMPARE(presets->loadedName(), QStringLiteral("One"));
+        QVERIFY(loaded.count() >= 3);
+
+        QSignalSpy saved(m_store.get(), &SettingsStore::saved);
+        m_store->setValueFromUi(QStringLiteral("Style"), 3);
+        QVERIFY(saved.wait(1000));
+        QCOMPARE(presets->currentName(), QString());
+        QCOMPARE(presets->loadedName(), QStringLiteral("One"));
+
+        QCOMPARE(library()->loadedName(), QStringLiteral("One"));
+    }
+
+    void loadedPresetFollowsRenameAndRemove()
+    {
+        auto presets = library();
+        presets->save(QStringLiteral("One"));
+        presets->rename(QStringLiteral("One"), QStringLiteral("First"));
+        QCOMPARE(presets->loadedName(), QStringLiteral("First"));
+        presets->remove(QStringLiteral("First"));
+        QCOMPARE(presets->loadedName(), QString());
+        QCOMPARE(library()->loadedName(), QString());
     }
 
     void emptyNameIsRefused()

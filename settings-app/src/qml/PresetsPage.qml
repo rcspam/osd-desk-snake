@@ -76,7 +76,10 @@ ColumnLayout {
                 required property string modelData
 
                 width: ListView.view.width
+                // Settings equal to this preset: highlighted. Last one loaded but changed since: "(modified)".
                 highlighted: modelData === page.presets.currentName
+                readonly property bool loaded: modelData === page.presets.loadedName
+                readonly property bool modified: loaded && !highlighted
                 text: modelData
                 onClicked: page.report(page.presets.apply(modelData))
 
@@ -85,9 +88,10 @@ ColumnLayout {
 
                     QQC2.Label {
                         Layout.fillWidth: true
-                        text: row.modelData
+                        text: row.modified ? i18n("%1 (modified)", row.modelData) : row.modelData
                         elide: Text.ElideRight
-                        font.bold: row.highlighted
+                        font.bold: row.highlighted || row.loaded
+                        font.italic: row.modified
                     }
                     QQC2.ToolButton {
                         icon.name: "document-export"

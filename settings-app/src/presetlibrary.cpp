@@ -32,12 +32,15 @@ QString baseNameFor(const QString &name)
 }
 }
 
-PresetLibrary::PresetLibrary(SettingsStore *store, const QString &schemaPath, const QString &directory, QObject *parent)
+PresetLibrary::PresetLibrary(SettingsStore *store, const QString &schemaPath, const QString &directory,
+                             KSharedConfig::Ptr state, QObject *parent)
     : QObject(parent)
     , m_store(store)
     , m_schemaPath(schemaPath)
     , m_directory(directory)
+    , m_state(state ? state : KSharedConfig::openConfig())
 {
+    m_loaded = m_state->group(QStringLiteral("Presets")).readEntry("Loaded", QString());
     QDir().mkpath(m_directory);
     m_watcher.addPath(m_directory);
     connect(&m_watcher, &QFileSystemWatcher::directoryChanged, this, &PresetLibrary::reload);
@@ -70,6 +73,23 @@ QUrl PresetLibrary::folder() const
     return QUrl::fromLocalFile(m_directory);
 }
 
+QString PresetLibrary::loadedName() const
+{
+    return m_loaded;
+}
+
+void PresetLibrary::setLoaded(const QString &name)
+{
+    if (name == m_loaded) {
+        return;
+    }
+    m_loaded = name;
+    KConfigGroup group = m_state->group(QStringLiteral("Presets"));
+    group.writeEntry("Loaded", name);
+    m_state->sync();
+    Q_EMIT loadedNameChanged();
+}
+
 bool PresetLibrary::contains(const QString &name) const
 {
     return indexOf(name) >= 0;
@@ -82,6 +102,9 @@ QString PresetLibrary::save(const QString &name)
         return i18n("The preset needs a name.");
     }
     const QString error = write(pathFor(trimmed), trimmed, m_store->values());
+    if (error.isEmpty()) {
+        setLoaded(trimmed);
+    }
     reload();
     return error;
 }
@@ -93,6 +116,7 @@ QString PresetLibrary::apply(const QString &name)
         return i18n("There is no preset called “%1”.", name);
     }
     m_store->replaceAll(m_presets.at(index).values);
+    setLoaded(m_presets.at(index).name);
     updateCurrent();
     return {};
 }
@@ -115,6 +139,9 @@ QString PresetLibrary::rename(const QString &oldName, const QString &newName)
     const QString error = write(target, trimmed, preset.values);
     if (error.isEmpty() && target != preset.path) {
         QFile::remove(preset.path);
+    }
+    if (error.isEmpty() && m_loaded.compare(preset.name, Qt::CaseInsensitive) == 0) {
+        setLoaded(trimmed);
     }
     reload();
     return error;
@@ -268,6 +295,10 @@ void PresetLibrary::reload()
     });
     if (names() != before) {
         Q_EMIT namesChanged();
+    }
+    // The loaded preset was deleted or renamed outside the app.
+    if (!m_loaded.isEmpty() && indexOf(m_loaded) < 0) {
+        setLoaded(QString());
     }
     updateCurrent();
 }

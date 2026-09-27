@@ -68,6 +68,11 @@ Le preset « courant » est celui dont les valeurs, défauts compris, sont égal
 aux réglages actuels. Il est surligné dans la liste. Dès qu'on modifie un
 réglage, plus aucun preset n'est surligné.
 
+Le dernier preset appliqué ou enregistré reste connu (config de l'app, groupe
+`[Presets]`, clé `Loaded`), même après un redémarrage. Si les réglages ont
+changé depuis, il apparaît en italique avec « (modifié) ». Il suit les
+renommages et disparaît quand il est supprimé.
+
 ## Code C++
 
 `SettingsStore` gagne deux méthodes :
