@@ -11,8 +11,7 @@ ColumnLayout {
     id: page
 
     required property var presets
-    // Where import and export dialogs open: home at first, then the folder of the
-    // last import or export, so a file just exported is found right away.
+    // Where the export dialog opens: home at first, then the folder of the last export.
     property url lastFolder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
 
     function folderOf(file) {
@@ -40,7 +39,11 @@ ColumnLayout {
         QQC2.Button {
             icon.name: "document-import"
             text: i18n("Import…")
-            onClicked: importDialog.open()
+            onClicked: {
+                // Always the preset folder, even after browsing elsewhere last time.
+                importDialog.currentFolder = page.presets.folder;
+                importDialog.open();
+            }
         }
         Item {
             Layout.fillWidth: true
@@ -201,11 +204,9 @@ ColumnLayout {
         id: importDialog
 
         title: i18n("Import preset")
-        currentFolder: page.lastFolder
         nameFilters: [i18n("OSD Desk Snake presets (*.osdsnake)"), i18n("All files (*)")]
         onAccepted: {
             const file = selectedFile;
-            page.lastFolder = page.folderOf(file);
             const found = page.presets.inspect(file);
             if (found.error !== "") {
                 page.report(found.error);

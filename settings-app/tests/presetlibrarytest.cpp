@@ -218,6 +218,20 @@ private Q_SLOTS:
         QCOMPARE(presets->names(), QStringList{QStringLiteral("Dropped")});
     }
 
+    void sameNameInTwoFilesIsListedOnce()
+    {
+        writeFile(presetDir() + QStringLiteral("/one.osdsnake"), "[Preset]\nName=Twin\n");
+        writeFile(presetDir() + QStringLiteral("/copy of one.osdsnake"), "[Preset]\nName=twin\n");
+        auto presets = library();
+        QCOMPARE(presets->names().size(), 1);
+    }
+
+    void folderIsExposed()
+    {
+        auto presets = library();
+        QCOMPARE(presets->folder(), QUrl::fromLocalFile(presetDir()));
+    }
+
     void exportThenImport()
     {
         auto presets = library();

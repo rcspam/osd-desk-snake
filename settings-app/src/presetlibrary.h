@@ -20,6 +20,8 @@ class PresetLibrary : public QObject
     Q_PROPERTY(QStringList names READ names NOTIFY namesChanged)
     // The preset equal to the current settings, empty if none is.
     Q_PROPERTY(QString currentName READ currentName NOTIFY currentNameChanged)
+    // The preset folder, where the import dialog opens.
+    Q_PROPERTY(QUrl folder READ folder CONSTANT)
 
 public:
     PresetLibrary(SettingsStore *store, const QString &schemaPath, const QString &directory, QObject *parent = nullptr);
@@ -29,6 +31,7 @@ public:
 
     QStringList names() const;
     QString currentName() const;
+    QUrl folder() const;
 
     Q_INVOKABLE bool contains(const QString &name) const;
     // Saves the current settings, replacing a preset of the same name.

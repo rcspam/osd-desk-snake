@@ -65,6 +65,11 @@ QString PresetLibrary::currentName() const
     return m_current;
 }
 
+QUrl PresetLibrary::folder() const
+{
+    return QUrl::fromLocalFile(m_directory);
+}
+
 bool PresetLibrary::contains(const QString &name) const
 {
     return indexOf(name) >= 0;
@@ -252,7 +257,8 @@ void PresetLibrary::reload()
     const QFileInfoList files = QDir(m_directory).entryInfoList({QLatin1Char('*') + extension}, QDir::Files | QDir::Hidden);
     for (const QFileInfo &file : files) {
         Preset preset;
-        if (read(file.absoluteFilePath(), &preset).isEmpty()) {
+        // Two files with the same name (a copy made by hand): the first one wins.
+        if (read(file.absoluteFilePath(), &preset).isEmpty() && indexOf(preset.name) < 0) {
             m_presets.append(preset);
         }
     }
