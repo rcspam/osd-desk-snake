@@ -46,6 +46,9 @@
         <!-- Highlight: 0 full, 1 square, 2 line, 3 full + line -->
         <entry name="Highlight" type="Int"><default>0</default></entry>
         <entry name="MarkOccupied" type="Bool"><default>true</default></entry>
+        <!-- Dot under occupied desktops (labels, icons): diameter and gap to the cell bottom, px -->
+        <entry name="MarkSize" type="Int"><default>4</default></entry>
+        <entry name="MarkOffset" type="Int"><default>3</default></entry>
         <entry name="InactiveOpacity" type="Int"><default>45</default></entry>
 
         <!-- 0 pill, 1 circle, 2 square, 3 diamond, 4 bar -->

@@ -67,11 +67,11 @@ Item {
     Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 3
+        anchors.bottomMargin: frame.s.markOffset
         visible: frame.showOccupiedDot && frame.s.markOccupied && frame.modelData.occupied
-        width: 4
-        height: 4
-        radius: 2
+        width: frame.s.markSize
+        height: frame.s.markSize
+        radius: frame.s.markSize / 2
         color: frame.indicator.occupiedColor
         opacity: 0.8 * (1 - frame.weight)
     }

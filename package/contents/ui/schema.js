@@ -29,6 +29,8 @@ var entries = {
     "Style": ["int", 0],
     "Highlight": ["int", 0],
     "MarkOccupied": ["bool", true],
+    "MarkSize": ["int", 4],
+    "MarkOffset": ["int", 3],
     "InactiveOpacity": ["int", 45],
     "PillShape": ["int", 0],
     "PillWidth": ["int", 14],

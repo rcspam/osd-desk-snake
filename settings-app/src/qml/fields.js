@@ -278,6 +278,24 @@ var tabs = [
                     },
                     {
                         "kind": "spin",
+                        "key": "MarkSize",
+                        "label": "Dot size:",
+                        "tooltip": "Diameter of the dot under desktops that contain windows.",
+                        "min": 1,
+                        "max": 30,
+                        "suffix": " px"
+                    },
+                    {
+                        "kind": "spin",
+                        "key": "MarkOffset",
+                        "label": "Dot distance:",
+                        "tooltip": "Gap between the dot and the bottom of the cell. Taller cells also move the text away from it.",
+                        "min": 0,
+                        "max": 60,
+                        "suffix": " px"
+                    },
+                    {
+                        "kind": "spin",
                         "key": "InactiveOpacity",
                         "label": "Inactive opacity:",
                         "tooltip": "Opacity of the other desktops.",
@@ -649,6 +667,8 @@ var enabledWhen = {
     PercentY: v => v.PositionMode === 1,
     Highlight: v => v.Style !== 0,
     MarkOccupied: v => v.Style !== 3,
+    MarkSize: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
+    MarkOffset: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
     PillShape: v => v.Style === 0,
     PillWidth: v => v.Style === 0 && v.PillShape !== 1 && v.PillShape !== 3,
     PillHeight: v => v.Style === 0,
