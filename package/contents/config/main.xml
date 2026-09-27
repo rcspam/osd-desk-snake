@@ -105,6 +105,6 @@
         <entry name="BackgroundMode" type="Int"><default>0</default></entry>
         <entry name="BackgroundColor" type="Color"><default>#dc202225</default></entry>
         <entry name="BackgroundRadius" type="Int"><default>12</default></entry>
-        <entry name="BackgroundOpacity" type="Int"><default>100</default></entry>
+        <entry name="BackgroundOpacity" type="Int"><default>0</default></entry>
     </group>
 </kcfg>

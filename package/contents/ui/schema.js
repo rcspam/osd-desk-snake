@@ -71,7 +71,7 @@ var entries = {
     "BackgroundMode": ["int", 0],
     "BackgroundColor": ["color", "#dc202225"],
     "BackgroundRadius": ["int", 12],
-    "BackgroundOpacity": ["int", 100]
+    "BackgroundOpacity": ["int", 0]
 };
 
 // Sizes multiplied by Zoom when loading (see Settings.qml).
