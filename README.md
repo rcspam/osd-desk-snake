@@ -139,7 +139,8 @@ Two ways, same settings:
   (kept in `~/.config/osdsnake/presets`, where you can also drop preset files).
 - System Settings > Window Management > KWin Scripts > OSD Desk Snake > Configure:
   changes show up on Apply. Links at the top of that page open the settings
-  app, or its Presets tab, when it is installed.
+  app, or its Presets tab, when it is installed; the Presets tab of that page
+  leads there too.
 
 While the settings dialog is open, the indicator stays on screen and picks up
 every Apply within a second. KWin does not reload script settings by itself, so

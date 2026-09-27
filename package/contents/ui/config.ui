@@ -968,6 +968,24 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="presetsTab">
+      <attribute name="title"><string>Presets</string></attribute>
+      <layout class="QVBoxLayout" name="presetsLayout">
+       <item>
+        <widget class="QLabel" name="presetsText">
+         <property name="text"><string>Presets keep every setting under a name: switch looks in one click, and share them as .osdsnake files. They are managed in OSD Desk Snake Settings.&lt;br/&gt;&lt;br/&gt;&lt;a href="osd-desk-snake://presets"&gt;Open the presets&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;Not installed? &lt;a href="https://github.com/rcspam/osd-desk-snake#install"&gt;Get it&lt;/a&gt;.</string></property>
+         <property name="textFormat"><enum>Qt::RichText</enum></property>
+         <property name="openExternalLinks"><bool>true</bool></property>
+         <property name="wordWrap"><bool>true</bool></property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="presetsSpacer">
+         <property name="orientation"><enum>Qt::Vertical</enum></property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

@@ -123,6 +123,9 @@ Ajouté après Colors, en dehors des onglets générés par `gen_config_ui.py`.
 
 - Le lien en haut de `config.ui` (généré par `tools/gen_config_ui.py`) gagne un
   second lien, `osd-desk-snake://presets`, à côté de `osd-desk-snake://settings`.
+- `config.ui` gagne aussi un dernier onglet « Presets », sans champ : une courte
+  explication, le lien `osd-desk-snake://presets` et le lien d'installation de
+  l'app. Il rend la fonction visible depuis la Configuration du système.
 - L'app lit l'URL reçue en argument. `presets` ouvre la fenêtre sur l'onglet
   Presets ; toute autre URL garde le comportement actuel.
 - Si l'app tourne déjà, le second lancement transmet la page demandée à
