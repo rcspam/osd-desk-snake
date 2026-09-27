@@ -85,6 +85,8 @@ TABS = [
             ("spin", "MarkSize", "Dot size:", 1, 30, " px", "Diameter of the dot under desktops that contain windows."),
             ("spin", "MarkOffset", "Dot distance:", -20, 40, " px",
              "Gap between the label or icon and the dot under it. Negative values move the dot up."),
+            ("spin", "MarkOpacity", "Dot opacity:", 0, 100, " %",
+             "Opacity of the dot. It still fades out under the highlight."),
             ("spin", "InactiveOpacity", "Inactive opacity:", 0, 100, " %", "Opacity of the other desktops."),
             ("spin", "Spacing", "Spacing:", 0, 200, " px", ""),
             ("spin", "Padding", "Padding:", 0, 200, " px", "Space between the desktops and the background edge."),
@@ -187,6 +189,7 @@ WHEN = {
     # The dot is drawn by the label and icon styles; pills get a ring instead.
     "MarkSize": "v.MarkOccupied && (v.Style === 1 || v.Style === 2)",
     "MarkOffset": "v.MarkOccupied && (v.Style === 1 || v.Style === 2)",
+    "MarkOpacity": "v.MarkOccupied && (v.Style === 1 || v.Style === 2)",
     "PillShape": "v.Style === 0",
     "PillWidth": "v.Style === 0 && v.PillShape !== 1 && v.PillShape !== 3",
     "PillHeight": "v.Style === 0",

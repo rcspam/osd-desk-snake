@@ -49,6 +49,7 @@
         <!-- Dot under occupied desktops (labels, icons): diameter and gap under the label or icon, px -->
         <entry name="MarkSize" type="Int"><default>4</default></entry>
         <entry name="MarkOffset" type="Int"><default>1</default></entry>
+        <entry name="MarkOpacity" type="Int"><default>80</default></entry>
         <entry name="InactiveOpacity" type="Int"><default>45</default></entry>
 
         <!-- 0 pill, 1 circle, 2 square, 3 diamond, 4 bar -->

@@ -42,6 +42,7 @@ QtObject {
     property bool markOccupied
     property int markSize
     property int markOffset
+    property int markOpacity
     property int inactiveOpacity
 
     property int pillShape

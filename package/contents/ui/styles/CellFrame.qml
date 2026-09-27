@@ -74,7 +74,7 @@ Item {
         height: frame.s.markSize
         radius: frame.s.markSize / 2
         color: frame.indicator.occupiedColor
-        opacity: 0.8 * (1 - frame.weight)
+        opacity: Math.max(0, Math.min(100, frame.s.markOpacity)) / 100 * (1 - frame.weight)
     }
 
     Item {

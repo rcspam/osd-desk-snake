@@ -31,6 +31,7 @@ var entries = {
     "MarkOccupied": ["bool", true],
     "MarkSize": ["int", 4],
     "MarkOffset": ["int", 1],
+    "MarkOpacity": ["int", 80],
     "InactiveOpacity": ["int", 45],
     "PillShape": ["int", 0],
     "PillWidth": ["int", 14],

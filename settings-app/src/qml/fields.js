@@ -296,6 +296,15 @@ var tabs = [
                     },
                     {
                         "kind": "spin",
+                        "key": "MarkOpacity",
+                        "label": "Dot opacity:",
+                        "tooltip": "Opacity of the dot. It still fades out under the highlight.",
+                        "min": 0,
+                        "max": 100,
+                        "suffix": " %"
+                    },
+                    {
+                        "kind": "spin",
                         "key": "InactiveOpacity",
                         "label": "Inactive opacity:",
                         "tooltip": "Opacity of the other desktops.",
@@ -669,6 +678,7 @@ var enabledWhen = {
     MarkOccupied: v => v.Style !== 3,
     MarkSize: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
     MarkOffset: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
+    MarkOpacity: v => v.MarkOccupied && (v.Style === 1 || v.Style === 2),
     PillShape: v => v.Style === 0,
     PillWidth: v => v.Style === 0 && v.PillShape !== 1 && v.PillShape !== 3,
     PillHeight: v => v.Style === 0,

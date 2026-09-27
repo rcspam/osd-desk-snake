@@ -561,3 +561,9 @@ msgstr "Distance du point :"
 
 msgid "Gap between the label or icon and the dot under it. Negative values move the dot up."
 msgstr "Écart entre l'étiquette ou l'icône et le point en dessous. Une valeur négative fait remonter le point."
+
+msgid "Dot opacity:"
+msgstr "Opacité du point :"
+
+msgid "Opacity of the dot. It still fades out under the highlight."
+msgstr "Opacité du point. Il s'efface toujours sous la surbrillance."
