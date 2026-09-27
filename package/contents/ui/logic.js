@@ -290,6 +290,38 @@ function lerp(a, b, t) {
     return a + (b - a) * t;
 }
 
+// Rect of the sliding highlight for the highlight point (hx, hy), from the rects
+// { x, y, width, height, radius } of the cells in grid order: position, size and
+// corner radius go from one cell to the next. A missing neighbor (incomplete last
+// row) keeps the existing cell; points out of the grid stick to its edge.
+function slideRect(rects, columns, hx, hy) {
+    if (!rects.length) {
+        return null;
+    }
+    const cols = Math.max(1, Math.min(columns, rects.length));
+    const rows = Math.ceil(rects.length / cols);
+    const x = Math.max(0, Math.min(cols - 1, hx));
+    const y = Math.max(0, Math.min(rows - 1, hy));
+    const at = (c, r) => (c < cols && r * cols + c < rects.length ? rects[r * cols + c] : null);
+    const mix = (a, b, t) => {
+        if (!a || !b || t === 0) {
+            return a || b;
+        }
+        return {
+            x: lerp(a.x, b.x, t),
+            y: lerp(a.y, b.y, t),
+            width: lerp(a.width, b.width, t),
+            height: lerp(a.height, b.height, t),
+            radius: lerp(a.radius, b.radius, t)
+        };
+    };
+    const c0 = Math.floor(x);
+    const r0 = Math.floor(y);
+    const top = mix(at(c0, r0), at(c0 + 1, r0), x - c0);
+    const bottom = mix(at(c0, r0 + 1), at(c0 + 1, r0 + 1), x - c0);
+    return mix(top, bottom, y - r0);
+}
+
 // Grid cell (column, row) of a desktop index.
 function gridPoint(index, columns) {
     const c = Math.max(1, columns);

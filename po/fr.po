@@ -448,11 +448,14 @@ msgstr "Distance d'aimantage :"
 msgid "Motion:"
 msgstr "Mouvement :"
 
-msgid "Follow: the highlight slides with the desktops and follows swipe gestures. Once done: the previous desktop fades out while the new one fades in."
-msgstr "Suit : la surbrillance glisse avec les bureaux et suit les gestes. Une fois atteint : l'ancien bureau s'efface pendant que le nouveau apparaît."
+msgid "Slide: the highlight moves from one desktop to the next with the switch and swipe gestures. Fade with the switch: each desktop lights up as the switch passes it. Once done: the previous desktop fades out while the new one fades in."
+msgstr "Glisse : la surbrillance passe d'un bureau au suivant avec le changement et les gestes du pavé tactile. Fondu avec le changement : chaque bureau s'allume au passage du changement. Une fois atteint : l'ancien bureau s'efface pendant que le nouveau apparaît."
 
-msgid "Follow the desktop switch"
-msgstr "Suit le changement de bureau"
+msgid "Slide with the switch"
+msgstr "Glisse avec le changement"
+
+msgid "Fade with the switch"
+msgstr "Fondu avec le changement"
 
 msgid "Once the switch is done"
 msgstr "Une fois le bureau atteint"

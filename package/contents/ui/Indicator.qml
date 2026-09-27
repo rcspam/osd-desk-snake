@@ -26,6 +26,10 @@ Item {
     // "Once the switch is done" motion: a cross-fade from fromIndex to currentIndex
     // driven by crossProgress, instead of the moving highlight point.
     readonly property bool crossfade: s.highlightMotion === 1
+    // "Slide with the switch" on the cell styles: one highlight moves from cell to
+    // cell. With "fade with the switch" (2) each cell fades in and out instead;
+    // pills stretch from one desktop to the next either way.
+    readonly property bool slides: s.highlightMotion === 0 && s.style !== 0
     property int fromIndex: currentIndex
     property real crossProgress: 1
 
@@ -79,6 +83,24 @@ Item {
         }
         return widths;
     }
+    // Highlight shapes of every cell (CellFrame.highlightRects) in grid order and
+    // grid coordinates, for the sliding highlight.
+    readonly property var cellShapes: {
+        const cells = [];
+        for (let i = 0; i < grid.children.length; i++) {
+            if (grid.children[i].highlightRects !== undefined) {
+                cells.push(grid.children[i]);
+            }
+        }
+        cells.sort((a, b) => a.index - b.index);
+        const placed = (cell, r) => ({ x: cell.x + r.x, y: cell.y + r.y, width: r.width, height: r.height, radius: r.radius });
+        return {
+            full: cells.map(cell => placed(cell, cell.highlightRects.full)),
+            square: cells.map(cell => placed(cell, cell.highlightRects.square)),
+            line: cells.map(cell => placed(cell, cell.highlightRects.line))
+        };
+    }
+
     readonly property real widestContent: contentWidths.length ? Math.max(...contentWidths) : 0
     readonly property real narrowestContent: contentWidths.length ? Math.min(...contentWidths) : 0
     // Lowest CellWidth and CellHeight that still change something, for the settings
@@ -132,30 +154,83 @@ Item {
             font: root.captionFont
         }
 
-        Grid {
-            id: grid
+        Item {
             anchors.horizontalCenter: parent.horizontalCenter
-            columns: Math.max(1, root.columns)
-            spacing: root.s.spacing
-            horizontalItemAlignment: Grid.AlignHCenter
-            verticalItemAlignment: Grid.AlignVCenter
+            width: grid.width
+            height: grid.height
 
-            // One repeater per style; only the selected one gets a model.
-            Repeater {
-                model: root.s.style === 0 ? root.desktops : 0
-                delegate: PillCell { indicator: root }
+            // The sliding highlight, under the cells (see slides).
+            Item {
+                id: slider
+                objectName: "slidingHighlight"
+                anchors.fill: parent
+                visible: root.slides && root.cellShapes.full.length > 0
+
+                readonly property var none: ({ x: 0, y: 0, width: 0, height: 0, radius: 0 })
+                function at(rects) {
+                    return Logic.slideRect(rects, root.columns, root.highlight.x, root.highlight.y) ?? none;
+                }
+                readonly property var rect: at(root.cellShapes.full)
+                readonly property var squareRect: at(root.cellShapes.square)
+                readonly property var lineRect: at(root.cellShapes.line)
+
+                // Full (0), or dimmed full under a line (3).
+                Rectangle {
+                    visible: root.s.highlight === 0 || root.s.highlight === 3
+                    x: slider.rect.x
+                    y: slider.rect.y
+                    width: slider.rect.width
+                    height: slider.rect.height
+                    radius: slider.rect.radius
+                    color: root.activeColor
+                    opacity: root.s.highlight === 3 ? 0.35 : 1
+                }
+                // Square (1).
+                Rectangle {
+                    visible: root.s.highlight === 1
+                    x: slider.squareRect.x
+                    y: slider.squareRect.y
+                    width: slider.squareRect.width
+                    height: slider.squareRect.height
+                    radius: slider.squareRect.radius
+                    color: root.activeColor
+                }
+                // Line (2) or line over a dimmed full (3).
+                Rectangle {
+                    visible: root.s.highlight === 2 || root.s.highlight === 3
+                    x: slider.lineRect.x
+                    y: slider.lineRect.y
+                    width: slider.lineRect.width
+                    height: slider.lineRect.height
+                    radius: slider.lineRect.radius
+                    color: root.activeColor
+                }
             }
-            Repeater {
-                model: root.s.style === 1 ? root.desktops : 0
-                delegate: LabelCell { indicator: root }
-            }
-            Repeater {
-                model: root.s.style === 2 ? root.desktops : 0
-                delegate: IconCell { indicator: root }
-            }
-            Repeater {
-                model: root.s.style === 3 ? root.desktops : 0
-                delegate: TaskCell { indicator: root }
+
+            Grid {
+                id: grid
+                columns: Math.max(1, root.columns)
+                spacing: root.s.spacing
+                horizontalItemAlignment: Grid.AlignHCenter
+                verticalItemAlignment: Grid.AlignVCenter
+
+                // One repeater per style; only the selected one gets a model.
+                Repeater {
+                    model: root.s.style === 0 ? root.desktops : 0
+                    delegate: PillCell { indicator: root }
+                }
+                Repeater {
+                    model: root.s.style === 1 ? root.desktops : 0
+                    delegate: LabelCell { indicator: root }
+                }
+                Repeater {
+                    model: root.s.style === 2 ? root.desktops : 0
+                    delegate: IconCell { indicator: root }
+                }
+                Repeater {
+                    model: root.s.style === 3 ? root.desktops : 0
+                    delegate: TaskCell { indicator: root }
+                }
             }
         }
 

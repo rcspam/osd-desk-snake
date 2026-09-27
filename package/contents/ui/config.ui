@@ -114,12 +114,15 @@
               <item row="0" column="1">
                <widget class="QComboBox" name="kcfg_HighlightMotion">
                 <item>
-                 <property name="text"><string>Follow the desktop switch</string></property>
+                 <property name="text"><string>Slide with the switch</string></property>
                 </item>
                 <item>
                  <property name="text"><string>Once the switch is done</string></property>
                 </item>
-                <property name="toolTip"><string>Follow: the highlight slides with the desktops and follows swipe gestures. Once done: the previous desktop fades out while the new one fades in.</string></property>
+                <item>
+                 <property name="text"><string>Fade with the switch</string></property>
+                </item>
+                <property name="toolTip"><string>Slide: the highlight moves from one desktop to the next with the switch and swipe gestures. Fade with the switch: each desktop lights up as the switch passes it. Once done: the previous desktop fades out while the new one fades in.</string></property>
                </widget>
               </item>
               <item row="1" column="0">

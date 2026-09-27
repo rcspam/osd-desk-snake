@@ -389,6 +389,26 @@ TestCase {
         compare(info[2].occupied, true);
     }
 
+    // The sliding highlight: the rect of the highlight point, between the cell rects.
+    function test_slideRect() {
+        const rects = [
+            { x: 0, y: 0, width: 40, height: 30, radius: 4 },
+            { x: 60, y: 0, width: 80, height: 30, radius: 8 },
+            { x: 0, y: 50, width: 40, height: 30, radius: 4 }
+        ];
+        // On a cell: that cell.
+        compare(Logic.slideRect(rects, 2, 1, 0), rects[1]);
+        // Halfway along a row: position and size in between.
+        compare(Logic.slideRect(rects, 2, 0.5, 0), { x: 30, y: 0, width: 60, height: 30, radius: 6 });
+        // Halfway down a column.
+        compare(Logic.slideRect(rects, 2, 0, 0.5), { x: 0, y: 25, width: 40, height: 30, radius: 4 });
+        // Toward a missing cell (incomplete last row): stays on the existing one.
+        compare(Logic.slideRect(rects, 2, 1, 0.5), rects[1]);
+        // Out of the grid (swipe overshoot): clamped to the edge cell.
+        compare(Logic.slideRect(rects, 2, -0.4, 0), rects[0]);
+        compare(Logic.slideRect([], 2, 0, 0), null);
+    }
+
     // Lowest cell sizes that still change something, from the content widths.
     function test_cellSizeFloors() {
         // Circles: both sizes stop at the widest content plus its margin.

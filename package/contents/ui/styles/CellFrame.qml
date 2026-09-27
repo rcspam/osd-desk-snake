@@ -34,24 +34,44 @@ Item {
     implicitWidth: geo.width
     implicitHeight: geo.height
 
+    // The highlight shapes of this cell at full weight, in cell coordinates. With
+    // "slide with the switch" the indicator draws one highlight going from one
+    // cell's shapes to the next; with the fades, each cell draws its own below.
+    readonly property var highlightRects: {
+        const w = geo.width;
+        const h = geo.height;
+        // The square grows with wide content (names) so the text stays inside; stays square for circles.
+        const wanted = Math.max(s.squareSize, contentWidth + 10);
+        const sw = s.cellShape === 1 ? Math.min(wanted, w, h) : Math.min(wanted, w);
+        const sh = s.cellShape === 1 ? sw : Math.min(s.squareSize, h);
+        const lw = Math.min(s.lineWidth, w);
+        return {
+            full: { x: 0, y: 0, width: w, height: h, radius: geo.radius },
+            square: { x: (w - sw) / 2, y: (h - sh) / 2, width: sw, height: sh,
+                      radius: Logic.shapeRadius(s.cellShape, sw, sh, s.cellRadius) },
+            line: { x: (w - lw) / 2, y: h - 2 - s.lineHeight, width: lw, height: s.lineHeight, radius: s.lineHeight / 2 }
+        };
+    }
+    readonly property bool ownHighlight: !indicator.slides
+
     // Full (0), or dimmed full under a line (3).
     Rectangle {
         anchors.fill: parent
-        visible: frame.s.highlight === 0 || frame.s.highlight === 3
-        radius: frame.geo.radius
+        visible: frame.ownHighlight && (frame.s.highlight === 0 || frame.s.highlight === 3)
+        radius: frame.highlightRects.full.radius
         color: frame.indicator.activeColor
         opacity: frame.weight * (frame.s.highlight === 3 ? 0.35 : 1)
     }
 
     // Square (1).
     Rectangle {
-        anchors.centerIn: parent
-        visible: frame.s.highlight === 1
-        // Grows with wide content (names) so the text stays inside; stays square for circles.
-        readonly property real wanted: Math.max(frame.s.squareSize, frame.contentWidth + 10)
-        width: frame.s.cellShape === 1 ? Math.min(wanted, parent.width, parent.height) : Math.min(wanted, parent.width)
-        height: frame.s.cellShape === 1 ? width : Math.min(frame.s.squareSize, parent.height)
-        radius: Logic.shapeRadius(frame.s.cellShape, width, height, frame.s.cellRadius)
+        readonly property var r: frame.highlightRects.square
+        x: r.x
+        y: r.y
+        width: r.width
+        height: r.height
+        visible: frame.ownHighlight && frame.s.highlight === 1
+        radius: r.radius
         color: frame.indicator.activeColor
         opacity: frame.weight
         scale: 0.6 + 0.4 * frame.weight
@@ -59,13 +79,13 @@ Item {
 
     // Line (2) or line over a dimmed full (3).
     Rectangle {
+        readonly property var r: frame.highlightRects.line
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 2
-        visible: frame.s.highlight === 2 || frame.s.highlight === 3
-        width: Math.min(frame.s.lineWidth, parent.width) * frame.weight
-        height: frame.s.lineHeight
-        radius: height / 2
+        y: r.y
+        visible: frame.ownHighlight && (frame.s.highlight === 2 || frame.s.highlight === 3)
+        width: r.width * frame.weight
+        height: r.height
+        radius: r.radius
         color: frame.indicator.activeColor
     }
 

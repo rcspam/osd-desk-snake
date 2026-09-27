@@ -41,8 +41,9 @@ TABS = [
             ("combo", "AppearEffect", "Appear effect:", ["Fade", "Fade and zoom"], ""),
         ]),
         ("Highlight animation", [
-            ("combo", "HighlightMotion", "Motion:", ["Follow the desktop switch", "Once the switch is done"],
-             "Follow: the highlight slides with the desktops and follows swipe gestures. "
+            ("combo", "HighlightMotion", "Motion:", ["Slide with the switch", "Once the switch is done", "Fade with the switch"],
+             "Slide: the highlight moves from one desktop to the next with the switch and swipe gestures. "
+             "Fade with the switch: each desktop lights up as the switch passes it. "
              "Once done: the previous desktop fades out while the new one fades in."),
             ("spin", "AnimationDuration", "Duration:", 0, 2000, " ms", "Transition from the previous desktop to the new one."),
             ("combo", "AnimationEasing", "Curve:", ["Linear", "Smooth", "Overshoot", "Ease in and out"], ""),

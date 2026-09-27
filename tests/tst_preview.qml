@@ -52,7 +52,8 @@ Item {
         { name: "17-pills-midway", hx: 1.5, cfg: {} },
         { name: "18-labels-midway", hx: 1.5, cfg: { style: 1, highlight: 0 } },
         { name: "19-icons-line-quarter", hx: 1.25, cfg: { style: 2, highlight: 2 } },
-        { name: "20-pills-crossfade-1-to-5", from: 0, progress: 0.5, cfg: { highlightMotion: 1 } }
+        { name: "20-pills-crossfade-1-to-5", from: 0, progress: 0.5, cfg: { highlightMotion: 1 } },
+        { name: "21-labels-fade-midway", hx: 1.5, cfg: { style: 1, highlight: 0, highlightMotion: 2 } }
     ]
 
     Flow {
@@ -144,6 +145,37 @@ Item {
             const dot = cell => cell.children.find(child => child.objectName === "occupiedDot");
             verify(dot(current).visible && dot(current).opacity > 0.5, "current desktop, with windows: dot shown");
             verify(!dot(empty).visible, "desktop without windows: no dot");
+        }
+
+        function slidingHighlightOf(item) {
+            if (item.objectName === "slidingHighlight") {
+                return item;
+            }
+            for (let i = 0; i < item.children.length; i++) {
+                const found = slidingHighlightOf(item.children[i]);
+                if (found) {
+                    return found;
+                }
+            }
+            return null;
+        }
+
+        // "Slide with the switch": halfway between desktops 2 and 3, one highlight
+        // sits between the two cells; "Fade with the switch" keeps one per cell.
+        function test_highlightSlidesBetweenCells() {
+            wait(100);
+            const box = variant("18-labels-midway");
+            const slider = slidingHighlightOf(box);
+            verify(slider && slider.visible, "sliding highlight shown");
+            const cells = cellsOf(box);
+            const from = cells.find(cell => cell.index === 1);
+            const to = cells.find(cell => cell.index === 2);
+            const center = slider.rect.x + slider.rect.width / 2;
+            const expected = (from.x + from.width / 2 + to.x + to.width / 2) / 2;
+            verify(Math.abs(center - expected) < 1, "centered between the two cells: " + center + " vs " + expected);
+
+            const fading = variant("21-labels-fade-midway");
+            verify(!slidingHighlightOf(fading).visible, "no sliding highlight when fading");
         }
 
         // The size floors sent to the settings app match what is drawn.

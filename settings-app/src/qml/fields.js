@@ -67,10 +67,11 @@ var tabs = [
                         "kind": "combo",
                         "key": "HighlightMotion",
                         "label": "Motion:",
-                        "tooltip": "Follow: the highlight slides with the desktops and follows swipe gestures. Once done: the previous desktop fades out while the new one fades in.",
+                        "tooltip": "Slide: the highlight moves from one desktop to the next with the switch and swipe gestures. Fade with the switch: each desktop lights up as the switch passes it. Once done: the previous desktop fades out while the new one fades in.",
                         "items": [
-                            "Follow the desktop switch",
-                            "Once the switch is done"
+                            "Slide with the switch",
+                            "Once the switch is done",
+                            "Fade with the switch"
                         ]
                     },
                     {
