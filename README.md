@@ -21,7 +21,7 @@ The highlight slides as desktops change. Some of the styles:
   motion (follow the switch or cross-fade once done), duration and curve.
 - Plasma theme colors or custom ones, Plasma or custom background with opacity.
 - Live settings app, and the usual page in System Settings.
-- English and French.
+- ./po : English and French. Other languages are welcome.
 
 It is a KWin script (pure QML) plus a small settings app (C++/QML, Kirigami).
 Tested on Plasma 6.6 (Wayland).
