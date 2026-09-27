@@ -489,6 +489,16 @@ var tabs = [
                         "max": 100,
                         "suffix": " px",
                         "step": 1
+                    },
+                    {
+                        "kind": "spin",
+                        "key": "LineOffset",
+                        "label": "Line highlight distance:",
+                        "tooltip": "Gap between the label or icon and the line under it. Negative values move the line up.",
+                        "min": -40,
+                        "max": 60,
+                        "suffix": " px",
+                        "step": 1
                     }
                 ]
             }
@@ -725,6 +735,7 @@ var enabledWhen = {
     SquareSize: v => v.Style !== 0 && v.Highlight === 1,
     LineWidth: v => v.Style !== 0 && (v.Highlight === 2 || v.Highlight === 3),
     LineHeight: v => v.Style !== 0 && (v.Highlight === 2 || v.Highlight === 3),
+    LineOffset: v => v.Style !== 0 && (v.Highlight === 2 || v.Highlight === 3),
     LabelSource: v => v.Style === 1,
     LabelTemplate: v => v.Style === 1 && v.LabelSource === 2,
     LabelList: v => v.Style === 1 && v.LabelSource === 3,

@@ -59,6 +59,7 @@ QtObject {
     property int squareSize
     property int lineWidth
     property int lineHeight
+    property int lineOffset
 
     property int labelSource
     property string labelTemplate

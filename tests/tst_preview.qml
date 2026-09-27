@@ -178,6 +178,15 @@ Item {
             verify(!slidingHighlightOf(fading).visible, "no sliding highlight when fading");
         }
 
+        // The line highlight sits LineOffset px (3 by default) under the label.
+        function test_lineSitsUnderTheLabel() {
+            wait(100);
+            const box = variant("04-labels-line-template");
+            const cell = cellsOf(box).find(c => c.index === 1);
+            const line = slidingHighlightOf(box).lineRect;
+            compare(line.y, cell.y + (cell.height + cell.contentHeight) / 2 + 3);
+        }
+
         // The size floors sent to the settings app match what is drawn.
         function test_sizeFloorsMatchTheCells() {
             wait(100);

@@ -68,6 +68,8 @@
         <entry name="SquareSize" type="Int"><default>28</default></entry>
         <entry name="LineWidth" type="Int"><default>20</default></entry>
         <entry name="LineHeight" type="Int"><default>4</default></entry>
+        <!-- Gap between the label or icon and the line highlight under it, px -->
+        <entry name="LineOffset" type="Int"><default>3</default></entry>
 
         <!-- Label source: 0 number, 1 desktop name, 2 template, 3 custom list -->
         <entry name="LabelSource" type="Int"><default>0</default></entry>

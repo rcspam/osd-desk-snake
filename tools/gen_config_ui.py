@@ -109,6 +109,8 @@ TABS = [
             ("spin", "SquareSize", "Square highlight size:", 1, 500, " px", ""),
             ("spin", "LineWidth", "Line highlight width:", 1, 500, " px", ""),
             ("spin", "LineHeight", "Line highlight thickness:", 1, 100, " px", ""),
+            ("spin", "LineOffset", "Line highlight distance:", -40, 60, " px",
+             "Gap between the label or icon and the line under it. Negative values move the line up."),
         ]),
     ]),
     ("Labels and icons", [
@@ -208,6 +210,7 @@ WHEN = {
     "SquareSize": "v.Style !== 0 && v.Highlight === 1",
     "LineWidth": "v.Style !== 0 && (v.Highlight === 2 || v.Highlight === 3)",
     "LineHeight": "v.Style !== 0 && (v.Highlight === 2 || v.Highlight === 3)",
+    "LineOffset": "v.Style !== 0 && (v.Highlight === 2 || v.Highlight === 3)",
 
     "LabelSource": "v.Style === 1",
     "LabelTemplate": "v.Style === 1 && v.LabelSource === 2",

@@ -46,6 +46,7 @@ var entries = {
     "SquareSize": ["int", 28],
     "LineWidth": ["int", 20],
     "LineHeight": ["int", 4],
+    "LineOffset": ["int", 3],
     "LabelSource": ["int", 0],
     "LabelTemplate": ["string", "D%d"],
     "LabelList": ["string", ""],

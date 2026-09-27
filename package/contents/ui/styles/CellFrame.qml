@@ -49,7 +49,8 @@ Item {
             full: { x: 0, y: 0, width: w, height: h, radius: geo.radius },
             square: { x: (w - sw) / 2, y: (h - sh) / 2, width: sw, height: sh,
                       radius: Logic.shapeRadius(s.cellShape, sw, sh, s.cellRadius) },
-            line: { x: (w - lw) / 2, y: h - 2 - s.lineHeight, width: lw, height: s.lineHeight, radius: s.lineHeight / 2 }
+            line: { x: (w - lw) / 2, y: Logic.markY(h, contentHeight, s.lineOffset), width: lw, height: s.lineHeight,
+                    radius: s.lineHeight / 2 }
         };
     }
     readonly property bool ownHighlight: !indicator.slides

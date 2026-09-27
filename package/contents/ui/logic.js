@@ -215,8 +215,9 @@ function markerGeometry(shape, active, dims) {
     }
 }
 
-// Top of the occupied dot: `distance` px under the content (label or icon)
-// centered in a cell of height cellHeight. Negative distances go up into it.
+// Top of what sits `distance` px under the content (label or icon) centered in a
+// cell of height cellHeight: the occupied dot, the line highlight. Negative
+// distances go up into the content.
 function markY(cellHeight, contentHeight, distance) {
     return (cellHeight + contentHeight) / 2 + distance;
 }
