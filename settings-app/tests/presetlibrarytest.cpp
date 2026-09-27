@@ -182,6 +182,45 @@ private Q_SLOTS:
         QCOMPARE(library()->loadedName(), QString());
     }
 
+    // Presets shipped with the packages (/usr/share/osd-desk-snake/presets) are
+    // copied once into the user folder, where they can be changed like any other.
+    void providedPresetsAreCopiedOnce()
+    {
+        const QString shipped = m_dir->filePath(QStringLiteral("shipped"));
+        writeFile(shipped + QStringLiteral("/big-pills.osdsnake"), "[Preset]\nName=Big pills\n\n[Settings]\nZoom=200\n");
+        writeFile(shipped + QStringLiteral("/circles.osdsnake"), "[Preset]\nName=Circles\n\n[Settings]\nCellShape=1\n");
+
+        auto presets = library();
+        presets->addProvided({shipped});
+        QCOMPARE(presets->names(), (QStringList{QStringLiteral("Big pills"), QStringLiteral("Circles")}));
+
+        // Deleted by the user: not copied again, even on a later start.
+        presets->remove(QStringLiteral("Circles"));
+        auto again = library();
+        again->addProvided({shipped});
+        QCOMPARE(again->names(), QStringList{QStringLiteral("Big pills")});
+
+        // A preset added by a later version is copied at the next start.
+        writeFile(shipped + QStringLiteral("/bars.osdsnake"), "[Preset]\nName=Bars\n\n[Settings]\nPillShape=4\n");
+        auto upgraded = library();
+        upgraded->addProvided({shipped});
+        QCOMPARE(upgraded->names(), (QStringList{QStringLiteral("Bars"), QStringLiteral("Big pills")}));
+    }
+
+    void providedPresetNeverReplacesAUserPreset()
+    {
+        m_store->setValues({{QStringLiteral("Style"), 2}});
+        auto presets = library();
+        presets->save(QStringLiteral("Big pills"));
+
+        const QString shipped = m_dir->filePath(QStringLiteral("shipped"));
+        writeFile(shipped + QStringLiteral("/big-pills.osdsnake"), "[Preset]\nName=Big pills\n\n[Settings]\nStyle=0\n");
+        presets->addProvided({shipped});
+        m_store->defaults();
+        presets->apply(QStringLiteral("Big pills"));
+        QCOMPARE(intValue("Style"), 2);
+    }
+
     void emptyNameIsRefused()
     {
         auto presets = library();

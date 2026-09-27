@@ -55,6 +55,13 @@ public:
     // Replaces a preset of the same name.
     Q_INVOKABLE QString importFrom(const QUrl &url);
 
+    // Copies the presets shipped in `dirs` into the user folder, each only once: a
+    // shipped preset the user deleted stays deleted, a user preset of the same name
+    // is kept, and presets added by a later version are copied after the upgrade.
+    void addProvided(const QStringList &dirs = defaultProvidedDirs());
+    // The osd-desk-snake/presets folders of the XDG data dirs (/usr/share, ~/.local/share).
+    static QStringList defaultProvidedDirs();
+
 Q_SIGNALS:
     void namesChanged();
     void currentNameChanged();

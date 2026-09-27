@@ -60,6 +60,7 @@ int main(int argc, char **argv)
 
     SettingsStore store(KSharedConfig::openConfig(QStringLiteral("kwinrc")), QStringLiteral(":/main.xml"));
     PresetLibrary presets(&store, QStringLiteral(":/main.xml"), PresetLibrary::defaultDirectory());
+    presets.addProvided();
 
     auto service = new SettingsService(&store);
     bus.registerObject(QStringLiteral("/Settings"), service, QDBusConnection::ExportScriptableSlots);

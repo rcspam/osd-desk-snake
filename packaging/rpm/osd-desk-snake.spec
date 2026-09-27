@@ -57,6 +57,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}-settings.desk
 %{_bindir}/%{name}-settings
 %{_datadir}/applications/%{name}-settings.desktop
 %{_datadir}/kwin/scripts/%{name}/
+%{_datadir}/%{name}/
 %{_mandir}/man1/%{name}-settings.1*
 
 %changelog

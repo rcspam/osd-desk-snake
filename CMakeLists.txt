@@ -23,6 +23,11 @@ install(DIRECTORY package/ DESTINATION ${KDE_INSTALL_DATADIR}/kwin/scripts/${ID}
         FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
         PATTERN locale EXCLUDE)
 
+# Presets shipped with the settings app, copied into the user's preset folder
+# (~/.config/osdsnake/presets) the first time the app sees them.
+install(DIRECTORY presets/ DESTINATION ${KDE_INSTALL_DATADIR}/${ID}/presets
+        FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
+
 # Translations, shared by the script settings page and the app (domain osd-desk-snake).
 find_program(MSGFMT msgfmt REQUIRED)
 file(GLOB PO_FILES ${CMAKE_CURRENT_SOURCE_DIR}/po/*.po)

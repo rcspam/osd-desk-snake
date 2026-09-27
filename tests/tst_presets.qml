@@ -16,7 +16,13 @@ Item {
     readonly property var presetFiles: [
         "night-circles", "big-pills", "tiny-diamonds", "underlined-names", "grid-icons",
         "vertical-template", "window-strip", "crossfade-bars", "extreme-offsets", "smallest-everything",
-        "dotted-pills", "ringed-dots", "custom-colors", "custom-labels"
+        "dotted-pills", "ringed-dots", "custom-colors", "custom-labels",
+        // Shipped with the packages (presets/ at the top of the repository).
+        "../../presets/wide-pills", "../../presets/green-and-purple", "../../presets/bold-labels",
+        "../../presets/underlined-labels", "../../presets/underlined-names", "../../presets/small-diamonds",
+        "../../presets/big-pills", "../../presets/night-circles", "../../presets/icon-grid",
+        "../../presets/window-strip", "../../presets/dotted-pills", "../../presets/crossfade-bars",
+        "../../presets/ringed-dots", "../../presets/vertical"
     ]
 
     readonly property var fakeDesktops: [{ id: "1", name: "Web" }, { id: "2", name: "Code" }, { id: "3", name: "Mail" },
@@ -96,6 +102,10 @@ Item {
             return stage.presetFiles.map(stem => ({ tag: stem, stem: stem }));
         }
 
+        function imageName(stem) {
+            return stem.replace("../../presets/", "shipped-");
+        }
+
         function test_presets(data) {
             failOnWarning(/.*/);
             const preset = stage.readPreset(data.stem);
@@ -111,14 +121,14 @@ Item {
             indicator.width = indicator.implicitWidth;
             indicator.height = indicator.implicitHeight;
             waitForRendering(indicator);
-            grabImage(indicator).save("preview-out/presets/" + data.stem + "-rest.png");
+            grabImage(indicator).save("preview-out/presets/" + imageName(data.stem) + "-rest.png");
             const problems = stage.overflows(indicator, indicator, []).map(p => "rest: " + p);
 
             // Halfway to the next desktop, along the row or down the column.
             const p = Logic.gridPoint(1, indicator.columns);
             indicator.highlight = indicator.columns > 1 ? Qt.point(p.x + 0.5, p.y) : Qt.point(p.x, p.y + 0.5);
             waitForRendering(indicator);
-            grabImage(indicator).save("preview-out/presets/" + data.stem + "-mid.png");
+            grabImage(indicator).save("preview-out/presets/" + imageName(data.stem) + "-mid.png");
             stage.overflows(indicator, indicator, []).forEach(problem => problems.push("mid: " + problem));
 
             indicator.destroy();

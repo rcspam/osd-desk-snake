@@ -138,6 +138,8 @@ Two ways, same settings:
   the exact spot. Its Presets tab saves every setting under a name, applies a
   preset with one click, and exports or imports presets as `.osdsnake` files
   (kept in `~/.config/osdsnake/presets`, where you can also drop preset files).
+  The app comes with a set of presets, copied there the first time it starts:
+  change or delete them as you like.
 - System Settings > Window Management > KWin Scripts > OSD Desk Snake > Configure:
   changes show up on Apply. Links at the top of that page open the settings
   app, or its Presets tab, when it is installed; the Presets tab of that page

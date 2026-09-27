@@ -24,6 +24,7 @@ bindir="${XDG_BIN_HOME:-$HOME/.local/bin}"
 datadir="${XDG_DATA_HOME:-$HOME/.local/share}"
 app="$bindir/$ID-settings"
 desktop="$datadir/applications/$ID-settings.desktop"
+presets="$datadir/$ID/presets"
 
 build_translations() {
     local po
@@ -47,6 +48,8 @@ install_app() {
     install -Dm755 "$here/settings-app/build/bin/$ID-settings" "$app"
     mkdir -p "$(dirname "$desktop")"
     sed "s|@BINARY@|$app|" "$here/settings-app/$ID-settings.desktop.in" > "$desktop"
+    # Shipped presets, where the app looks for them (XDG data dirs).
+    mkdir -p "$presets" && cp "$here"/presets/*.osdsnake "$presets/"
     refresh_app_caches
     echo "Settings app installed: $app"
 }
@@ -106,6 +109,7 @@ uninstall)
     kwriteconfig6 --file kwinrc --group Plugins --key "${ID}Enabled" --delete
     kpackagetool6 --type KWin/Script --remove "$ID" || true
     rm -f "$app" "$desktop" "$datadir"/locale/*/LC_MESSAGES/$ID.mo
+    rm -rf "$datadir/$ID"
     refresh_app_caches
     echo "Removed. Settings are kept in kwinrc, group [Script-$ID]."
     ;;

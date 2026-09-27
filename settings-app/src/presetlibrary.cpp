@@ -200,6 +200,39 @@ QString PresetLibrary::importFrom(const QUrl &url)
     return error;
 }
 
+QStringList PresetLibrary::defaultProvidedDirs()
+{
+    return QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("osd-desk-snake/presets"),
+                                     QStandardPaths::LocateDirectory);
+}
+
+void PresetLibrary::addProvided(const QStringList &dirs)
+{
+    KConfigGroup group = m_state->group(QStringLiteral("Presets"));
+    QStringList done = group.readEntry("Provided", QStringList());
+    bool added = false;
+    for (const QString &dir : dirs) {
+        const QFileInfoList files = QDir(dir).entryInfoList({QLatin1Char('*') + extension}, QDir::Files);
+        for (const QFileInfo &file : files) {
+            if (done.contains(file.fileName())) {
+                continue;
+            }
+            done.append(file.fileName());
+            Preset preset;
+            if (!read(file.absoluteFilePath(), &preset).isEmpty() || contains(preset.name)) {
+                continue;
+            }
+            // Written again rather than copied: a file of the user's own, with every setting.
+            added |= write(pathFor(preset.name), preset.name, preset.values).isEmpty();
+        }
+    }
+    group.writeEntry("Provided", done);
+    m_state->sync();
+    if (added) {
+        reload();
+    }
+}
+
 QString PresetLibrary::read(const QString &path, Preset *preset) const
 {
     const QFileInfo info(path);

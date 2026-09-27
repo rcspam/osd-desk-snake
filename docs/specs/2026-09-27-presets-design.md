@@ -11,7 +11,10 @@ un clic, et l'échanger avec d'autres sous forme de fichier.
 ## Décisions
 
 - Un preset contient tous les réglages, position comprise.
-- Seuls les presets créés par l'utilisateur existent : l'app n'en fournit aucun.
+- Les paquets livrent une série de presets (`presets/` du dépôt, installés dans
+  `/usr/share/osd-desk-snake/presets`). L'app copie chacun une seule fois dans le
+  dossier de l'utilisateur, où il se modifie comme les autres : un preset livré
+  supprimé ne revient pas, et un preset de même nom n'est jamais écrasé.
 - Import et export par fichier, avec un sélecteur de fichier.
 - Un onglet Presets dans l'app de réglages.
 - La page de la Configuration du système ne peut pas enregistrer de preset
@@ -166,6 +169,5 @@ ouverte.
 
 ## Hors périmètre
 
-- Presets fournis avec l'app.
 - Enregistrement depuis la page de la Configuration du système.
 - Distribution de presets par le KDE Store (« Obtenir de nouveaux… »).
