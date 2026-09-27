@@ -114,6 +114,39 @@ private Q_SLOTS:
         QVERIFY(!onDisk(config).hasKey("Style"));
     }
 
+    void replaceAllSetsGivenKeysAndResetsTheRest()
+    {
+        auto config = freshConfig(QStringLiteral("replace-all"));
+        config->group(QStringLiteral("Script-osd-desk-snake")).writeEntry("Margin", 200);
+        config->sync();
+
+        SettingsStore store(config, QStringLiteral(DSK_MAIN_XML));
+        store.setSaveDelay(10);
+        store.setNotifyKWin(false);
+        QSignalSpy saved(&store, &SettingsStore::saved);
+        store.replaceAll({{QStringLiteral("Style"), 2}, {QStringLiteral("NoSuchKey"), 1}});
+
+        QVERIFY(saved.wait(1000));
+        QCOMPARE(saved.count(), 1);
+        QCOMPARE(store.value(QStringLiteral("Style")).toInt(), 2);
+        QCOMPARE(store.value(QStringLiteral("Margin")).toInt(), 110);
+        QCOMPARE(onDisk(config).readEntry("Style", 0), 2);
+        QVERIFY(!onDisk(config).hasKey("Margin"));
+    }
+
+    void valuesListsEveryKey()
+    {
+        auto config = freshConfig(QStringLiteral("values"));
+        config->group(QStringLiteral("Script-osd-desk-snake")).writeEntry("Margin", 200);
+        config->sync();
+
+        SettingsStore store(config, QStringLiteral(DSK_MAIN_XML));
+        const QVariantMap values = store.values();
+        QCOMPARE(values.size(), store.keys().size());
+        QCOMPARE(values.value(QStringLiteral("Margin")).toInt(), 200);
+        QCOMPARE(values.value(QStringLiteral("Anchor")).toInt(), 7);
+    }
+
     void setValuesAppliesSeveralAtOnce()
     {
         auto config = freshConfig(QStringLiteral("set-values"));

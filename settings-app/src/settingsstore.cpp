@@ -70,13 +70,33 @@ void SettingsStore::revert()
 
 void SettingsStore::defaults()
 {
-    QVariantMap values;
+    replaceAll({});
+}
+
+void SettingsStore::replaceAll(const QVariantMap &values)
+{
+    QVariantMap all;
     const auto items = m_loader->items();
     for (KConfigSkeletonItem *item : items) {
-        item->setDefault();
-        values.insert(item->key(), item->property());
+        const auto given = values.constFind(item->key());
+        if (given != values.cend()) {
+            all.insert(item->key(), *given);
+        } else {
+            item->setDefault();
+            all.insert(item->key(), item->property());
+        }
     }
-    setValues(values);
+    setValues(all);
+}
+
+QVariantMap SettingsStore::values() const
+{
+    QVariantMap all;
+    const auto items = m_loader->items();
+    for (const KConfigSkeletonItem *item : items) {
+        all.insert(item->key(), item->property());
+    }
+    return all;
 }
 
 KConfigSkeletonItem *SettingsStore::apply(const QString &key, const QVariant &value)

@@ -31,6 +31,10 @@ public:
     Q_INVOKABLE void revert();
     // Back to the schema defaults.
     Q_INVOKABLE void defaults();
+    // Every key: its value when given, else its default. Saved once.
+    void replaceAll(const QVariantMap &values);
+    // Every key with its current value.
+    QVariantMap values() const;
 
 Q_SIGNALS:
     void saved();
