@@ -567,3 +567,6 @@ msgstr "Opacité du point :"
 
 msgid "Opacity of the dot."
 msgstr "Opacité du point."
+
+msgid "Lower values change nothing: the content needs %1."
+msgstr "Une valeur plus basse ne change rien : le contenu demande %1."

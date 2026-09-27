@@ -389,6 +389,15 @@ TestCase {
         compare(info[2].occupied, true);
     }
 
+    // Lowest cell sizes that still change something, from the content widths.
+    function test_cellSizeFloors() {
+        // Circles: both sizes stop at the widest content plus its margin.
+        compare(Logic.cellSizeFloors(1, 62.4, 12), { CellWidth: 79, CellHeight: 79 });
+        // Other shapes: the width stops at the narrowest content, the height is free.
+        compare(Logic.cellSizeFloors(0, 62.4, 12), { CellWidth: 28, CellHeight: 1 });
+        compare(Logic.cellSizeFloors(2, 62.4, 12.5), { CellWidth: 29, CellHeight: 1 });
+    }
+
     // The occupied dot sits `distance` px under the centered label or icon.
     function test_markY() {
         // 36 px cell, 20 px content: the content ends at y = 28.

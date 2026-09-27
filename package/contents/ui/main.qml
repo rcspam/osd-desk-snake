@@ -156,6 +156,7 @@ Item {
             osd.pinned = true;
             osd.present(collect(null));
             settingsPoll.start();
+            sendSizeFloors();
         } else {
             settingsPoll.stop();
             if (osdLoader.item) {
@@ -182,6 +183,33 @@ Item {
         function onWindowRemoved(window) {
             root.untrackWindow(window);
         }
+    }
+
+    // The settings app stops its cell size fields where they stop changing anything.
+    function sendSizeFloors() {
+        if (!liveAppOpen || !osdLoader.item) {
+            return;
+        }
+        sendLimits.arguments = [osdLoader.item.sizeFloors];
+        sendLimits.call();
+    }
+
+    onLiveAppOpenChanged: sendSizeFloors()
+
+    Connections {
+        target: osdLoader.item
+        ignoreUnknownSignals: true
+        function onSizeFloorsChanged() {
+            root.sendSizeFloors();
+        }
+    }
+
+    DBusCall {
+        id: sendLimits
+        service: "org.kde.osddesksnake.settings"
+        path: "/Settings"
+        dbusInterface: "org.kde.osddesksnake.Settings"
+        method: "setLimits"
     }
 
     // A script cannot write its own settings: hand the dropped position to the settings app.

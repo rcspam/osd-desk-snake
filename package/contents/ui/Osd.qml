@@ -41,6 +41,8 @@ Window {
     // The indicator faded out; the window can be destroyed (see main.qml).
     signal closed()
 
+    // Lowest useful cell sizes, for the settings app (see Indicator.sizeFloors).
+    readonly property var sizeFloors: indicator.sizeFloors
     // Size of the indicator itself (the expanded window is larger).
     readonly property size indicatorSize: Qt.size(Math.ceil(indicator.implicitWidth), Math.ceil(indicator.implicitHeight))
     // Signature of what the indicator shows; reassigning desktops rebuilds every

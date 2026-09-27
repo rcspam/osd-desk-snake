@@ -11,6 +11,10 @@ Loader {
 
     required property var field
     required property var store
+    // Setting key -> lowest value that still changes something, from the KWin script.
+    property var limits: ({})
+    // Spin boxes stop there: the "-" button greys out and lower typed values are refused.
+    readonly property int floor: field.kind === "spin" ? Math.max(field.min, Math.ceil(limits[field.key] ?? field.min)) : 0
 
     readonly property var value: field.key ? store[field.key] : undefined
     // Greyed out when the setting has no effect with the current choices.
@@ -18,7 +22,10 @@ Loader {
 
     enabled: !rule || rule(store)
 
-    QQC2.ToolTip.text: field.tooltip ? i18n(field.tooltip) : ""
+    QQC2.ToolTip.text: [field.tooltip ? i18n(field.tooltip) : "",
+                        field.kind === "spin" && floor > field.min
+                            ? i18n("Lower values change nothing: the content needs %1.", floor + field.suffix) : ""]
+        .filter(text => text !== "").join("\n")
     QQC2.ToolTip.visible: hover.hovered && QQC2.ToolTip.text !== ""
 
     HoverHandler {
@@ -64,13 +71,15 @@ Loader {
         id: spinComponent
 
         QQC2.SpinBox {
-            from: root.field.min
+            from: root.floor
             to: root.field.max
             stepSize: root.field.step
             editable: true
             textFromValue: (value, locale) => value + root.field.suffix
             valueFromText: (text, locale) => parseInt(text) || 0
             onValueModified: root.set(value)
+            // A stored value under the floor shows as the floor, without being saved.
+            onFromChanged: sync()
 
             function sync() {
                 value = root.value;

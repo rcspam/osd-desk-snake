@@ -68,6 +68,7 @@ int main(int argc, char **argv)
     KLocalization::setupLocalizedContext(&engine);
     engine.setInitialProperties({{QStringLiteral("store"), QVariant::fromValue<QObject *>(&store)},
                                  {QStringLiteral("presets"), QVariant::fromValue<QObject *>(&presets)},
+                                 {QStringLiteral("service"), QVariant::fromValue<QObject *>(service)},
                                  {QStringLiteral("page"), page}});
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
     if (engine.rootObjects().isEmpty()) {

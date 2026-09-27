@@ -1,3 +1,4 @@
+#include "settingsservice.h"
 #include "settingsstore.h"
 
 #include <KConfigGroup>
@@ -189,6 +190,23 @@ private Q_SLOTS:
 
         store.defaults();
         QCOMPARE(object->property("value").toInt(), 7);
+    }
+
+    void serviceKeepsTheLimitsFromTheScript()
+    {
+        auto config = freshConfig(QStringLiteral("limits"));
+        SettingsStore store(config, QStringLiteral(DSK_MAIN_XML));
+        auto service = new SettingsService(&store);
+        QSignalSpy changed(service, &SettingsService::limitsChanged);
+
+        // As sent by the KWin script over D-Bus: JS numbers arrive as doubles.
+        service->setLimits({{QStringLiteral("CellWidth"), 79.0}, {QStringLiteral("CellHeight"), 79.0}});
+        QCOMPARE(changed.count(), 1);
+        QCOMPARE(service->limits().value(QStringLiteral("CellWidth")).toInt(), 79);
+
+        // The script sends them again after each change of its content: no signal if equal.
+        service->setLimits({{QStringLiteral("CellWidth"), 79.0}, {QStringLiteral("CellHeight"), 79.0}});
+        QCOMPARE(changed.count(), 1);
     }
 
     void unknownKeysAreIgnored()

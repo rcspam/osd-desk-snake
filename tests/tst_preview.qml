@@ -146,6 +146,16 @@ Item {
             verify(!dot(empty).visible, "desktop without windows: no dot");
         }
 
+        // The size floors sent to the settings app match what is drawn.
+        function test_sizeFloorsMatchTheCells() {
+            wait(100);
+            const box = variant("16-labels-circle-square-hl");
+            const indicator = box.children.find(child => child.sizeFloors !== undefined);
+            const cells = cellsOf(box);
+            compare(indicator.sizeFloors.CellWidth, Math.ceil(cells[0].width));
+            compare(indicator.sizeFloors.CellHeight, Math.ceil(cells[0].width));
+        }
+
         // Circle cells share one diameter, whatever the length of each label.
         function test_circleCellsShareOneDiameter() {
             wait(100);

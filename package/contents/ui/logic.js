@@ -221,9 +221,23 @@ function markY(cellHeight, contentHeight, distance) {
     return (cellHeight + contentHeight) / 2 + distance;
 }
 
+// Horizontal room around the content of a cell (both sides).
+const cellPadding = 16;
+
+// Lowest CellWidth and CellHeight that still change something (see cellGeometry):
+// circles never get smaller than the widest content, and a cell is never
+// narrower than its own content, so below the narrowest one CellWidth does nothing.
+function cellSizeFloors(shape, widestContent, narrowestContent) {
+    if (shape === 1) {
+        const diameter = Math.ceil(widestContent + cellPadding);
+        return { CellWidth: diameter, CellHeight: diameter };
+    }
+    return { CellWidth: Math.ceil(narrowestContent + cellPadding), CellHeight: 1 };
+}
+
 // Cell of the label, icon and task styles. Shapes: 0 rounded, 1 circle, 2 square.
 function cellGeometry(shape, contentWidth, cellWidth, cellHeight, radius) {
-    const w = Math.max(cellWidth, contentWidth + 16);
+    const w = Math.max(cellWidth, contentWidth + cellPadding);
     if (shape === 1) {
         const d = Math.max(w, cellHeight);
         return { width: d, height: d, radius: d / 2 };

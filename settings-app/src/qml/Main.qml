@@ -11,6 +11,8 @@ QQC2.ApplicationWindow {
 
     required property var store
     required property var presets
+    // D-Bus service: its limits come from the KWin script (lowest useful cell sizes).
+    required property var service
     // Tab to show, from the osd-desk-snake:// link that opened the app.
     property string page
     readonly property int presetsTab: Fields.tabs.length
@@ -79,6 +81,7 @@ QQC2.ApplicationWindow {
                             required property var modelData
                             field: modelData
                             store: root.store
+                            limits: root.service.limits
                             Kirigami.FormData.isSection: modelData.kind === "section"
                             Kirigami.FormData.label: modelData.kind === "check" ? "" : i18n(modelData.label)
                         }
