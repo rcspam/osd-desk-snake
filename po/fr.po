@@ -457,8 +457,92 @@ msgstr "Suit le changement de bureau"
 msgid "Once the switch is done"
 msgstr "Une fois le bureau atteint"
 
-msgid "<a href=\"osd-desk-snake://settings\">Open OSD Desk Snake Settings</a> for live preview and mouse positioning. Not installed? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">Get it</a>."
-msgstr "<a href=\"osd-desk-snake://settings\">Ouvrir Réglages OSD Desk Snake</a> pour l'aperçu en direct et le placement à la souris. Pas installé ? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">L'installer</a>."
+msgid "<a href=\"osd-desk-snake://settings\">Open OSD Desk Snake Settings</a> for live preview and mouse positioning, or <a href=\"osd-desk-snake://presets\">manage presets</a>. Not installed? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">Get it</a>."
+msgstr "<a href=\"osd-desk-snake://settings\">Ouvrir Réglages OSD Desk Snake</a> pour l'aperçu en direct et le placement à la souris, ou <a href=\"osd-desk-snake://presets\">gérer les préréglages</a>. Pas installé ? <a href=\"https://github.com/rcspam/osd-desk-snake#install\">L'installer</a>."
 
 msgid "That app saves every change right away; this window closes when it opens."
 msgstr "Cette appli enregistre chaque changement immédiatement ; cette fenêtre se ferme à son ouverture."
+
+msgid "Presets"
+msgstr "Préréglages"
+
+msgid "Save current as…"
+msgstr "Enregistrer sous…"
+
+msgid "Import…"
+msgstr "Importer…"
+
+msgid "Export…"
+msgstr "Exporter…"
+
+msgid "Rename…"
+msgstr "Renommer…"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Delete preset"
+msgstr "Supprimer le préréglage"
+
+msgid "Delete the preset “%1”?"
+msgstr "Supprimer le préréglage « %1 » ?"
+
+msgid "No presets yet"
+msgstr "Aucun préréglage pour l'instant"
+
+msgid "Set things up the way you like in the other tabs, then save them here as a preset."
+msgstr "Réglez l'indicateur à votre goût dans les autres onglets, puis enregistrez-le ici comme préréglage."
+
+msgid "Save preset"
+msgstr "Enregistrer le préréglage"
+
+msgid "Rename preset"
+msgstr "Renommer le préréglage"
+
+msgid "Replace preset"
+msgstr "Remplacer le préréglage"
+
+msgid "A preset called “%1” already exists. Replace it?"
+msgstr "Un préréglage nommé « %1 » existe déjà. Le remplacer ?"
+
+msgid "Replace"
+msgstr "Remplacer"
+
+msgid "Preset name"
+msgstr "Nom du préréglage"
+
+msgid "Import preset"
+msgstr "Importer un préréglage"
+
+msgid "Export preset"
+msgstr "Exporter le préréglage"
+
+msgid "OSD Desk Snake presets (*.osdsnake)"
+msgstr "Préréglages OSD Desk Snake (*.osdsnake)"
+
+msgid "All files (*)"
+msgstr "Tous les fichiers (*)"
+
+msgid "The preset needs a name."
+msgstr "Le préréglage doit avoir un nom."
+
+msgid "There is no preset called “%1”."
+msgstr "Aucun préréglage ne s'appelle « %1 »."
+
+msgid "Cannot delete %1."
+msgstr "Impossible de supprimer %1."
+
+msgid "Presets can only be exported to a local file."
+msgstr "Un préréglage ne peut être exporté que vers un fichier local."
+
+msgid "Cannot write %1."
+msgstr "Impossible d'écrire %1."
+
+msgid "Cannot read %1."
+msgstr "Impossible de lire %1."
+
+msgid "%1 is not an OSD Desk Snake preset."
+msgstr "%1 n'est pas un préréglage OSD Desk Snake."
+
+msgid "Cannot create the folder %1."
+msgstr "Impossible de créer le dossier %1."

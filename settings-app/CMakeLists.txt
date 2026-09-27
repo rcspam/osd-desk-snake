@@ -31,6 +31,7 @@ qt_add_resources(osd-desk-snake-settings qml PREFIX / BASE src/qml FILES
     src/qml/Main.qml
     src/qml/FieldEditor.qml
     src/qml/ColorButton.qml
+    src/qml/PresetsPage.qml
     src/qml/fields.js
 )
 

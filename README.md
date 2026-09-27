@@ -134,10 +134,12 @@ Two ways, same settings:
   indicator stays on screen. Revert goes back to the settings you had when the
   window opened. While it is open the indicator can also be dragged: in anchor
   mode it snaps to the nearest anchor (Snap to anchors), in free mode it keeps
-  the exact spot.
+  the exact spot. Its Presets tab saves every setting under a name, applies a
+  preset with one click, and exports or imports presets as `.osdsnake` files
+  (kept in `~/.local/share/osd-desk-snake/presets`).
 - System Settings > Window Management > KWin Scripts > OSD Desk Snake > Configure:
-  changes show up on Apply. A link at the top of that page opens the settings
-  app when it is installed.
+  changes show up on Apply. Links at the top of that page open the settings
+  app, or its Presets tab, when it is installed.
 
 While the settings dialog is open, the indicator stays on screen and picks up
 every Apply within a second. KWin does not reload script settings by itself, so

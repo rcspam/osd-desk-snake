@@ -1,3 +1,4 @@
+#include "presetlibrary.h"
 #include "settingsservice.h"
 #include "settingsstore.h"
 
@@ -11,7 +12,20 @@
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
+#include <QUrl>
 #include <QWindow>
+
+// Page asked by the osd-desk-snake:// link that started the app (osd-desk-snake://presets).
+static QString pageFromArguments(const QStringList &arguments)
+{
+    for (const QString &argument : arguments.mid(1)) {
+        const QUrl url(argument);
+        if (url.scheme() == QLatin1String("osd-desk-snake")) {
+            return url.host();
+        }
+    }
+    return {};
+}
 
 int main(int argc, char **argv)
 {
@@ -28,6 +42,8 @@ int main(int argc, char **argv)
         QQuickStyle::setStyle(QStringLiteral("org.kde.desktop"));
     }
 
+    const QString page = pageFromArguments(app.arguments());
+
     // Single instance: two stores would overwrite each other, and the KWin script
     // talks to whichever owns the bus name.
     const QString serviceName = QStringLiteral("org.kde.osddesksnake.settings");
@@ -37,26 +53,30 @@ int main(int argc, char **argv)
                                                                QStringLiteral("/Settings"),
                                                                QStringLiteral("org.kde.osddesksnake.Settings"),
                                                                QStringLiteral("activate"));
-        activate << qEnvironmentVariable("XDG_ACTIVATION_TOKEN");
+        activate << qEnvironmentVariable("XDG_ACTIVATION_TOKEN") << page;
         bus.call(activate);
         return 0;
     }
 
     SettingsStore store(KSharedConfig::openConfig(QStringLiteral("kwinrc")), QStringLiteral(":/main.xml"));
+    PresetLibrary presets(&store, QStringLiteral(":/main.xml"), PresetLibrary::defaultDirectory());
 
     auto service = new SettingsService(&store);
     bus.registerObject(QStringLiteral("/Settings"), service, QDBusConnection::ExportScriptableSlots);
 
     QQmlApplicationEngine engine;
     KLocalization::setupLocalizedContext(&engine);
-    engine.setInitialProperties({{QStringLiteral("store"), QVariant::fromValue<QObject *>(&store)}});
+    engine.setInitialProperties({{QStringLiteral("store"), QVariant::fromValue<QObject *>(&store)},
+                                 {QStringLiteral("presets"), QVariant::fromValue<QObject *>(&presets)},
+                                 {QStringLiteral("page"), page}});
     engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
     if (engine.rootObjects().isEmpty()) {
         return 1;
     }
 
     auto window = qobject_cast<QWindow *>(engine.rootObjects().constFirst());
-    QObject::connect(service, &SettingsService::activateRequested, window, [window](const QString &token) {
+    QObject::connect(service, &SettingsService::activateRequested, window, [window](const QString &token, const QString &page) {
+        QMetaObject::invokeMethod(window, "showPage", Q_ARG(QVariant, page));
         if (!token.isEmpty()) {
             KWindowSystem::setCurrentXdgActivationToken(token);
         }

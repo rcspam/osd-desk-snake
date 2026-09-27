@@ -8,7 +8,8 @@
 // D-Bus entry point (org.kde.osddesksnake.settings, /Settings). The KWin script
 // cannot write its own config, so after the indicator is dragged it sends the
 // new position here and the app stores it. A second launch of the app calls
-// activate() on the running one instead of opening another window.
+// activate() on the running one instead of opening another window, passing the
+// page its link asked for.
 class SettingsService : public QObject
 {
     Q_OBJECT
@@ -28,13 +29,14 @@ public Q_SLOTS:
     }
 
     // token: the xdg-activation token of the new launch, so KWin lets us take focus.
-    Q_SCRIPTABLE void activate(const QString &token)
+    // page: the tab asked by its osd-desk-snake:// link ("presets"), or empty.
+    Q_SCRIPTABLE void activate(const QString &token, const QString &page)
     {
-        Q_EMIT activateRequested(token);
+        Q_EMIT activateRequested(token, page);
     }
 
 Q_SIGNALS:
-    void activateRequested(const QString &token);
+    void activateRequested(const QString &token, const QString &page);
 
 private:
     SettingsStore *m_store;

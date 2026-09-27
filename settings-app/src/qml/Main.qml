@@ -10,6 +10,16 @@ QQC2.ApplicationWindow {
     id: root
 
     required property var store
+    required property var presets
+    // Tab to show, from the osd-desk-snake:// link that opened the app.
+    property string page
+    readonly property int presetsTab: Fields.tabs.length
+
+    function showPage(name) {
+        if (name === "presets") {
+            tabs.currentIndex = presetsTab;
+        }
+    }
 
     // Groups of a tab as one list: a "section" entry followed by its fields.
     function flatten(tab) {
@@ -38,6 +48,9 @@ QQC2.ApplicationWindow {
                 required property var modelData
                 text: i18n(modelData.title)
             }
+        }
+        QQC2.TabButton {
+            text: i18n("Presets")
         }
     }
 
@@ -73,7 +86,12 @@ QQC2.ApplicationWindow {
                 }
             }
         }
+        PresetsPage {
+            presets: root.presets
+        }
     }
+
+    Component.onCompleted: Qt.callLater(showPage, page)
 
     footer: QQC2.ToolBar {
         RowLayout {

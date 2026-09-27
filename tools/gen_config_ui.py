@@ -152,7 +152,8 @@ TABS = [
 # The script alone (KDE Store) comes without the app: the second link, always
 # valid, points to its install instructions.
 APP_LINK = ('<a href="osd-desk-snake://settings">Open OSD Desk Snake Settings</a> '
-            'for live preview and mouse positioning. Not installed? '
+            'for live preview and mouse positioning, or '
+            '<a href="osd-desk-snake://presets">manage presets</a>. Not installed? '
             '<a href="https://github.com/rcspam/osd-desk-snake#install">Get it</a>.')
 APP_LINK_TIP = "That app saves every change right away; this window closes when it opens."
 
